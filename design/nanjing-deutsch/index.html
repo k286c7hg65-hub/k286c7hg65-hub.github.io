@@ -1,0 +1,760 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nanjing entdecken · Deutsch A2</title>
+  <style>
+    :root {
+      --paper: #f3ead7;
+      --paper-soft: #fffaf0;
+      --paper-deep: #e2d4bc;
+      --ink: #2f2b25;
+      --muted: #6a5d50;
+      --wall: #8b5a3e;
+      --wall-deep: #5a3528;
+      --leaf: #526f4c;
+      --leaf-deep: #31452f;
+      --river: #5f8f9b;
+      --river-deep: #385f6d;
+      --gold: #b8873b;
+      --red: #ad5a43;
+      --white: #fffaf0;
+      --line: rgba(90, 53, 40, .2);
+      --shadow: 0 18px 54px rgba(47, 43, 37, .14);
+      --radius: 10px;
+      --font: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: var(--font);
+      line-height: 1.7;
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(95, 143, 155, .08) 0%, transparent 68%),
+        linear-gradient(90deg, rgba(82, 111, 76, .04) 1px, transparent 1px) 0 0 / 38px 38px,
+        var(--paper);
+    }
+
+    img { display: block; max-width: 100%; }
+
+    button { font: inherit; }
+
+    .page { overflow: hidden; }
+
+    .hero {
+      min-height: 90svh;
+      display: grid;
+      align-items: end;
+      color: var(--white);
+      background:
+        linear-gradient(180deg, rgba(47, 43, 37, .84), rgba(47, 43, 37, .48) 42%, rgba(47, 43, 37, .08)),
+        url("assets/generated/NJ-HERO-city-wall-plane-trees-qinhuai-yangtze.jpg") center / cover no-repeat;
+    }
+
+    .hero-inner {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 120px 0 96px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 7px 13px;
+      border: 1px solid rgba(255, 250, 240, .36);
+      border-radius: 999px;
+      background: rgba(47, 43, 37, .3);
+      backdrop-filter: blur(12px);
+      color: #ffe5b8;
+      font-size: .85rem;
+      font-weight: 760;
+    }
+
+    .hero h1 {
+      margin: 24px 0 16px;
+      max-width: 800px;
+      font-size: clamp(2.3rem, 5vw, 3.55rem);
+      font-weight: 820;
+      line-height: 1.15;
+      text-shadow: 0 2px 12px rgba(0, 0, 0, .46);
+    }
+
+    .hero p {
+      margin: 0;
+      max-width: 660px;
+      font-size: clamp(1.04rem, 2.4vw, 1.16rem);
+      line-height: 1.6;
+      color: rgba(255, 250, 240, .92);
+      text-shadow: 0 1px 6px rgba(0, 0, 0, .32);
+    }
+
+    .sec {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 80px 0;
+    }
+
+    .sec-title {
+      margin: 0 0 12px;
+      font-size: 1.65rem;
+      font-weight: 780;
+      color: var(--wall-deep);
+    }
+
+    .sec-sub {
+      margin: 0 0 40px;
+      max-width: 620px;
+      font-size: 1.02rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .sec-divider {
+      height: 1px;
+      width: 64px;
+      margin-bottom: 48px;
+      background: var(--wall);
+      opacity: .36;
+    }
+
+    .narrative {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 64px 0 0;
+    }
+
+    .nar-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+      margin-bottom: 72px;
+    }
+
+    .nar-img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .nar-text h3 {
+      margin: 0 0 10px;
+      font-size: 1.32rem;
+      font-weight: 780;
+      color: var(--ink);
+    }
+
+    .de-name {
+      display: block;
+      font-size: .82rem;
+      color: var(--leaf);
+      font-weight: 700;
+      margin: 6px 0 12px;
+    }
+
+    .nar-text p,
+    .card-body p,
+    .food-text p,
+    .quiet-text p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .path-line {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .path-line span {
+      min-height: 34px;
+      padding: 5px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 250, 240, .72);
+      color: var(--wall-deep);
+      font-size: .84rem;
+      font-weight: 720;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 32px;
+    }
+
+    .card {
+      border-radius: var(--radius);
+      background: var(--paper-soft);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transition: transform .35s ease, box-shadow .35s ease;
+    }
+
+    .card:hover { transform: translateY(-4px); }
+
+    .card-img {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+    }
+
+    .card-body { padding: 22px 24px 28px; }
+
+    .card-tag {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: .76rem;
+      font-weight: 740;
+      background: rgba(139, 90, 62, .11);
+      color: var(--wall);
+      margin-bottom: 10px;
+    }
+
+    .card-body h3,
+    .food-text h3,
+    .quiet-text h3 {
+      margin: 0 0 8px;
+      font-size: 1.18rem;
+      font-weight: 780;
+      color: var(--ink);
+    }
+
+    .more {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 5px 16px;
+      border: 1px solid var(--leaf);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--leaf-deep);
+      font-size: .84rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background .2s, color .2s;
+    }
+
+    .more:hover { background: var(--leaf); color: var(--white); }
+
+    .detail {
+      display: none;
+      margin-top: 12px;
+      font-size: .92rem;
+      color: var(--muted);
+      line-height: 1.62;
+    }
+
+    .card.open .detail,
+    .food-card.open .detail,
+    .quiet-band.open .detail { display: block; }
+
+    .quiet-band {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto 12px;
+      display: grid;
+      grid-template-columns: minmax(260px, 420px) 1fr;
+      gap: 32px;
+      align-items: center;
+      padding: 34px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 250, 240, .74);
+      box-shadow: 0 8px 28px rgba(47, 43, 37, .08);
+    }
+
+    .quiet-img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .food-strip {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 0 0 80px;
+    }
+
+    .food-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: center;
+      padding: 36px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .food-card:last-child { border-bottom: none; }
+
+    .food-img {
+      width: 100%;
+      aspect-ratio: 3 / 2;
+      object-fit: cover;
+      border-radius: var(--radius);
+      box-shadow: 0 8px 28px rgba(47, 43, 37, .1);
+    }
+
+    .food-text .de-name { color: var(--red); }
+
+    .vocab-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 12px;
+    }
+
+    .vocab {
+      padding: 12px 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+      color: var(--ink);
+      font-size: .88rem;
+      font-weight: 640;
+      cursor: pointer;
+      transition: background .25s, border-color .25s, transform .2s;
+    }
+
+    .vocab:hover { border-color: var(--leaf); background: rgba(82, 111, 76, .06); }
+    .vocab.flipped { background: var(--leaf); color: var(--white); border-color: var(--leaf); transform: scale(1.03); }
+
+    .phrase-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 16px;
+    }
+
+    .phrase-card {
+      margin: 0;
+      padding: 16px 20px;
+      border-radius: 8px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      font-size: .93rem;
+      color: var(--ink);
+      line-height: 1.6;
+    }
+
+    .phrase-card strong { display: block; margin-bottom: 4px; font-weight: 740; }
+    .phrase-card span { font-size: .82rem; color: var(--muted); }
+
+    .quiz-card {
+      width: min(720px, 100%);
+      padding: 28px;
+      border-radius: var(--radius);
+      background: var(--paper-soft);
+      box-shadow: 0 4px 18px rgba(47, 43, 37, .08);
+    }
+
+    .question { margin: 0 0 18px; font-size: 1.08rem; font-weight: 740; color: var(--ink); }
+    .options { display: flex; flex-wrap: wrap; gap: 10px; }
+
+    .option {
+      flex: 1 1 140px;
+      padding: 10px 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+      font-size: .93rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background .2s, border-color .2s;
+    }
+
+    .option:hover:not(:disabled) { border-color: var(--leaf); background: rgba(82, 111, 76, .06); }
+    .option.correct { background: #dbeed8; border-color: #3b7a45; color: #24502b; }
+    .option.wrong { background: #f6dfd8; border-color: var(--red); color: #733526; }
+    .option:disabled { cursor: default; }
+    .feedback { display: none; margin-top: 14px; padding: 10px 16px; border-radius: 8px; background: #eaf3e8; color: var(--leaf-deep); font-size: .91rem; font-weight: 640; }
+    .feedback.show { display: block; }
+
+    .final-postcard {
+      min-height: 48vh;
+      display: grid;
+      align-items: end;
+      color: var(--white);
+      background:
+        linear-gradient(90deg, rgba(47, 43, 37, .82), rgba(47, 43, 37, .54) 42%, rgba(47, 43, 37, .14)),
+        linear-gradient(180deg, rgba(47, 43, 37, .08), rgba(47, 43, 37, .55)),
+        url("assets/generated/NJ-FINAL-qinhuai-dusk.jpg") center / cover no-repeat;
+    }
+
+    .final-inner {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 64px 0 38px;
+    }
+
+    .final-postcard blockquote {
+      margin: 0 0 26px;
+      max-width: 680px;
+      font-size: clamp(1.08rem, 2.5vw, 1.45rem);
+      font-weight: 680;
+      line-height: 1.65;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, .46);
+    }
+
+    .footer-meta {
+      font-size: .82rem;
+      color: var(--muted);
+      opacity: .68;
+    }
+
+    .footer-meta a {
+      color: var(--leaf-deep);
+      text-decoration: none;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .reveal {
+        opacity: 0;
+        transform: translateY(28px);
+        transition: opacity .6s ease, transform .6s ease;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero { min-height: 72svh; }
+      .hero-inner { padding: 80px 0 64px; }
+      .nar-row,
+      .quiet-band,
+      .food-card { grid-template-columns: 1fr; gap: 24px; }
+      .food-card:nth-child(even) .food-img { order: 1; }
+      .food-card:nth-child(even) .food-text { order: 2; }
+      .sec-title { font-size: 1.42rem; }
+      .cards { grid-template-columns: 1fr; }
+      .final-postcard { min-height: 52vh; background-position: center; }
+      .final-postcard blockquote { font-size: 1.02rem; }
+      .quiet-band { padding: 22px; }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 1.82rem; }
+      .hero p { font-size: .95rem; }
+      .card-body h3,
+      .food-text h3,
+      .quiet-text h3 { font-size: 1.06rem; }
+      .phrase-grid { grid-template-columns: 1fr; }
+      .vocab-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+      .vocab { font-size: .78rem; padding: 8px 12px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <section class="hero">
+      <div class="hero-inner reveal">
+        <span class="eyebrow">Deutsch lernen · Nanjing</span>
+        <h1>Nanjing — Eine Stadt spricht leise</h1>
+        <p>Zuerst siehst du die Stadtmauer. Dann kommen Bäume, Wasser, alte Wege und eine Brücke über den großen Fluss.</p>
+      </div>
+    </section>
+
+    <div class="narrative reveal">
+      <div class="nar-row">
+        <img class="nar-img" src="assets/generated/NJ-1-nanjing-city-wall.jpg" alt="Nanjing-Stadtmauer mit altem Tor und Bäumen" loading="lazy">
+        <div class="nar-text">
+          <h3>Eine Stadt mit Schichten</h3>
+          <span class="de-name">Die Stadtmauer von Nanjing · 南京城墙</span>
+          <p>Nanjing spricht nicht laut. Auf der Stadtmauer spürst du zuerst die alten Steine. Danach gehst du unter Platanen, hörst Wasser am Qinhuai-Fluss und siehst später die große Brücke über den Jangtse. Die Stadt zeigt sich langsam, Schicht für Schicht.</p>
+          <div class="path-line" aria-label="Nanjing route">
+            <span>Mauer</span>
+            <span>Platanen</span>
+            <span>Qinhuai</span>
+            <span>Prüfungshof</span>
+            <span>Jangtse</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="sec reveal">
+      <h2 class="sec-title">Orte mit leiser Stimme</h2>
+      <p class="sec-sub">Acht Stationen durch Nanjing: Stein, Baum, Treppe, Licht, Wasser, Brücke, See und ein stiller Weg.</p>
+      <div class="sec-divider"></div>
+
+      <div class="cards">
+        <div class="card">
+          <img class="card-img" src="assets/generated/NJ-2-plane-tree-avenue.jpg" alt="Platanenallee in Nanjing mit kühlem Schatten" loading="lazy">
+          <div class="card-body">
+            <span class="card-tag">Straße</span>
+            <h3>Die Platanenallee</h3>
+            <span class="de-name">梧桐大道</span>
+            <p>Unter den Platanen ist die Straße kühl. Licht fällt durch die Blätter, und die Stadt wird langsamer.</p>
+            <button class="more" type="button">Mehr</button>
+            <p class="detail">Die Platanen sind in Nanjing mehr als Bäume. Sie machen aus der Straße einen langen grünen Raum. Im Sommer geben sie Schatten; im Herbst wird der Weg golden.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img class="card-img" src="assets/generated/NJ-3-sun-yat-sen-mausoleum.jpg" alt="Sun-Yat-sen-Mausoleum mit blauen Dächern und langen Stufen" loading="lazy">
+          <div class="card-body">
+            <span class="card-tag">Berg</span>
+            <h3>Das Sun-Yat-sen-Mausoleum</h3>
+            <span class="de-name">中山陵</span>
+            <p>Viele Stufen führen den Berg hinauf. Beim Gehen wird Geschichte nicht abstrakt, sondern im Körper spürbar.</p>
+            <button class="more" type="button">Mehr</button>
+            <p class="detail">Sun Yat-sen war Arzt und Revolutionär. Das Mausoleum liegt am Zijin-Berg. Die blauen Dächer, die Stufen und die Bäume machen den Ort ruhig und weit.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img class="card-img" src="assets/generated/NJ-4-jiangnan-examination-hall.jpg" alt="Jiangnan-Prüfungshof mit Tischen und warmem Licht" loading="lazy">
+          <div class="card-body">
+            <span class="card-tag">Lernen</span>
+            <h3>Der Jiangnan-Prüfungshof</h3>
+            <span class="de-name">江南贡院</span>
+            <p>In der Nähe des Qinhuai-Flusses denkt man an junge Menschen, die lange gelernt haben. Licht liegt auf Tischen und Holz.</p>
+            <button class="more" type="button">Mehr</button>
+            <p class="detail">Hier machten früher viele Menschen schwere Prüfungen. Auf der Seite bleibt der Ort ruhig: keine langen Texte, keine großen Worte, nur Tische, Lampen und die Erinnerung an Lernen.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img class="card-img" src="assets/generated/NJ-5-confucius-temple-qinhuai-river.jpg" alt="Qinhuai-Fluss mit Laternenlicht und alten Dächern" loading="lazy">
+          <div class="card-body">
+            <span class="card-tag">Wasser</span>
+            <h3>Der Qinhuai-Fluss</h3>
+            <span class="de-name">夫子庙 · 秦淮河</span>
+            <p>Am Abend liegt Licht auf dem Wasser. Man hört Stimmen, Schritte und kleine Boote. Nanjing wird weich.</p>
+            <button class="more" type="button">Mehr</button>
+            <p class="detail">Der Konfuzius-Tempel und der Qinhuai-Fluss gehören zusammen. Hier gibt es Geschichte, Essen, Licht und Wasser. Die Seite nutzt die Szene als Stimmung, nicht als laute Werbung.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img class="card-img" src="assets/generated/NJ-6-yangtze-river-bridge.jpg" alt="Nanjing-Jangtse-Brücke über breitem Fluss" loading="lazy">
+          <div class="card-body">
+            <span class="card-tag">Brücke</span>
+            <h3>Die Jangtse-Brücke von Nanjing</h3>
+            <span class="de-name">南京长江大桥</span>
+            <p>Der Jangtse ist breit. Die Brücke macht die Stadt größer und verbindet alte Wege mit moderner Erinnerung.</p>
+            <button class="more" type="button">Mehr</button>
+            <p class="detail">Die Brücke ist kein kleines Motiv. Sie zeigt den Maßstab des Flusses. In der Nanjing-Geschichte steht sie auch für eine moderne Zeit und für den Blick über das Wasser.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img class="card-img" src="assets/generated/NJ-7-xuanwu-lake.jpg" alt="Xuanwu-See mit ruhigem Wasser und Bäumen" loading="lazy">
+          <div class="card-body">
+            <span class="card-tag">See</span>
+            <h3>Der Xuanwu-See</h3>
+            <span class="de-name">玄武湖</span>
+            <p>Am See sitzt die Stadt still. Wasser, Bäume und ein weiter Himmel geben nach der Geschichte wieder Luft.</p>
+            <button class="more" type="button">Mehr</button>
+            <p class="detail">Der Xuanwu-See liegt nahe bei der Stadtmauer. Menschen gehen spazieren, sitzen am Ufer oder schauen einfach auf das Wasser. Der See macht Nanjing langsam.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="quiet-band reveal">
+      <img class="quiet-img" src="assets/generated/NJ-8-ming-xiaoling-spirit-way.jpg" alt="Ming-Xiaoling-Geisterweg mit Steinfiguren und Wald" loading="lazy">
+      <div class="quiet-text">
+        <span class="card-tag">Stiller Weg</span>
+        <h3>Das Ming-Xiaoling-Mausoleum</h3>
+        <span class="de-name">明孝陵神道</span>
+        <p>Zwischen Steinfiguren und Bäumen wird die Stadt sehr leise. Du gehst nicht schnell. Der Weg hat Zeit.</p>
+        <button class="more" type="button">Mehr</button>
+        <p class="detail">Die Steinfiguren am Weg sind nicht für ein lautes Bild da. Sie geben der Seite einen ruhigen Schluss der Orte: Nanjing als alte Stadt, die nicht alles sofort erklärt.</p>
+      </div>
+    </div>
+
+    <section class="sec reveal">
+      <h2 class="sec-title">Essen mit Wärme und Ruhe</h2>
+      <p class="sec-sub">Nanjing schmeckt oft klar: heiße Suppe, kühle Ente, vorsichtige Teigtaschen und ein süßer Kuchen auf der Straße.</p>
+      <div class="sec-divider"></div>
+    </section>
+
+    <div class="food-strip reveal">
+      <div class="food-card">
+        <img class="food-img" src="assets/generated/NJ-F1-duck-blood-vermicelli-soup.jpg" alt="Entenblut-Glasnudelsuppe mit Dampf" loading="lazy">
+        <div class="food-text">
+          <h3>Entenblut-Glasnudelsuppe</h3>
+          <span class="de-name">鸭血粉丝汤</span>
+          <p>Die Suppe ist heiß und klar. Glasnudeln liegen in der Schale, dazu kleine dunkle Stücke Entenblut und grüne Kräuter.</p>
+          <button class="more" type="button">Mehr</button>
+          <p class="detail">Man hält die Schale mit beiden Händen. Der Dampf wärmt das Gesicht, und die Nudeln sind weich. Für viele Menschen ist das ein sehr typischer Geschmack von Nanjing.</p>
+        </div>
+      </div>
+
+      <div class="food-card">
+        <img class="food-img" src="assets/generated/NJ-F2-salted-duck.jpg" alt="Salz-Ente in hellen Scheiben" loading="lazy">
+        <div class="food-text">
+          <h3>Salz-Ente</h3>
+          <span class="de-name">盐水鸭</span>
+          <p>Salz-Ente ist kühl, fein und nicht schwer. Die hellen Scheiben liegen ruhig auf dem Teller.</p>
+          <button class="more" type="button">Mehr</button>
+          <p class="detail">Nanjing liebt Ente. Diese Ente ist nicht süß und nicht laut gewürzt. Sie schmeckt klar, salzig und frisch. Darum passt sie gut zu einer Stadt, die leise bleibt.</p>
+        </div>
+      </div>
+
+      <div class="food-card">
+        <img class="food-img" src="assets/generated/NJ-F3-soup-dumplings.jpg" alt="Suppen-Teigtaschen im Dampfkorb" loading="lazy">
+        <div class="food-text">
+          <h3>Suppen-Teigtaschen</h3>
+          <span class="de-name">汤包</span>
+          <p>Iss langsam. In der kleinen Teigtasche wartet heiße Brühe. Ein Löffel hilft, damit nichts verloren geht.</p>
+          <button class="more" type="button">Mehr</button>
+          <p class="detail">Die Teigtasche sieht klein aus, aber innen ist Suppe. Man beißt vorsichtig, trinkt ein wenig Brühe und isst dann weiter. So wird Essen zu einer kleinen Handlung.</p>
+        </div>
+      </div>
+
+      <div class="food-card">
+        <img class="food-img" src="assets/generated/NJ-F4-plum-blossom-cakes.jpg" alt="Pflaumenblüten-Kuchen mit warmer Füllung" loading="lazy">
+        <div class="food-text">
+          <h3>Pflaumenblüten-Kuchen</h3>
+          <span class="de-name">梅花糕</span>
+          <p>Auf der Straße duftet es süß. Die kleinen Kuchen haben die Form einer Blume und sind innen warm.</p>
+          <button class="more" type="button">Mehr</button>
+          <p class="detail">Die Pflaumenblüte ist ein Symbol von Nanjing. Der Kuchen macht daraus etwas Einfaches für die Hand: heiß, süß und freundlich nach einem langen Weg.</p>
+        </div>
+      </div>
+    </div>
+
+    <section class="sec reveal" id="woerter">
+      <h2 class="sec-title">Wörter</h2>
+      <p class="sec-sub">Kurze Wörter für Wege, Wasser, Essen und Erinnerung. Tippen zum Umklappen.</p>
+      <div class="vocab-grid">
+        <button class="vocab" data-de="die Mauer" data-zh="城墙">die Mauer</button>
+        <button class="vocab" data-de="der Baum" data-zh="树">der Baum</button>
+        <button class="vocab" data-de="der Schatten" data-zh="阴影">der Schatten</button>
+        <button class="vocab" data-de="der Fluss" data-zh="河流">der Fluss</button>
+        <button class="vocab" data-de="die Brücke" data-zh="桥">die Brücke</button>
+        <button class="vocab" data-de="der See" data-zh="湖">der See</button>
+        <button class="vocab" data-de="die Stufe" data-zh="台阶">die Stufe</button>
+        <button class="vocab" data-de="das Licht" data-zh="光">das Licht</button>
+        <button class="vocab" data-de="die Suppe" data-zh="汤">die Suppe</button>
+        <button class="vocab" data-de="die Ente" data-zh="鸭">die Ente</button>
+        <button class="vocab" data-de="heiß" data-zh="热">heiß</button>
+        <button class="vocab" data-de="kühl" data-zh="凉">kühl</button>
+        <button class="vocab" data-de="leise" data-zh="安静">leise</button>
+        <button class="vocab" data-de="langsam" data-zh="慢慢地">langsam</button>
+        <button class="vocab" data-de="alt und neu" data-zh="古老又现代">alt und neu</button>
+      </div>
+    </section>
+
+    <section class="sec reveal" id="saetze">
+      <h2 class="sec-title">Sätze</h2>
+      <p class="sec-sub">Diese Sätze sind kurz. Du kannst sie in Nanjing benutzen.</p>
+      <div class="phrase-grid">
+        <p class="phrase-card"><strong>Wo ist die Stadtmauer?</strong><span>城墙在哪里？</span></p>
+        <p class="phrase-card"><strong>Ich möchte zum Qinhuai-Fluss gehen.</strong><span>我想去秦淮河。</span></p>
+        <p class="phrase-card"><strong>Die Suppe ist sehr heiß.</strong><span>这碗汤很烫。</span></p>
+        <p class="phrase-card"><strong>Bitte langsam essen.</strong><span>请慢慢吃。</span></p>
+        <p class="phrase-card"><strong>Der See ist ruhig.</strong><span>这个湖很安静。</span></p>
+        <p class="phrase-card"><strong>Wie komme ich zur Jangtse-Brücke?</strong><span>长江大桥怎么走？</span></p>
+      </div>
+    </section>
+
+    <section class="sec reveal" id="quiz">
+      <h2 class="sec-title">Quiz</h2>
+      <p class="sec-sub">Drei kleine Fragen. Wähle eine Antwort.</p>
+
+      <div class="quiz-card" data-answer="1">
+        <p class="question">1. Was gibt Nanjing im Text zuerst Tiefe?</p>
+        <div class="options">
+          <button class="option" type="button">Der Kuchen</button>
+          <button class="option" type="button">Die Stadtmauer</button>
+          <button class="option" type="button">Der Bahnhof</button>
+        </div>
+        <div class="feedback">Richtig. Die Stadtmauer gibt Nanjing zuerst Tiefe und Geschichte.</div>
+      </div>
+
+      <div class="quiz-card" data-answer="2" style="margin-top:14px">
+        <p class="question">2. Was liegt in den Suppen-Teigtaschen?</p>
+        <div class="options">
+          <button class="option" type="button">Kalter Reis</button>
+          <button class="option" type="button">Ein Stück Kuchen</button>
+          <button class="option" type="button">Heiße Brühe</button>
+        </div>
+        <div class="feedback">Richtig. In der Teigtasche wartet heiße Brühe.</div>
+      </div>
+
+      <div class="quiz-card" data-answer="0" style="margin-top:14px">
+        <p class="question">3. Welche Bäume geben den Straßen Schatten?</p>
+        <div class="options">
+          <button class="option" type="button">Platanen</button>
+          <button class="option" type="button">Palmen</button>
+          <button class="option" type="button">Kiefern am Meer</button>
+        </div>
+        <div class="feedback">Richtig. Die Platanen geben vielen Straßen in Nanjing Schatten.</div>
+      </div>
+    </section>
+
+    <section class="final-postcard reveal">
+      <div class="final-inner">
+        <blockquote>Nanjing bleibt wie ein langer Weg unter Bäumen. Du hörst Wasser, Schritte und leise Stimmen. Die Stadt zeigt nicht alles sofort, aber sie bleibt bei dir.</blockquote>
+        <p class="footer-meta">
+          Deutsch A2 · Nanjing entdecken · <a href="https://k286c7hg65-hub.github.io/design/nanjing-deutsch/">Seite besuchen</a>
+        </p>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    (function () {
+      var els = document.querySelectorAll('.reveal');
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        els.forEach(function (el) { el.classList.add('visible'); });
+        return;
+      }
+      var obs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add('visible'); }
+        });
+      }, { threshold: 0.12 });
+      els.forEach(function (el) { obs.observe(el); });
+    })();
+
+    document.querySelectorAll('.more').forEach(function (button) {
+      button.addEventListener('click', function () {
+        var parent = button.closest('.card, .food-card, .quiet-band');
+        var isOpen = parent.classList.toggle('open');
+        button.textContent = isOpen ? 'Weniger' : 'Mehr';
+      });
+    });
+
+    document.querySelectorAll('.vocab').forEach(function (button) {
+      button.addEventListener('click', function () {
+        var flipped = button.classList.toggle('flipped');
+        button.textContent = flipped ? button.dataset.zh : button.dataset.de;
+      });
+    });
+
+    document.querySelectorAll('.quiz-card').forEach(function (quiz) {
+      var answer = Number(quiz.dataset.answer);
+      var options = [].slice.call(quiz.querySelectorAll('.option'));
+      var feedback = quiz.querySelector('.feedback');
+      var originalText = feedback.textContent;
+      options.forEach(function (option, index) {
+        option.addEventListener('click', function () {
+          options.forEach(function (item, idx) {
+            item.disabled = true;
+            item.classList.toggle('correct', idx === answer);
+            item.classList.toggle('wrong', idx === index && idx !== answer);
+          });
+          feedback.classList.add('show');
+          feedback.textContent = index === answer
+            ? originalText
+            : 'Nicht ganz. Die richtige Antwort ist: ' + options[answer].textContent + '.';
+        });
+      });
+    });
+  </script>
+</body>
+</html>

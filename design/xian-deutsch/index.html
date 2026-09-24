@@ -1,0 +1,963 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Xi'an entdecken · Deutsch A2</title>
+  <style>
+    :root {
+      --paper: #f4e7d1;
+      --paper-soft: #f8ecd5;
+      --paper-deep: #ead7b6;
+      --ink: #342a22;
+      --muted: #6d5e51;
+      --terracotta: #b85c38;
+      --brick: #7a3f2a;
+      --clay: #5e5147;
+      --bronze: #5a8c7b;
+      --lamp: #c4953a;
+      --white: #fffaf0;
+      --line: rgba(122, 63, 42, .22);
+      --shadow: 0 20px 60px rgba(79, 45, 25, .16);
+      --radius: 8px;
+      --font: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: var(--font);
+      line-height: 1.65;
+      background:
+        linear-gradient(90deg, rgba(122, 63, 42, .035) 1px, transparent 1px) 0 0 / 34px 34px,
+        linear-gradient(0deg, rgba(122, 63, 42, .03) 1px, transparent 1px) 0 0 / 34px 34px,
+        var(--paper);
+    }
+
+    img { max-width: 100%; display: block; }
+
+    button {
+      font: inherit;
+    }
+
+    .page {
+      overflow: hidden;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 92svh;
+      display: grid;
+      align-items: end;
+      color: var(--white);
+      background:
+        linear-gradient(90deg, rgba(52, 42, 34, .72), rgba(52, 42, 34, .26) 48%, rgba(52, 42, 34, .12)),
+        url("../assets/web/hero-xian-wall-dusk.jpg") center / cover no-repeat;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 120px 0 120px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 36px;
+      padding: 7px 12px;
+      border: 1px solid rgba(255, 250, 240, .36);
+      border-radius: 999px;
+      background: rgba(52, 42, 34, .28);
+      backdrop-filter: blur(10px);
+      color: #ffedcf;
+      font-size: .88rem;
+      font-weight: 700;
+    }
+
+    .hero h1 {
+      margin: 22px 0 14px;
+      max-width: 760px;
+      font-size: clamp(3rem, 10vw, 7.5rem);
+      line-height: .88;
+      letter-spacing: 0;
+    }
+
+    .hero h1 span {
+      display: block;
+    }
+
+    .hero-copy {
+      max-width: 580px;
+      margin: 0;
+      color: #fff1d7;
+      font-size: clamp(1.05rem, 2vw, 1.35rem);
+      line-height: 1.55;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 28px;
+    }
+
+    .pill-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 42px;
+      padding: 9px 15px;
+      border: 1px solid rgba(255, 250, 240, .42);
+      border-radius: 999px;
+      background: rgba(255, 250, 240, .14);
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 800;
+      transition: transform .2s ease, background .2s ease;
+    }
+
+    .pill-link:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 250, 240, .22);
+    }
+
+    .wrap {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .route-strip {
+      margin: 34px auto 0;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 250, 240, .52);
+      box-shadow: 0 8px 24px rgba(79, 45, 25, .08);
+    }
+
+    .route-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 10px;
+      color: var(--brick);
+      font-size: .9rem;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .tag-row {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+
+    .tag {
+      flex: 0 0 auto;
+      padding: 7px 11px;
+      border: 1px solid rgba(122, 63, 42, .18);
+      border-radius: 999px;
+      background: var(--paper-soft);
+      color: var(--clay);
+      font-size: .86rem;
+      font-weight: 750;
+    }
+
+    .section {
+      padding: 76px 0;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 14px;
+      align-items: start;
+      margin-bottom: 26px;
+    }
+
+    .section-icon,
+    .card-mark {
+      display: inline-grid;
+      place-items: center;
+      border: 1px solid rgba(184, 92, 56, .22);
+      border-radius: 999px;
+      background: var(--paper-soft);
+      color: var(--terracotta);
+    }
+
+    .section-icon {
+      width: 42px;
+      height: 42px;
+    }
+
+    .section-icon svg,
+    .card-mark svg {
+      width: 22px;
+      height: 22px;
+      stroke: currentColor;
+      stroke-width: 2;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .section h2 {
+      margin: 0;
+      color: var(--brick);
+      font-size: clamp(1.8rem, 4vw, 3.2rem);
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .section-lead {
+      max-width: 680px;
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 1.02rem;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .place-card,
+    .food-card,
+    .quiz-card,
+    .phrase-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 250, 240, .58);
+      box-shadow: 0 8px 28px rgba(79, 45, 25, .08);
+    }
+
+    .place-card {
+      overflow: hidden;
+    }
+
+    .place-img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      background: var(--paper-deep);
+    }
+
+    .place-card.is-tall .place-img {
+      object-position: center top;
+    }
+
+    .place-body {
+      padding: 16px;
+    }
+
+    .card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .card-mark {
+      width: 42px;
+      height: 42px;
+      flex: 0 0 auto;
+    }
+
+    .place-card h3,
+    .food-card h3 {
+      margin: 0;
+      color: var(--brick);
+      font-size: 1.1rem;
+      line-height: 1.2;
+    }
+
+    .cn {
+      margin: 3px 0 0;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .short {
+      margin: 12px 0;
+      color: var(--clay);
+    }
+
+    .a2-line {
+      margin: 0;
+      padding: 10px 12px;
+      border-left: 3px solid var(--lamp);
+      background: rgba(196, 149, 58, .11);
+      color: var(--brick);
+      font-weight: 800;
+    }
+
+    .more {
+      width: 100%;
+      min-height: 42px;
+      margin-top: 12px;
+      border: 1px solid rgba(122, 63, 42, .22);
+      border-radius: var(--radius);
+      background: var(--paper-soft);
+      color: var(--brick);
+      cursor: pointer;
+      font-weight: 900;
+    }
+
+    .detail {
+      display: none;
+      margin: 12px 0 0;
+      color: var(--muted);
+    }
+
+    .place-card.open .detail,
+    .food-card.open .detail {
+      display: block;
+    }
+
+    .food-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .food-card {
+      display: grid;
+      grid-template-columns: 176px 1fr;
+      gap: 16px;
+      padding: 14px;
+      align-items: center;
+    }
+
+    .food-card img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 7px;
+      background: var(--paper-deep);
+    }
+
+    .vocab-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .vocab {
+      min-height: 42px;
+      padding: 8px 14px;
+      border: 1px solid rgba(90, 140, 123, .28);
+      border-radius: 999px;
+      background: rgba(90, 140, 123, .1);
+      color: var(--clay);
+      cursor: pointer;
+      font-weight: 850;
+    }
+
+    .vocab.flipped {
+      background: var(--bronze);
+      color: var(--white);
+    }
+
+    .phrase-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .phrase-card {
+      padding: 16px;
+    }
+
+    .phrase-card strong {
+      display: block;
+      color: var(--brick);
+      font-size: 1.02rem;
+    }
+
+    .phrase-card span {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+    }
+
+    .quiz-card {
+      padding: 22px;
+    }
+
+    .question {
+      margin: 0 0 14px;
+      color: var(--brick);
+      font-size: 1.12rem;
+      font-weight: 900;
+    }
+
+    .options {
+      display: grid;
+      gap: 10px;
+    }
+
+    .option {
+      min-height: 46px;
+      padding: 10px 14px;
+      border: 1px solid rgba(122, 63, 42, .22);
+      border-radius: var(--radius);
+      background: var(--paper-soft);
+      color: var(--ink);
+      cursor: pointer;
+      text-align: left;
+      transition: border-color .2s ease, transform .2s ease, background .2s ease;
+    }
+
+    .option:hover {
+      transform: translateX(3px);
+      border-color: var(--lamp);
+    }
+
+    .option.correct {
+      border-color: var(--bronze);
+      background: rgba(90, 140, 123, .16);
+    }
+
+    .option.wrong {
+      border-color: var(--terracotta);
+      background: rgba(184, 92, 56, .13);
+    }
+
+    .feedback {
+      display: none;
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: var(--radius);
+      background: rgba(196, 149, 58, .12);
+      color: var(--brick);
+      font-weight: 850;
+    }
+
+    .feedback.show {
+      display: block;
+    }
+
+    .final {
+      padding: 82px 0 96px;
+      color: var(--white);
+      background:
+        linear-gradient(rgba(52, 42, 34, .78), rgba(52, 42, 34, .84)),
+        url("../assets/web/muslim-quarter-market.jpg") center / cover no-repeat;
+    }
+
+    .final-inner {
+      width: min(720px, calc(100% - 32px));
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .final blockquote {
+      margin: 0;
+      font-size: clamp(1.5rem, 4vw, 2.7rem);
+      line-height: 1.18;
+      font-weight: 900;
+    }
+
+    .final p {
+      margin: 18px 0 0;
+      color: #f4dfbd;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity .45s ease, transform .45s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (min-width: 1500px) {
+      .hero-inner,
+      .wrap {
+        width: min(1200px, calc(100% - 72px));
+      }
+
+      .hero h1 {
+        font-size: clamp(5.8rem, 7.2vw, 8rem);
+      }
+    }
+
+    @media (max-width: 1100px) {
+      .card-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .food-card {
+        grid-template-columns: 150px 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .hero {
+        min-height: 88svh;
+        background-position: 60% center;
+      }
+
+      .card-grid,
+      .food-grid,
+      .phrase-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-head {
+        grid-template-columns: 1fr;
+      }
+
+      .food-card {
+        grid-template-columns: 152px 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .hero {
+        min-height: 84svh;
+        background-position: 58% center;
+      }
+
+      .hero-inner {
+        padding: 92px 0 96px;
+      }
+
+      .hero h1 {
+        max-width: 100%;
+        font-size: clamp(2.45rem, 13.5vw, 4.2rem);
+        line-height: .92;
+      }
+
+      .hero-copy {
+        max-width: 32ch;
+        font-size: 1rem;
+      }
+
+      .hero-actions {
+        max-width: 310px;
+        gap: 8px;
+      }
+
+      .pill-link {
+        min-height: 38px;
+        padding: 8px 12px;
+        font-size: .9rem;
+      }
+
+      .section {
+        padding: 54px 0;
+      }
+
+      .section-icon {
+        width: 38px;
+        height: 38px;
+      }
+
+      .food-card {
+        grid-template-columns: 1fr;
+      }
+
+      .food-card img {
+        aspect-ratio: 16 / 10;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .hero-inner,
+      .wrap,
+      .final-inner {
+        width: min(100% - 28px, 1120px);
+      }
+
+      .eyebrow {
+        font-size: .84rem;
+      }
+
+      .hero-copy {
+        max-width: 30ch;
+        font-size: .96rem;
+      }
+
+      .hero-actions {
+        max-width: 292px;
+      }
+
+      .pill-link {
+        padding-inline: 10px;
+      }
+
+      .route-strip,
+      .quiz-card,
+      .phrase-card {
+        padding: 14px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: .001ms !important;
+        animation-duration: .001ms !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+  <noscript>
+    <style>
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    </style>
+  </noscript>
+</head>
+<body>
+  <main class="page">
+    <section class="hero" id="top">
+      <div class="hero-inner">
+        <div class="eyebrow">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10h16M6 10v8m12-8v8M8 6h8l3 4H5l3-4Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Deutsch A2 · 西安
+        </div>
+        <h1><span>Xi'an</span> <span>entdecken</span></h1>
+        <p class="hero-copy">Eine Stadt mit Mauern, Türmen, 13 Dynastien und gutem Essen. Hier lernst du einfache deutsche Sätze und kleine Geschichten für eine Reise nach Xi'an.</p>
+        <nav class="hero-actions" aria-label="Seitenbereiche">
+          <a class="pill-link" href="#orte">Orte</a>
+          <a class="pill-link" href="#essen">Essen</a>
+          <a class="pill-link" href="#woerter">Wörter</a>
+          <a class="pill-link" href="#saetze">Sätze</a>
+          <a class="pill-link" href="#quiz">Quiz</a>
+        </nav>
+      </div>
+    </section>
+
+    <div class="wrap route-strip reveal">
+      <p class="route-title">
+        <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-5.2 7-11a7 7 0 1 0-14 0c0 5.8 7 11 7 11Z" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="10" r="2.5" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+        Eine kleine Route
+      </p>
+      <div class="tag-row" aria-label="Reiseroute">
+        <span class="tag">13 Dynastien</span>
+        <span class="tag">Stadtmauer</span>
+        <span class="tag">Terrakotta-Armee</span>
+        <span class="tag">Große Wildganspagode</span>
+        <span class="tag">Glockenturm</span>
+        <span class="tag">Muslimisches Viertel</span>
+        <span class="tag">Nudeln und Brot</span>
+      </div>
+    </div>
+
+    <section class="section wrap reveal" id="orte">
+      <header class="section-head">
+        <span class="section-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 10h18M5 10v8m14-8v8M8 6h8l3 4H5l3-4Z"/></svg></span>
+        <div>
+          <h2>Orte in Xi'an</h2>
+          <p class="section-lead">Fünf Orte. Fünf einfache Sätze. Und zu jedem Ort eine kleine Geschichte.</p>
+        </div>
+      </header>
+
+      <div class="card-grid">
+        <article class="place-card">
+          <img class="place-img" src="../assets/web/terracotta-warrior.jpg" alt="Illustration eines Terrakotta-Soldaten" loading="lazy">
+          <div class="place-body">
+            <div class="card-top">
+              <div>
+                <h3>Die Terrakotta-Armee</h3>
+                <p class="cn">兵马俑</p>
+              </div>
+              <span class="card-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 6c1-2 5-2 6 0M8 9h8M9 9v4c0 2 1.5 4 3 4s3-2 3-4V9M7 19h10M10 17v2m4-2v2"/></svg></span>
+            </div>
+            <p class="short">Viele Soldaten aus Ton stehen unter der Erde. Jeder sieht ein bisschen anders aus.</p>
+            <p class="a2-line">Ich sehe die Terrakotta-Armee.</p>
+            <button class="more" type="button">Mehr</button>
+            <p class="detail">Ein Bauer fand die Figuren 1974. Unter der Erde standen Tausende Soldaten aus Ton. Heute ist der Ort weltberühmt.</p>
+          </div>
+        </article>
+
+        <article class="place-card">
+          <img class="place-img" src="../assets/web/xian-city-wall.jpg" alt="Illustration der Stadtmauer von Xi'an" loading="lazy">
+          <div class="place-body">
+            <div class="card-top">
+              <div>
+                <h3>Die Stadtmauer</h3>
+                <p class="cn">城墙</p>
+              </div>
+              <span class="card-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 9h16M5 9V6h3v3m3 0V6h3v3m3 0V6h3v3M6 9v9m12-9v9M4 18h16"/></svg></span>
+            </div>
+            <p class="short">Die Mauer ist lang und breit. Oben kann man Rad fahren.</p>
+            <p class="a2-line">Die Stadtmauer ist sehr alt.</p>
+            <button class="more" type="button">Mehr</button>
+            <p class="detail">Die Runde ist ungefähr 14 Kilometer lang. Oben kann man Rad fahren. Am Abend wird die Mauer warm und golden.</p>
+          </div>
+        </article>
+
+        <article class="place-card">
+          <img class="place-img" src="../assets/web/muslim-quarter-market.jpg" alt="Illustration eines Markts im muslimischen Viertel von Xi'an" loading="lazy">
+          <div class="place-body">
+            <div class="card-top">
+              <div>
+                <h3>Das muslimische Viertel</h3>
+                <p class="cn">回坊</p>
+              </div>
+              <span class="card-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 10c2-3 5-3 8-1s6 2 8-1v10H4V10Zm2 4h4m4 0h4M7 18v-4m5 4v-5m5 5v-4"/></svg></span>
+            </div>
+            <p class="short">Hier gibt es kleine Straßen, Licht, Stimmen und viele Gerüche.</p>
+            <p class="a2-line">Ich kaufe Essen auf dem Markt.</p>
+            <button class="more" type="button">Mehr</button>
+            <p class="detail">Hier trafen sich früher Händler der Seidenstraße. Heute riecht die Straße nach Brot, Suppe und Gewürzen.</p>
+          </div>
+        </article>
+
+        <article class="place-card is-tall">
+          <img class="place-img" src="../assets/web/big-wild-goose-pagoda.jpg" alt="Illustration der Großen Wildganspagode" loading="lazy">
+          <div class="place-body">
+            <div class="card-top">
+              <div>
+                <h3>Die Große Wildganspagode</h3>
+                <p class="cn">大雁塔</p>
+              </div>
+              <span class="card-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3v2M8 7h8M9 7l-1 3h8l-1-3M7 12h10M8 12l-1 3h10l-1-3M6 18h12"/></svg></span>
+            </div>
+            <p class="short">Die Pagode steht ruhig und hoch. Sie ist ein wichtiges Zeichen der Stadt.</p>
+            <p class="a2-line">Die Pagode ist groß.</p>
+            <button class="more" type="button">Mehr</button>
+            <p class="detail">Die Pagode ist fast 1.400 Jahre alt. Ein Mönch brachte Schriften aus Indien hierher. Der Platz davor ist abends sehr lebendig.</p>
+          </div>
+        </article>
+
+        <article class="place-card">
+          <img class="place-img" src="../assets/web/bell-tower-dusk.jpg" alt="Illustration des Glockenturms von Xi'an" loading="lazy">
+          <div class="place-body">
+            <div class="card-top">
+              <div>
+                <h3>Der Glockenturm</h3>
+                <p class="cn">钟楼</p>
+              </div>
+              <span class="card-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 10c3-3 11-3 14 0M7 10v5h10v-5M4 17h16M8 17v3m8-3v3M9 13h6M12 4v3"/></svg></span>
+            </div>
+            <p class="short">Der Turm steht im Zentrum. Am Abend leuchtet er warm.</p>
+            <p class="a2-line">Wir treffen uns am Glockenturm.</p>
+            <button class="more" type="button">Mehr</button>
+            <p class="detail">Der Turm steht im Herzen der Stadt. Er wurde vor langer Zeit gebaut. Von hier gehen Straßen in vier Richtungen.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section wrap reveal" id="essen">
+      <header class="section-head">
+        <span class="section-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M7 12c0 4 2 7 5 7s5-3 5-7M8 9c1-2 7-2 8 0M4 20h16"/></svg></span>
+        <div>
+          <h2>Essen in Xi'an</h2>
+          <p class="section-lead">Xi'an schmeckt nach Brot, Suppe, breiten Nudeln und rotem Chiliöl.</p>
+        </div>
+      </header>
+
+      <div class="food-grid">
+        <article class="food-card">
+          <img src="../assets/web/biangbiang-noodles.jpg" alt="𰻞𰻞面 mit rotem Chiliöl" loading="lazy">
+          <div>
+            <h3>Biangbiang-Nudeln</h3>
+            <p class="cn">𰻞𰻞面</p>
+            <p class="short">Die Nudeln sind sehr breit. Oben ist rotes Chiliöl.</p>
+            <p class="a2-line">Die Nudeln sind scharf.</p>
+            <button class="more" type="button">Mehr</button>
+            <p class="detail">Das Wort biang sieht schwer aus. Die Nudeln sind groß, laut und stark im Geschmack. Das passt zu Xi'an.</p>
+          </div>
+        </article>
+
+        <article class="food-card">
+          <img src="../assets/web/roujiamo-visible-meat.jpg" alt="Roujiamo mit sichtbarem Fleisch" loading="lazy">
+          <div>
+            <h3>Roujiamo</h3>
+            <p class="cn">肉夹馍</p>
+            <p class="short">Das ist Brot mit viel Fleisch. Es ist gut für unterwegs.</p>
+            <p class="a2-line">Ich esse Roujiamo.</p>
+            <button class="more" type="button">Mehr</button>
+            <p class="detail">Viele nennen es einen chinesischen Hamburger. Aber Roujiamo ist viel älter. Das Brot ist außen fest, das Fleisch ist weich.</p>
+          </div>
+        </article>
+
+        <article class="food-card">
+          <img src="../assets/web/yangrou-paomo.jpg" alt="Yangrou Paomo in einer Tonschale" loading="lazy">
+          <div>
+            <h3>Yangrou Paomo</h3>
+            <p class="cn">羊肉泡馍</p>
+            <p class="short">Brotstücke liegen in warmer Suppe mit Lammfleisch.</p>
+            <p class="a2-line">Die Suppe ist warm.</p>
+            <button class="more" type="button">Mehr</button>
+            <p class="detail">Man bricht das Brot in kleine Stücke. Dann kommt heiße Suppe dazu. Viele Menschen essen es gern im Winter.</p>
+          </div>
+        </article>
+
+        <article class="food-card">
+          <img src="../assets/web/liangpi.jpg" alt="Liangpi mit Gurke und Chiliöl" loading="lazy">
+          <div>
+            <h3>Liangpi</h3>
+            <p class="cn">凉皮</p>
+            <p class="short">Liangpi ist kalt. Es passt gut zu einem warmen Tag.</p>
+            <p class="a2-line">Liangpi ist frisch.</p>
+            <button class="more" type="button">Mehr</button>
+            <p class="detail">Liangpi ist kalt und frisch. Gurke, Sesam und Chiliöl machen es leicht scharf. Es passt gut zu heißen Tagen.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section wrap reveal" id="woerter">
+      <header class="section-head">
+        <span class="section-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 5h14v14H5zM8 9h8M8 13h5"/></svg></span>
+        <div>
+          <h2>Wörter</h2>
+          <p class="section-lead">Kurze Wörter für Orte, Essen und Reise.</p>
+        </div>
+      </header>
+      <div class="vocab-grid">
+        <button class="vocab" data-de="die Stadtmauer" data-zh="城墙">die Stadtmauer</button>
+        <button class="vocab" data-de="die Pagode" data-zh="塔">die Pagode</button>
+        <button class="vocab" data-de="der Markt" data-zh="市场">der Markt</button>
+        <button class="vocab" data-de="das Brot" data-zh="馍">das Brot</button>
+        <button class="vocab" data-de="die Nudeln" data-zh="面条">die Nudeln</button>
+        <button class="vocab" data-de="das Fleisch" data-zh="肉">das Fleisch</button>
+        <button class="vocab" data-de="die Suppe" data-zh="汤">die Suppe</button>
+        <button class="vocab" data-de="scharf" data-zh="辣">scharf</button>
+        <button class="vocab" data-de="lecker" data-zh="好吃">lecker</button>
+        <button class="vocab" data-de="alt" data-zh="古老">alt</button>
+        <button class="vocab" data-de="warm" data-zh="温暖">warm</button>
+        <button class="vocab" data-de="berühmt" data-zh="著名">berühmt</button>
+      </div>
+    </section>
+
+    <section class="section wrap reveal" id="saetze">
+      <header class="section-head">
+        <span class="section-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5h16v10H8l-4 4V5Z"/></svg></span>
+        <div>
+          <h2>Sätze</h2>
+          <p class="section-lead">Diese Sätze sind kurz. Du kannst sie in Xi'an benutzen.</p>
+        </div>
+      </header>
+      <div class="phrase-grid">
+        <p class="phrase-card"><strong>Wo ist die Stadtmauer?</strong><span>城墙在哪里？</span></p>
+        <p class="phrase-card"><strong>Ich möchte das probieren.</strong><span>我想尝一下这个。</span></p>
+        <p class="phrase-card"><strong>Das ist sehr lecker.</strong><span>这个很好吃。</span></p>
+        <p class="phrase-card"><strong>Ist das scharf?</strong><span>这个辣吗？</span></p>
+        <p class="phrase-card"><strong>Wie viel kostet das?</strong><span>这个多少钱？</span></p>
+        <p class="phrase-card"><strong>Wir gehen zum Glockenturm.</strong><span>我们去钟楼。</span></p>
+      </div>
+    </section>
+
+    <section class="section wrap reveal" id="quiz">
+      <header class="section-head">
+        <span class="section-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg></span>
+        <div>
+          <h2>Quiz</h2>
+          <p class="section-lead">Drei kleine Fragen. Wähle eine Antwort.</p>
+        </div>
+      </header>
+
+      <div class="quiz-card" data-answer="1">
+        <p class="question">1. Was ist Roujiamo?</p>
+        <div class="options">
+          <button class="option" type="button">Eine Suppe</button>
+          <button class="option" type="button">Brot mit Fleisch</button>
+          <button class="option" type="button">Ein Turm</button>
+        </div>
+        <div class="feedback">Richtig. Roujiamo ist Brot mit Fleisch.</div>
+      </div>
+
+      <div class="quiz-card" data-answer="2" style="margin-top:14px">
+        <p class="question">2. Was ist sehr breit?</p>
+        <div class="options">
+          <button class="option" type="button">Liangpi</button>
+          <button class="option" type="button">Die Suppe</button>
+          <button class="option" type="button">Biangbiang-Nudeln</button>
+        </div>
+        <div class="feedback">Richtig. Biangbiang-Nudeln sind sehr breit.</div>
+      </div>
+
+      <div class="quiz-card" data-answer="0" style="margin-top:14px">
+        <p class="question">3. Wo kann man oben Rad fahren?</p>
+        <div class="options">
+          <button class="option" type="button">Auf der Stadtmauer</button>
+          <button class="option" type="button">In der Suppe</button>
+          <button class="option" type="button">Im Glockenturm</button>
+        </div>
+        <div class="feedback">Richtig. Auf der Stadtmauer kann man Rad fahren.</div>
+      </div>
+    </section>
+
+    <section class="final">
+      <div class="final-inner">
+        <blockquote>Xi'an ist alt. Xi'an ist warm. Xi'an erzählt kleine Geschichten.</blockquote>
+        <p>Gute Reise. Viel Spaß beim Deutschlernen und Entdecken.</p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
+
+    document.querySelectorAll('.more').forEach((button) => {
+      button.addEventListener('click', () => {
+        const card = button.closest('.place-card, .food-card');
+        const isOpen = card.classList.toggle('open');
+        button.textContent = isOpen ? 'Weniger' : 'Mehr';
+      });
+    });
+
+    document.querySelectorAll('.vocab').forEach((button) => {
+      button.addEventListener('click', () => {
+        const flipped = button.classList.toggle('flipped');
+        button.textContent = flipped ? button.dataset.zh : button.dataset.de;
+      });
+    });
+
+    document.querySelectorAll('.quiz-card').forEach((quiz) => {
+      const answer = Number(quiz.dataset.answer);
+      const options = [...quiz.querySelectorAll('.option')];
+      const feedback = quiz.querySelector('.feedback');
+      options.forEach((option, index) => {
+        option.addEventListener('click', () => {
+          options.forEach((item, idx) => {
+            item.disabled = true;
+            item.classList.toggle('correct', idx === answer);
+            item.classList.toggle('wrong', idx === index && idx !== answer);
+          });
+          feedback.classList.add('show');
+          if (index !== answer) {
+            feedback.textContent = 'Nicht ganz. Die richtige Antwort ist: ' + options[answer].textContent + '.';
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

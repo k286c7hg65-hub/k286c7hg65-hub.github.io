@@ -1,0 +1,905 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Beijing entdecken · Deutsch A2</title>
+  <style>
+    :root {
+      --paper: #f2e5d0;
+      --paper-soft: #fff3dc;
+      --paper-deep: #e4d0aa;
+      --ink: #302924;
+      --muted: #6d6156;
+      --red: #a9362a;
+      --red-deep: #75271f;
+      --roof: #244f4b;
+      --lake: #4f8b82;
+      --gold: #c9983e;
+      --white: #fffaf0;
+      --line: rgba(117, 39, 31, .22);
+      --shadow: 0 18px 54px rgba(67, 36, 24, .15);
+      --radius: 8px;
+      --font: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: var(--font);
+      line-height: 1.65;
+      background:
+        linear-gradient(90deg, rgba(117, 39, 31, .035) 1px, transparent 1px) 0 0 / 34px 34px,
+        linear-gradient(0deg, rgba(117, 39, 31, .03) 1px, transparent 1px) 0 0 / 34px 34px,
+        var(--paper);
+    }
+
+    img { display: block; max-width: 100%; }
+
+    button { font: inherit; }
+
+    .page { overflow: hidden; }
+
+    .hero {
+      min-height: 88svh;
+      display: grid;
+      align-items: end;
+      color: var(--white);
+      background:
+        linear-gradient(90deg, rgba(32, 28, 24, .78), rgba(32, 28, 24, .38) 48%, rgba(32, 28, 24, .08)),
+        url("../assets/web/hero-beijing-axis.jpg") center / cover no-repeat;
+    }
+
+    .hero-inner {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 112px 0 96px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 36px;
+      padding: 7px 12px;
+      border: 1px solid rgba(255, 250, 240, .36);
+      border-radius: 999px;
+      background: rgba(48, 41, 36, .3);
+      backdrop-filter: blur(10px);
+      color: #ffe2b4;
+      font-size: .88rem;
+      font-weight: 760;
+    }
+
+    .hero h1 {
+      margin: 22px 0 14px;
+      max-width: 820px;
+      font-size: clamp(3rem, 9vw, 7.3rem);
+      line-height: .9;
+      letter-spacing: 0;
+    }
+
+    .hero h1 span { display: block; }
+
+    .hero-copy {
+      max-width: 630px;
+      margin: 0;
+      color: #ffe8c4;
+      font-size: clamp(1.05rem, 2vw, 1.32rem);
+      line-height: 1.55;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 28px;
+    }
+
+    .pill-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 42px;
+      padding: 9px 15px;
+      border: 1px solid rgba(255, 250, 240, .42);
+      border-radius: 999px;
+      background: rgba(255, 250, 240, .14);
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 820;
+      transition: transform .2s ease, background .2s ease;
+    }
+
+    .pill-link:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 250, 240, .22);
+    }
+
+    .wrap {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .route-strip {
+      margin: 34px auto 0;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 250, 240, .58);
+      box-shadow: 0 8px 24px rgba(67, 36, 24, .08);
+    }
+
+    .route-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 10px;
+      color: var(--red-deep);
+      font-size: .9rem;
+      font-weight: 900;
+    }
+
+    .tag-row {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+
+    .tag {
+      flex: 0 0 auto;
+      padding: 7px 11px;
+      border: 1px solid rgba(117, 39, 31, .18);
+      border-radius: 999px;
+      background: var(--paper-soft);
+      color: #594940;
+      font-size: .86rem;
+      font-weight: 760;
+    }
+
+    .section { padding: 76px 0; }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 14px;
+      align-items: start;
+      margin-bottom: 26px;
+    }
+
+    .section-icon,
+    .card-mark {
+      display: inline-grid;
+      place-items: center;
+      border: 1px solid rgba(169, 54, 42, .22);
+      border-radius: 999px;
+      background: var(--paper-soft);
+      color: var(--red);
+    }
+
+    .section-icon { width: 42px; height: 42px; }
+
+    .section-icon svg,
+    .card-mark svg {
+      width: 22px;
+      height: 22px;
+      stroke: currentColor;
+      stroke-width: 2;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .section h2 {
+      margin: 0;
+      color: var(--red-deep);
+      font-size: clamp(1.8rem, 4vw, 3.15rem);
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .section-lead {
+      max-width: 700px;
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 1.02rem;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .place-card,
+    .food-card,
+    .quiz-card,
+    .phrase-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 250, 240, .6);
+      box-shadow: 0 8px 28px rgba(67, 36, 24, .08);
+    }
+
+    .place-card { overflow: hidden; }
+
+    .image-frame {
+      position: relative;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      background: var(--paper-deep);
+    }
+
+    .place-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      background: var(--paper-deep);
+    }
+
+    .place-body { padding: 16px; }
+
+    .card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .card-mark {
+      width: 42px;
+      height: 42px;
+      flex: 0 0 auto;
+    }
+
+    .place-card h3,
+    .food-card h3 {
+      margin: 0;
+      color: var(--red-deep);
+      font-size: 1.1rem;
+      line-height: 1.2;
+    }
+
+    .cn {
+      margin: 3px 0 0;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .short {
+      margin: 12px 0;
+      color: #554b42;
+    }
+
+    .a2-line {
+      margin: 0;
+      padding: 10px 12px;
+      border-left: 3px solid var(--gold);
+      background: rgba(201, 152, 62, .13);
+      color: var(--red-deep);
+      font-weight: 850;
+    }
+
+    .more {
+      width: 100%;
+      min-height: 42px;
+      margin-top: 12px;
+      border: 1px solid rgba(117, 39, 31, .22);
+      border-radius: var(--radius);
+      background: var(--paper-soft);
+      color: var(--red-deep);
+      cursor: pointer;
+      font-weight: 900;
+    }
+
+    .detail {
+      display: none;
+      margin: 12px 0 0;
+      color: var(--muted);
+    }
+
+    .place-card.open .detail,
+    .food-card.open .detail { display: block; }
+
+    .food-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .food-card {
+      display: grid;
+      grid-template-columns: 176px 1fr;
+      gap: 16px;
+      padding: 14px;
+      align-items: center;
+    }
+
+    .food-card img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 7px;
+      background: var(--paper-deep);
+    }
+
+    .vocab-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .vocab {
+      min-height: 42px;
+      padding: 8px 14px;
+      border: 1px solid rgba(79, 139, 130, .3);
+      border-radius: 999px;
+      background: rgba(79, 139, 130, .1);
+      color: #554b42;
+      cursor: pointer;
+      font-weight: 850;
+    }
+
+    .vocab.flipped {
+      background: var(--lake);
+      color: var(--white);
+    }
+
+    .phrase-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .phrase-card { padding: 16px; }
+
+    .phrase-card strong {
+      display: block;
+      color: var(--red-deep);
+      font-size: 1.02rem;
+    }
+
+    .phrase-card span {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+    }
+
+    .quiz-card { padding: 22px; }
+
+    .question {
+      margin: 0 0 14px;
+      color: var(--red-deep);
+      font-size: 1.12rem;
+      font-weight: 900;
+    }
+
+    .options {
+      display: grid;
+      gap: 10px;
+    }
+
+    .option {
+      min-height: 46px;
+      padding: 10px 14px;
+      border: 1px solid rgba(117, 39, 31, .22);
+      border-radius: var(--radius);
+      background: var(--paper-soft);
+      color: var(--ink);
+      cursor: pointer;
+      text-align: left;
+      transition: border-color .2s ease, transform .2s ease, background .2s ease;
+    }
+
+    .option:hover {
+      transform: translateX(3px);
+      border-color: var(--gold);
+    }
+
+    .option.correct {
+      border-color: var(--lake);
+      background: rgba(79, 139, 130, .16);
+    }
+
+    .option.wrong {
+      border-color: var(--red);
+      background: rgba(169, 54, 42, .13);
+    }
+
+    .feedback {
+      display: none;
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: var(--radius);
+      background: rgba(201, 152, 62, .12);
+      color: var(--red-deep);
+      font-weight: 850;
+    }
+
+    .feedback.show { display: block; }
+
+    .final {
+      padding: 82px 0 96px;
+      color: var(--white);
+      background:
+        linear-gradient(rgba(45, 31, 25, .78), rgba(45, 31, 25, .84)),
+        url("../assets/web/hutong-lane.jpg") center / cover no-repeat;
+    }
+
+    .final-inner {
+      width: min(760px, calc(100% - 32px));
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .final blockquote {
+      margin: 0;
+      font-size: clamp(1.5rem, 4vw, 2.65rem);
+      line-height: 1.18;
+      font-weight: 900;
+    }
+
+    .final p {
+      margin: 18px 0 0;
+      color: #f6dfb8;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity .45s ease, transform .45s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (min-width: 1500px) {
+      .hero-inner,
+      .wrap { width: min(1200px, calc(100% - 72px)); }
+      .hero h1 { font-size: clamp(5.8rem, 7.1vw, 8rem); }
+    }
+
+    @media (max-width: 1100px) {
+      .card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .food-card { grid-template-columns: 150px 1fr; }
+    }
+
+    @media (max-width: 760px) {
+      .hero {
+        min-height: 84svh;
+        background-position: 58% center;
+      }
+
+      .card-grid,
+      .food-grid,
+      .phrase-grid { grid-template-columns: 1fr; }
+
+      .section-head { grid-template-columns: 1fr; }
+      .food-card { grid-template-columns: 152px 1fr; }
+    }
+
+    @media (max-width: 560px) {
+      .hero {
+        min-height: 82svh;
+        background-position: 60% center;
+      }
+
+      .hero-inner { padding: 86px 0 86px; }
+
+      .hero h1 {
+        max-width: 100%;
+        font-size: clamp(2.45rem, 13vw, 4.2rem);
+        line-height: .92;
+      }
+
+      .hero-copy {
+        max-width: 32ch;
+        font-size: 1rem;
+      }
+
+      .hero-actions {
+        max-width: 320px;
+        gap: 8px;
+      }
+
+      .pill-link {
+        min-height: 38px;
+        padding: 8px 12px;
+        font-size: .9rem;
+      }
+
+      .section { padding: 54px 0; }
+      .section-icon { width: 38px; height: 38px; }
+      .food-card { grid-template-columns: 1fr; }
+      .food-card img { aspect-ratio: 16 / 10; }
+    }
+
+    @media (max-width: 380px) {
+      .hero-inner,
+      .wrap,
+      .final-inner { width: min(100% - 28px, 1120px); }
+
+      .eyebrow { font-size: .84rem; }
+      .hero-copy { max-width: 30ch; font-size: .96rem; }
+      .hero-actions { max-width: 292px; }
+      .pill-link { padding-inline: 10px; }
+      .route-strip,
+      .quiz-card,
+      .phrase-card { padding: 14px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: .000001ms !important;
+        animation-duration: .000001ms !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+  <noscript>
+    <style>
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    </style>
+  </noscript>
+</head>
+<body>
+  <main class="page">
+    <section class="hero" id="top">
+      <div class="hero-inner">
+        <div class="eyebrow">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11h16M6 11v7m12-7v7M8 7h8l3 4H5l3-4Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Deutsch A2 · 北京
+        </div>
+        <h1><span>Beijing</span> <span>entdecken</span></h1>
+        <p class="hero-copy">Die Hauptstadt Chinas hat viele Seiten: rote Paläste in der Mitte, graue Hutongs am Abend, Seen im Sommer und warmes Essen an kleinen Tischen. Geh langsam durch Beijing. Du lernst Deutsch mit Orten, Gerüchen, Menschen und kleinen Geschichten.</p>
+        <nav class="hero-actions" aria-label="Seitenbereiche">
+          <a class="pill-link" href="#orte">Orte</a>
+          <a class="pill-link" href="#essen">Essen</a>
+          <a class="pill-link" href="#woerter">Wörter</a>
+          <a class="pill-link" href="#saetze">Sätze</a>
+          <a class="pill-link" href="#quiz">Quiz</a>
+        </nav>
+      </div>
+    </section>
+
+    <div class="wrap route-strip reveal">
+      <p class="route-title">
+        <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-5.2 7-11a7 7 0 1 0-14 0c0 5.8 7 11 7 11Z" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="10" r="2.5" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+        Ein Spaziergang durch die Stadt
+      </p>
+      <div class="tag-row" aria-label="Reiseroute">
+        <span class="tag">Hauptstadt</span>
+        <span class="tag">Verbotene Stadt</span>
+        <span class="tag">Große Mauer</span>
+        <span class="tag">Himmelstempel</span>
+        <span class="tag">Hutongs</span>
+        <span class="tag">Sommerpalast</span>
+        <span class="tag">Peking-Ente</span>
+        <span class="tag">Zhajiangmian</span>
+        <span class="tag">Jiaozi</span>
+        <span class="tag">Tanghulu</span>
+      </div>
+    </div>
+
+    <section class="section wrap reveal" id="orte">
+      <header class="section-head">
+        <span class="section-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 10h18M5 10v8m14-8v8M8 6h8l3 4H5l3-4Z"/></svg></span>
+        <div>
+          <h2>Orte in Beijing</h2>
+          <p class="section-lead">Wir beginnen in der Mitte. Dann gehen wir zu Bergen, Parks, Gassen und Wasser. Jeder Ort hat einen einfachen Satz, aber dahinter wartet eine kleine Geschichte.</p>
+        </div>
+      </header>
+
+      <div class="card-grid">
+        <article class="place-card">
+          <div class="image-frame">
+            <img class="place-img" src="../assets/web/forbidden-city.jpg" alt="Handgezeichnete Illustration der Verbotenen Stadt" loading="lazy">
+          </div>
+          <div class="place-body">
+            <div class="card-top">
+              <div>
+                <h3>Die Verbotene Stadt</h3>
+                <p class="cn">故宫</p>
+              </div>
+              <span class="card-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 11h16M6 11v8m12-8v8M8 7h8l3 4H5l3-4Z"/></svg></span>
+            </div>
+            <p class="short">Vor roten Mauern wird die Stadt leiser. Hinter den Toren liegt ein großer Palast. Jeder Hof führt dich ein Stück weiter in die Geschichte.</p>
+            <p class="a2-line">Der Palast ist sehr groß.</p>
+            <button class="more" type="button">Mehr</button>
+            <p class="detail">Hier lebten viele Kaiser. Früher durfte nicht jeder Mensch hinein, darum heißt der Ort die Verbotene Stadt. Heute gehst du langsam durch Tore und Höfe. Über dir glänzen goldene Dächer, und zwischen den Mauern spürst du, wie groß Beijing einmal gedacht wurde.</p>
+          </div>
+        </article>
+
+        <article class="place-card">
+          <div class="image-frame">
+            <img class="place-img" src="../assets/web/great-wall.jpg" alt="Handgezeichnete Illustration der Großen Mauer" loading="lazy">
+          </div>
+          <div class="place-body">
+            <div class="card-top">
+              <div>
+                <h3>Die Große Mauer</h3>
+                <p class="cn">长城</p>
+              </div>
+              <span class="card-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 15c4-4 7-4 11-2 2 1 3 1 5-1M5 15v4m4-5v5m4-6v6m4-5v5M3 19h18"/></svg></span>
+            </div>
+            <p class="short">Die Mauer steigt über Bergrücken. Du siehst Steine, Türme und viel Himmel. Der Wind macht den Weg lebendig.</p>
+            <p class="a2-line">Ich gehe auf der Mauer.</p>
+            <button class="more" type="button">Mehr</button>
+            <p class="detail">Von oben sieht man Berge ohne Ende. Manche Stufen sind hoch, manche sind schief. Die Steine sind alt, schwer und kalt. Man geht langsam, und mit jedem Schritt wird Beijing weiter und größer.</p>
+          </div>
+        </article>
+
+        <article class="place-card">
+          <div class="image-frame temple-frame">
+            <img class="place-img" src="../assets/web/temple-of-heaven.jpg" alt="Handgezeichnete Illustration des Himmelstempels und der Halle Qiniandian" loading="lazy">
+          </div>
+          <div class="place-body">
+            <div class="card-top">
+              <div>
+                <h3>Der Himmelstempel</h3>
+                <p class="cn">天坛</p>
+              </div>
+              <span class="card-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3v3M7 8h10M8 8l-2 4h12l-2-4M5 15h14M7 15v5m10-5v5M4 20h16"/></svg></span>
+            </div>
+            <p class="short">Blaue Dächer stehen auf weißem Stein. Der runde Bau heißt Qiniandian: Halle für gute Ernten. Hier bat der Kaiser um Regen und gutes Getreide.</p>
+            <p class="a2-line">Der Tempel ist rund.</p>
+            <button class="more" type="button">Mehr</button>
+            <p class="detail">Der Tempel ist rund, weil der Himmel rund gedacht wurde. Der Bau heißt auf Chinesisch 祈年殿. Am Morgen kommen heute viele Menschen in den Park. Sie singen, tanzen, spielen Karten oder gehen leise unter den alten Bäumen.</p>
+          </div>
+        </article>
+
+        <article class="place-card">
+          <div class="image-frame">
+            <img class="place-img" src="../assets/web/hutong-lane.jpg" alt="Handgezeichnete Illustration einer Hutong-Gasse" loading="lazy">
+          </div>
+          <div class="place-body">
+            <div class="card-top">
+              <div>
+                <h3>Die Hutongs</h3>
+                <p class="cn">胡同</p>
+              </div>
+              <span class="card-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 19V8l5-3 5 3 6-3v14M8 19v-6h4v6M16 9v10M4 19h16"/></svg></span>
+            </div>
+            <p class="short">Enge Gassen, graue Ziegel und alte Bäume zeigen ein anderes Beijing. Hier ist die Hauptstadt nicht laut, sondern nah.</p>
+            <p class="a2-line">Ich gehe durch die Gasse.</p>
+            <button class="more" type="button">Mehr</button>
+            <p class="detail">Hinter jeder Tür liegt vielleicht ein kleiner Hof. Nachbarn trinken Tee, Kinder laufen vorbei, und am Abend leuchten Laternen über der Gasse. Die Stadt ist hier nicht fern. Sie sitzt fast neben dir.</p>
+          </div>
+        </article>
+
+        <article class="place-card">
+          <div class="image-frame">
+            <img class="place-img" src="../assets/web/summer-palace.jpg" alt="Handgezeichnete Illustration des Sommerpalasts mit See" loading="lazy">
+          </div>
+          <div class="place-body">
+            <div class="card-top">
+              <div>
+                <h3>Der Sommerpalast</h3>
+                <p class="cn">颐和园</p>
+              </div>
+              <span class="card-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 17c3-2 5-2 8 0s5 2 8 0M5 13h14M7 13c1-3 3-5 5-5s4 2 5 5M12 5v3"/></svg></span>
+            </div>
+            <p class="short">Wenn die Stadt warm und laut wird, liegt hier ein großer See. Brücken, Bäume und der lange Gang machen Beijing weich.</p>
+            <p class="a2-line">Der See ist ruhig.</p>
+            <button class="more" type="button">Mehr</button>
+            <p class="detail">Der Kunming-See spiegelt den Himmel. Menschen gehen am Wasser, setzen sich in den Schatten und schauen auf die Brücke. Früher kamen Kaiser und Kaiserin hierher, um den Sommer leichter zu machen.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section wrap reveal" id="essen">
+      <header class="section-head">
+        <span class="section-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M7 12c0 4 2 7 5 7s5-3 5-7M8 9c1-2 7-2 8 0M4 20h16"/></svg></span>
+        <div>
+          <h2>Essen in Beijing</h2>
+          <p class="section-lead">Vier Gerichte zeigen Beijing mit dem Mund: knusprig, kräftig, heiß und süß. Es geht nicht nur ums Essen. Es geht um Hände, Tische, Familien und Straßen.</p>
+        </div>
+      </header>
+
+      <div class="food-grid">
+        <article class="food-card">
+          <img src="../assets/web/peking-duck.jpg" alt="Handgezeichnete Peking-Ente mit Pfannkuchen und Sauce" loading="lazy">
+          <div>
+            <h3>Peking-Ente</h3>
+            <p class="cn">北京烤鸭</p>
+            <p class="short">Die Haut ist dünn und knusprig. Man legt Ente, Sauce, Gurke und Zwiebel in ein kleines dünnes Brot.</p>
+            <p class="a2-line">Die Ente ist knusprig.</p>
+            <button class="more" type="button">Mehr</button>
+            <p class="detail">Am Tisch wird die Ente in feine Scheiben geschnitten. Dann rollst du alles zusammen und isst es mit der Hand. Erst kommt der Knack, dann die süße Sauce, dann der warme Geschmack der Hauptstadt.</p>
+          </div>
+        </article>
+
+        <article class="food-card">
+          <img src="../assets/web/zhajiangmian.jpg" alt="Handgezeichnetes Zhajiangmian mit dunkler Sauce und Gemüse" loading="lazy">
+          <div>
+            <h3>Zhajiangmian</h3>
+            <p class="cn">炸酱面</p>
+            <p class="short">Dicke Nudeln, dunkle Sauce und frisches Gemüse kommen in eine Schale. Dann beginnt die Arbeit mit den Stäbchen.</p>
+            <p class="a2-line">Die Nudeln sind kräftig.</p>
+            <button class="more" type="button">Mehr</button>
+            <p class="detail">Du mischst die Sauce selbst unter die Nudeln. Gurke, Rettich und Sprossen machen den Geschmack frisch. Jede Familie macht die Schale ein bisschen anders, aber immer bleibt sie dunkel, warm und typisch für Beijing.</p>
+          </div>
+        </article>
+
+        <article class="food-card">
+          <img src="../assets/web/jiaozi.jpg" alt="Handgezeichnete Jiaozi Teigtaschen auf einem Teller" loading="lazy">
+          <div>
+            <h3>Jiaozi</h3>
+            <p class="cn">饺子</p>
+            <p class="short">Jiaozi sind kleine Teigtaschen mit Fleisch oder Gemüse. Eine Familie, ein Tisch, eine Schale Essig: so beginnt oft ein gutes Essen.</p>
+            <p class="a2-line">Ich esse Jiaozi.</p>
+            <button class="more" type="button">Mehr</button>
+            <p class="detail">Viele Familien machen Jiaozi zusammen, besonders zum Neujahr. Die Form erinnert an alte Goldstücke und bringt Glück. Man taucht sie in Essig und isst sie heiß.</p>
+          </div>
+        </article>
+
+        <article class="food-card">
+          <img src="../assets/web/tanghulu.jpg" alt="Handgezeichnetes Tanghulu mit roten Früchten und Zucker" loading="lazy">
+          <div>
+            <h3>Tanghulu</h3>
+            <p class="cn">糖葫芦</p>
+            <p class="short">Rote Früchte glänzen an einem Stab. Im Winter sieht man sie schnell, weil der Zucker wie kleines Eis leuchtet.</p>
+            <p class="a2-line">Tanghulu ist süß.</p>
+            <button class="more" type="button">Mehr</button>
+            <p class="detail">Auf der Straße halten Kinder die roten Stäbe in der Hand. Erst knackt der Zucker kalt unter den Zähnen, dann kommt die saure Frucht. Süß und sauer, laut und kurz: ein kleiner Beijing-Moment.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section wrap reveal" id="woerter">
+      <header class="section-head">
+        <span class="section-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 5h14v14H5zM8 9h8M8 13h5"/></svg></span>
+        <div>
+          <h2>Wörter</h2>
+          <p class="section-lead">Kurze Wörter für Orte, Essen und Reise.</p>
+        </div>
+      </header>
+      <div class="vocab-grid">
+        <button class="vocab" data-de="der Palast" data-zh="宫殿">der Palast</button>
+        <button class="vocab" data-de="die Hauptstadt" data-zh="首都">die Hauptstadt</button>
+        <button class="vocab" data-de="die Mitte" data-zh="中心">die Mitte</button>
+        <button class="vocab" data-de="die Mauer" data-zh="城墙">die Mauer</button>
+        <button class="vocab" data-de="der Tempel" data-zh="寺庙">der Tempel</button>
+        <button class="vocab" data-de="die Gasse" data-zh="小巷">die Gasse</button>
+        <button class="vocab" data-de="der See" data-zh="湖">der See</button>
+        <button class="vocab" data-de="die Ente" data-zh="鸭子">die Ente</button>
+        <button class="vocab" data-de="die Nudeln" data-zh="面条">die Nudeln</button>
+        <button class="vocab" data-de="die Teigtasche" data-zh="饺子">die Teigtasche</button>
+        <button class="vocab" data-de="süß" data-zh="甜">süß</button>
+        <button class="vocab" data-de="knusprig" data-zh="酥脆">knusprig</button>
+        <button class="vocab" data-de="kräftig" data-zh="浓郁">kräftig</button>
+        <button class="vocab" data-de="ruhig" data-zh="安静">ruhig</button>
+        <button class="vocab" data-de="alt" data-zh="古老">alt</button>
+      </div>
+    </section>
+
+    <section class="section wrap reveal" id="saetze">
+      <header class="section-head">
+        <span class="section-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5h16v10H8l-4 4V5Z"/></svg></span>
+        <div>
+          <h2>Sätze</h2>
+          <p class="section-lead">Diese Sätze sind kurz. Du kannst sie in Beijing benutzen.</p>
+        </div>
+      </header>
+      <div class="phrase-grid">
+        <p class="phrase-card"><strong>Wo ist die Verbotene Stadt?</strong><span>故宫在哪里？</span></p>
+        <p class="phrase-card"><strong>Ich möchte Peking-Ente probieren.</strong><span>我想尝尝北京烤鸭。</span></p>
+        <p class="phrase-card"><strong>Das ist sehr knusprig.</strong><span>这个很酥脆。</span></p>
+        <p class="phrase-card"><strong>Wie schmeckt Tanghulu?</strong><span>糖葫芦是什么味道？</span></p>
+        <p class="phrase-card"><strong>Treffen wir uns am Himmelstempel?</strong><span>我们在天坛见面吗？</span></p>
+        <p class="phrase-card"><strong>Ich mag die alten Gassen.</strong><span>我喜欢老胡同。</span></p>
+      </div>
+    </section>
+
+    <section class="section wrap reveal" id="quiz">
+      <header class="section-head">
+        <span class="section-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg></span>
+        <div>
+          <h2>Quiz</h2>
+          <p class="section-lead">Drei kleine Fragen. Wähle eine Antwort.</p>
+        </div>
+      </header>
+
+      <div class="quiz-card" data-answer="1">
+        <p class="question">1. Was ist Peking-Ente?</p>
+        <div class="options">
+          <button class="option" type="button">Ein Tempel</button>
+          <button class="option" type="button">Ein Gericht mit Ente</button>
+          <button class="option" type="button">Ein See</button>
+        </div>
+        <div class="feedback">Richtig. Peking-Ente ist ein Gericht mit Ente.</div>
+      </div>
+
+      <div class="quiz-card" data-answer="2" style="margin-top:14px">
+        <p class="question">2. Was ist rund und blau?</p>
+        <div class="options">
+          <button class="option" type="button">Die Hutongs</button>
+          <button class="option" type="button">Tanghulu</button>
+          <button class="option" type="button">Der Himmelstempel</button>
+        </div>
+        <div class="feedback">Richtig. Der Himmelstempel ist rund und blau.</div>
+      </div>
+
+      <div class="quiz-card" data-answer="0" style="margin-top:14px">
+        <p class="question">3. Wo sieht man rote Mauern und gelbe Dächer?</p>
+        <div class="options">
+          <button class="option" type="button">In der Verbotenen Stadt</button>
+          <button class="option" type="button">In einer Nudelschale</button>
+          <button class="option" type="button">Auf Tanghulu</button>
+        </div>
+        <div class="feedback">Richtig. In der Verbotenen Stadt sieht man rote Mauern und gelbe Dächer.</div>
+      </div>
+    </section>
+
+    <section class="final">
+      <div class="final-inner">
+        <blockquote>Beijing ist nicht nur groß. Beijing hat eine Mitte, viele Wege und viele Stimmen. In den Palästen hörst du Geschichte, in den Hutongs hörst du Alltag, und am Tisch schmeckst du die Stadt.</blockquote>
+        <p>Gute Reise. Viel Spaß beim Deutschlernen und Entdecken.</p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
+
+    document.querySelectorAll('.more').forEach((button) => {
+      button.addEventListener('click', () => {
+        const card = button.closest('.place-card, .food-card');
+        const isOpen = card.classList.toggle('open');
+        button.textContent = isOpen ? 'Weniger' : 'Mehr';
+      });
+    });
+
+    document.querySelectorAll('.vocab').forEach((button) => {
+      button.addEventListener('click', () => {
+        const flipped = button.classList.toggle('flipped');
+        button.textContent = flipped ? button.dataset.zh : button.dataset.de;
+      });
+    });
+
+    document.querySelectorAll('.quiz-card').forEach((quiz) => {
+      const answer = Number(quiz.dataset.answer);
+      const options = [...quiz.querySelectorAll('.option')];
+      const feedback = quiz.querySelector('.feedback');
+      options.forEach((option, index) => {
+        option.addEventListener('click', () => {
+          options.forEach((item, idx) => {
+            item.disabled = true;
+            item.classList.toggle('correct', idx === answer);
+            item.classList.toggle('wrong', idx === index && idx !== answer);
+          });
+          feedback.classList.add('show');
+          if (index !== answer) {
+            feedback.textContent = 'Nicht ganz. Die richtige Antwort ist: ' + options[answer].textContent + '.';
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

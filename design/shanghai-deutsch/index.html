@@ -1,0 +1,721 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shanghai entdecken · Deutsch A2</title>
+  <style>
+    :root {
+      --paper: #f3ead7;
+      --paper-soft: #fffaf0;
+      --paper-deep: #e2d4bc;
+      --ink: #2f2b25;
+      --muted: #6a5d50;
+      --wall: #8b5a3e;
+      --wall-deep: #5a3528;
+      --leaf: #526f4c;
+      --leaf-deep: #31452f;
+      --river: #5f8f9b;
+      --river-deep: #385f6d;
+      --gold: #b8873b;
+      --red: #ad5a43;
+      --white: #fffaf0;
+      --line: rgba(90, 53, 40, .2);
+      --shadow: 0 18px 54px rgba(47, 43, 37, .14);
+      --radius: 10px;
+      --font: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: var(--font);
+      line-height: 1.7;
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(95, 143, 155, .08) 0%, transparent 68%),
+        linear-gradient(90deg, rgba(82, 111, 76, .04) 1px, transparent 1px) 0 0 / 38px 38px,
+        var(--paper);
+    }
+
+    img { display: block; max-width: 100%; }
+
+    button { font: inherit; }
+
+    .page { overflow: hidden; }
+
+    .hero {
+      min-height: 90svh;
+      display: grid;
+      align-items: end;
+      color: var(--white);
+      background:
+        linear-gradient(180deg, rgba(47, 43, 37, .84), rgba(47, 43, 37, .48) 42%, rgba(47, 43, 37, .08)),
+        url("assets/generated/SH-HERO-bund-lujiazui-huangpu-suzhou-creek.jpg") center / cover no-repeat;
+    }
+
+    .hero-inner {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 120px 0 96px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 7px 13px;
+      border: 1px solid rgba(255, 250, 240, .36);
+      border-radius: 999px;
+      background: rgba(47, 43, 37, .3);
+      backdrop-filter: blur(12px);
+      color: #ffe5b8;
+      font-size: .85rem;
+      font-weight: 760;
+    }
+
+    .hero h1 {
+      margin: 24px 0 16px;
+      max-width: 800px;
+      font-size: clamp(2.3rem, 5vw, 3.55rem);
+      font-weight: 820;
+      line-height: 1.15;
+      text-shadow: 0 2px 12px rgba(0, 0, 0, .46);
+    }
+
+    .hero p {
+      margin: 0;
+      max-width: 660px;
+      font-size: clamp(1.04rem, 2.4vw, 1.16rem);
+      line-height: 1.6;
+      color: rgba(255, 250, 240, .92);
+      text-shadow: 0 1px 6px rgba(0, 0, 0, .32);
+    }
+
+    .sec {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 80px 0;
+    }
+
+    .sec-title {
+      margin: 0 0 12px;
+      font-size: 1.65rem;
+      font-weight: 780;
+      color: var(--wall-deep);
+    }
+
+    .sec-sub {
+      margin: 0 0 40px;
+      max-width: 620px;
+      font-size: 1.02rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .sec-divider {
+      height: 1px;
+      width: 64px;
+      margin-bottom: 48px;
+      background: var(--wall);
+      opacity: .36;
+    }
+
+    .narrative {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 64px 0 0;
+    }
+
+    .nar-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+      margin-bottom: 72px;
+    }
+
+    .nar-img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .nar-text h3 {
+      margin: 0 0 10px;
+      font-size: 1.32rem;
+      font-weight: 780;
+      color: var(--ink);
+    }
+
+    .de-name {
+      display: block;
+      font-size: .82rem;
+      color: var(--leaf);
+      font-weight: 700;
+      margin: 6px 0 12px;
+    }
+
+    .nar-text p,
+    .card-body p,
+    .food-text p,
+    .quiet-text p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .path-line {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .path-line span {
+      min-height: 34px;
+      padding: 5px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 250, 240, .72);
+      color: var(--wall-deep);
+      font-size: .84rem;
+      font-weight: 720;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 32px;
+    }
+
+    .card {
+      border-radius: var(--radius);
+      background: var(--paper-soft);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transition: transform .35s ease, box-shadow .35s ease;
+    }
+
+    .card:hover { transform: translateY(-4px); }
+
+    .card-img {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+    }
+
+    .card-body { padding: 22px 24px 28px; }
+
+    .card-tag {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: .76rem;
+      font-weight: 740;
+      background: rgba(139, 90, 62, .11);
+      color: var(--wall);
+      margin-bottom: 10px;
+    }
+
+    .card-body h3,
+    .food-text h3,
+    .quiet-text h3 {
+      margin: 0 0 8px;
+      font-size: 1.18rem;
+      font-weight: 780;
+      color: var(--ink);
+    }
+
+    .more {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 5px 16px;
+      border: 1px solid var(--leaf);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--leaf-deep);
+      font-size: .84rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background .2s, color .2s;
+    }
+
+    .more:hover { background: var(--leaf); color: var(--white); }
+
+    .detail {
+      display: none;
+      margin-top: 12px;
+      font-size: .92rem;
+      color: var(--muted);
+      line-height: 1.62;
+    }
+
+    .card.open .detail,
+    .food-card.open .detail,
+    .quiet-band.open .detail { display: block; }
+
+    .quiet-band {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto 12px;
+      display: grid;
+      grid-template-columns: minmax(260px, 420px) 1fr;
+      gap: 32px;
+      align-items: center;
+      padding: 34px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 250, 240, .74);
+      box-shadow: 0 8px 28px rgba(47, 43, 37, .08);
+    }
+
+    .quiet-img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .food-strip {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 0 0 80px;
+    }
+
+    .food-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: center;
+      padding: 36px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .food-card:last-child { border-bottom: none; }
+
+    .food-img {
+      width: 100%;
+      aspect-ratio: 3 / 2;
+      object-fit: cover;
+      border-radius: var(--radius);
+      box-shadow: 0 8px 28px rgba(47, 43, 37, .1);
+    }
+
+    .food-text .de-name { color: var(--red); }
+
+    .vocab-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 12px;
+    }
+
+    .vocab {
+      padding: 12px 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+      color: var(--ink);
+      font-size: .88rem;
+      font-weight: 640;
+      cursor: pointer;
+      transition: background .25s, border-color .25s, transform .2s;
+    }
+
+    .vocab:hover { border-color: var(--leaf); background: rgba(82, 111, 76, .06); }
+    .vocab.flipped { background: var(--leaf); color: var(--white); border-color: var(--leaf); transform: scale(1.03); }
+
+    .phrase-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 16px;
+    }
+
+    .phrase-card {
+      margin: 0;
+      padding: 16px 20px;
+      border-radius: 8px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      font-size: .93rem;
+      color: var(--ink);
+      line-height: 1.6;
+    }
+
+    .phrase-card strong { display: block; margin-bottom: 4px; font-weight: 740; }
+    .phrase-card span { font-size: .82rem; color: var(--muted); }
+
+    .quiz-card {
+      width: min(720px, 100%);
+      padding: 28px;
+      border-radius: var(--radius);
+      background: var(--paper-soft);
+      box-shadow: 0 4px 18px rgba(47, 43, 37, .08);
+    }
+
+    .question { margin: 0 0 18px; font-size: 1.08rem; font-weight: 740; color: var(--ink); }
+    .options { display: flex; flex-wrap: wrap; gap: 10px; }
+
+    .option {
+      flex: 1 1 140px;
+      padding: 10px 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+      font-size: .93rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background .2s, border-color .2s;
+    }
+
+    .option:hover:not(:disabled) { border-color: var(--leaf); background: rgba(82, 111, 76, .06); }
+    .option.correct { background: #dbeed8; border-color: #3b7a45; color: #24502b; }
+    .option.wrong { background: #f6dfd8; border-color: var(--red); color: #733526; }
+    .option:disabled { cursor: default; }
+    .feedback { display: none; margin-top: 14px; padding: 10px 16px; border-radius: 8px; background: #eaf3e8; color: var(--leaf-deep); font-size: .91rem; font-weight: 640; }
+    .feedback.show { display: block; }
+
+    .final-postcard {
+      min-height: 48vh;
+      display: grid;
+      align-items: end;
+      color: var(--white);
+      background:
+        linear-gradient(90deg, rgba(47, 43, 37, .82), rgba(47, 43, 37, .54) 42%, rgba(47, 43, 37, .14)),
+        linear-gradient(180deg, rgba(47, 43, 37, .08), rgba(47, 43, 37, .55)),
+        url("assets/generated/SH-FINAL-bund-dusk.jpg") center / cover no-repeat;
+    }
+
+    .final-inner {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 64px 0 38px;
+    }
+
+    .final-postcard blockquote {
+      margin: 0 0 26px;
+      max-width: 680px;
+      font-size: clamp(1.08rem, 2.5vw, 1.45rem);
+      font-weight: 680;
+      line-height: 1.65;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, .46);
+    }
+
+    .footer-meta {
+      font-size: .82rem;
+      color: var(--muted);
+      opacity: .68;
+    }
+
+    .footer-meta a {
+      color: var(--leaf-deep);
+      text-decoration: none;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .reveal {
+        opacity: 0;
+        transform: translateY(28px);
+        transition: opacity .6s ease, transform .6s ease;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero { min-height: 72svh; }
+      .hero-inner { padding: 80px 0 64px; }
+      .nar-row,
+      .quiet-band,
+      .food-card { grid-template-columns: 1fr; gap: 24px; }
+      .food-card:nth-child(even) .food-img { order: 1; }
+      .food-card:nth-child(even) .food-text { order: 2; }
+      .sec-title { font-size: 1.42rem; }
+      .cards { grid-template-columns: 1fr; }
+      .final-postcard { min-height: 52vh; background-position: center; }
+      .final-postcard blockquote { font-size: 1.02rem; }
+      .quiet-band { padding: 22px; }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 1.82rem; }
+      .hero p { font-size: .95rem; }
+      .card-body h3,
+      .food-text h3,
+      .quiet-text h3 { font-size: 1.06rem; }
+      .phrase-grid { grid-template-columns: 1fr; }
+      .vocab-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+      .vocab { font-size: .78rem; padding: 8px 12px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <section class="hero">
+      <div class="hero-inner reveal">
+        <span class="eyebrow">Deutsch lernen · Shanghai</span>
+        <h1>Shanghai — Zwei Wasser, viele Stimmen</h1>
+        <p>Am Huangpu-Fluss stehen alte Häuser und hohe Türme. Am Suzhou-Fluss wird die Stadt leiser: Brücken, Lagerhäuser, Bäume und neues Licht.</p>
+      </div>
+    </section>
+
+    <div class="narrative reveal">
+      <div class="nar-row">
+        <img class="nar-img" src="assets/generated/SH-1-the-bund.jpg" alt="Der Bund in Shanghai mit alten Fassaden und Fluss" loading="lazy">
+        <div class="nar-text">
+          <h3>Eine Stadt schaut in zwei Richtungen</h3>
+          <span class="de-name">Der Bund · 外滩</span>
+          <p>Shanghai steht am Wasser. Am Bund siehst du alte Häuser. Auf der anderen Seite leuchten hohe Türme. Ein paar Straßen weiter wird die Stadt kleiner: Fenster, Wäsche, Stimmen, Nudeln und heiße Teigtaschen. So ist Shanghai groß und nah zugleich.</p>
+          <div class="path-line" aria-label="Shanghai route">
+            <span>Huangpu</span>
+            <span>Bund</span>
+            <span>Suzhou-Fluss</span>
+            <span>Platanen</span>
+            <span>Labor</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="sec reveal">
+      <h2 class="sec-title">Orte zwischen Fluss und Straße</h2>
+      <p class="sec-sub">Neun Stationen durch Shanghai: alte Fassaden, hohe Türme, ein kleiner Fluss, Gärten, Platanen, junge Menschen und Arbeit an der Zukunft.</p>
+      <div class="sec-divider"></div>
+
+      <div class="cards">
+        <div class="card">
+          <img class="card-img" src="assets/generated/SH-2-peace-hotel.jpg" alt="Peace Hotel am Bund mit grünem Dach und Bäumen" loading="lazy">
+          <div class="card-body">
+            <span class="card-tag">Zeit</span>
+            <h3>Das Peace Hotel</h3>
+            <span class="de-name">和平饭店</span>
+            <p>Am Bund steht ein altes Hotel mit grünem Dach. Es erinnert an Musik, Licht und eine andere Zeit.</p>
+            <button class="more" type="button">Mehr</button>
+            <p class="detail">Das Gebäude braucht kein großes Schild. Seine Form, das Dach und die Lage am Wasser erzählen von Haipai-Shanghai: alt, offen und ein wenig elegant.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img class="card-img" src="assets/generated/SH-3-lujiazui-skyline.jpg" alt="Lujiazui-Skyline mit Oriental Pearl Tower am Huangpu-Fluss" loading="lazy">
+          <div class="card-body">
+            <span class="card-tag">Höhe</span>
+            <h3>Die Skyline von Lujiazui</h3>
+            <span class="de-name">陆家嘴天际线</span>
+            <p>Über dem Fluss stehen die Türme hoch. Sie zeigen das moderne Shanghai, aber sie sind nur eine Seite der Stadt.</p>
+            <button class="more" type="button">Mehr</button>
+            <p class="detail">Die Türme leuchten am Abend. Auf dieser Seite sind sie kein Finanzplakat, sondern ein Blick über Wasser: groß, hell und weit.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img class="card-img" src="assets/generated/SH-4-suzhou-creek.jpg" alt="Suzhou-Fluss mit Brücke und alten Lagerhäusern" loading="lazy">
+          <div class="card-body">
+            <span class="card-tag">Zweiter Fluss</span>
+            <h3>Der Suzhou-Fluss</h3>
+            <span class="de-name">苏州河</span>
+            <p>Am Suzhou-Fluss ist Shanghai leiser. Brücken, alte Häuser und neues Licht stehen nebeneinander.</p>
+            <button class="more" type="button">Mehr</button>
+            <p class="detail">Dieser Fluss ist kleiner als der Huangpu. Genau deshalb ist er wichtig: Hier sieht man Wandel aus der Nähe, an Ufern, Brücken und alten Lagerhäusern.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img class="card-img" src="assets/generated/SH-5-yu-garden.jpg" alt="Yu-Garten mit Brücke, Teich und alten Dächern" loading="lazy">
+          <div class="card-body">
+            <span class="card-tag">Garten</span>
+            <h3>Der Yu-Garten</h3>
+            <span class="de-name">豫园</span>
+            <p>Nach den hohen Häusern kommt ein Garten. Wasser, Brücken und Dächer machen die Stadt ruhiger.</p>
+            <button class="more" type="button">Mehr</button>
+            <p class="detail">Der Garten zeigt die Jiangnan-Wurzel von Shanghai. Man geht langsam über eine Brücke, sieht Steine und hört Wasser.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img class="card-img" src="assets/generated/SH-6-wukang-building.jpg" alt="Wukang-Gebäude als roter Schiffseckbau unter Platanen" loading="lazy">
+          <div class="card-body">
+            <span class="card-tag">Ecke</span>
+            <h3>Das Wukang-Gebäude</h3>
+            <span class="de-name">武康大楼</span>
+            <p>Unter Platanen steht ein rotes Haus wie ein Schiff. Die Straße wird eng, schön und sehr shanghaierisch.</p>
+            <button class="more" type="button">Mehr</button>
+            <p class="detail">Das Wukang-Gebäude ersetzt hier das Museum. Es ist stärker als Bild: rote Ziegel, eine spitze Ecke und Straßen, die zusammenkommen.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img class="card-img" src="assets/generated/SH-7-lilong-lane-life.jpg" alt="Shanghai-Lilong mit Fenstern, Wäsche und Fahrrad" loading="lazy">
+          <div class="card-body">
+            <span class="card-tag">Alltag</span>
+            <h3>Die Lilong-Gassen</h3>
+            <span class="de-name">里弄</span>
+            <p>In den Gassen ist Shanghai klein. Man sieht Fenster, Wäsche und Fahrräder. Man hört Schritte und Stimmen.</p>
+            <button class="more" type="button">Mehr</button>
+            <p class="detail">Lilong ist kein großes Denkmal. Es ist Alltag: Türen, Nachbarn, Schatten und ein Weg, der direkt am Leben vorbeigeht.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img class="card-img" src="assets/generated/SH-8-university-quarter.jpg" alt="Shanghai-Universitätsviertel mit Studenten, Bäumen und Fahrrädern" loading="lazy">
+          <div class="card-body">
+            <span class="card-tag">Jugend</span>
+            <h3>Die Universität in der Stadt</h3>
+            <span class="de-name">城市大学街区</span>
+            <p>Junge Menschen gehen unter Bäumen. Bücher, Fahrräder und hohe Häuser gehören hier zusammen.</p>
+            <button class="more" type="button">Mehr</button>
+            <p class="detail">Shanghai ist nicht nur alt und nicht nur modern. In den Universitäten lernt die Stadt weiter. Das Bild bleibt ohne Namen, aber mit Stadtgefühl.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img class="card-img" src="assets/generated/SH-9-high-tech-shanghai.jpg" alt="Hightech-Labor in Shanghai mit Roboterarm und Stadtlicht" loading="lazy">
+          <div class="card-body">
+            <span class="card-tag">Morgen</span>
+            <h3>Das Hightech-Shanghai</h3>
+            <span class="de-name">高科技上海</span>
+            <p>Im Labor ist die Stadt sehr genau. Ein Roboterarm arbeitet, draußen leuchtet Shanghai weiter.</p>
+            <button class="more" type="button">Mehr</button>
+            <p class="detail">Hightech wird hier nicht als blaue Fantasie gezeigt. Es bleibt ein Raum mit Arbeit, Licht, Werkzeugen und der Stadt vor dem Fenster.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec reveal">
+      <h2 class="sec-title">Essen klein und genau</h2>
+      <p class="sec-sub">Shanghai schmeckt nach Suppe, Knusperboden, Frühlingszwiebel-Öl, brauner Sauce und einem süßen runden Schluss.</p>
+      <div class="sec-divider"></div>
+    </section>
+
+    <div class="food-strip reveal">
+      <div class="food-card">
+        <img class="food-img" src="assets/generated/SH-F1-xiaolongbao.jpg" alt="Xiaolongbao im Bambusdämpfer mit Löffel" loading="lazy">
+        <div class="food-text"><h3>Kleine Suppenknödel</h3><span class="de-name">小笼包</span><p>Die Knödel sind klein. Innen wartet heiße Suppe. Ein Löffel hilft.</p><button class="more" type="button">Mehr</button><p class="detail">Iss langsam. Erst kommt der Dampf, dann die Brühe, dann der Teig. Genau darin liegt der Shanghai-Geschmack.</p></div>
+      </div>
+      <div class="food-card">
+        <img class="food-img" src="assets/generated/SH-F2-shengjianbao.jpg" alt="Gebratene Shengjianbao mit Sesam und Frühlingszwiebeln" loading="lazy">
+        <div class="food-text"><h3>Gebratene Teigtaschen</h3><span class="de-name">生煎包</span><p>Unten sind sie knusprig, oben weich. In der Pfanne duftet es heiß.</p><button class="more" type="button">Mehr</button><p class="detail">Shengjianbao knackt unten in der Pfanne. Warte kurz, denn innen kann die Suppe sehr heiß sein.</p></div>
+      </div>
+      <div class="food-card">
+        <img class="food-img" src="assets/generated/SH-F3-scallion-oil-noodles.jpg" alt="Nudeln mit Frühlingszwiebel-Öl in einer Schale" loading="lazy">
+        <div class="food-text"><h3>Nudeln mit Frühlingszwiebel-Öl</h3><span class="de-name">葱油拌面</span><p>Die Nudeln sind einfach. Öl, Soja und Frühlingszwiebeln machen sie warm und dunkel.</p><button class="more" type="button">Mehr</button><p class="detail">Dieses Essen ist nicht laut. Es riecht stark nach Frühlingszwiebel und bleibt sehr alltaglich.</p></div>
+      </div>
+      <div class="food-card">
+        <img class="food-img" src="assets/generated/SH-F4-rice-cake-pork-chop.jpg" alt="Reiskuchen mit Schweinekotelett und brauner Sauce" loading="lazy">
+        <div class="food-text"><h3>Reiskuchen mit Schweinekotelett</h3><span class="de-name">年糕排骨</span><p>Auf dem Teller liegen weiche Reiskuchen und ein warmes Kotelett mit Sauce.</p><button class="more" type="button">Mehr</button><p class="detail">Reiskuchen und Kotelett zusammen sind ein starker Shanghai-Anker. Das Gericht bringt die große Stadt zurück zu einem heißen Teller.</p></div>
+      </div>
+      <div class="food-card">
+        <img class="food-img" src="assets/generated/SH-F5-tangyuan.jpg" alt="Süße Tangyuan-Reisbällchen in warmer Suppe" loading="lazy">
+        <div class="food-text"><h3>Süße Reisbällchen</h3><span class="de-name">汤圆</span><p>Am Ende wird es rund und süß. Die weißen Bällchen liegen in warmer Suppe.</p><button class="more" type="button">Mehr</button><p class="detail">Tangyuan ist weich und freundlich. Nach Fluss, Straße und Labor gibt es einen ruhigen Schluss.</p></div>
+      </div>
+    </div>
+
+    <section class="sec reveal" id="woerter">
+      <h2 class="sec-title">Wörter</h2>
+      <p class="sec-sub">Kurze Wörter für Wasser, Straße, Essen und Stadtlicht. Tippen zum Umklappen.</p>
+      <div class="vocab-grid">
+        <button class="vocab" data-de="der Fluss" data-zh="河流">der Fluss</button>
+        <button class="vocab" data-de="die Brücke" data-zh="桥">die Brücke</button>
+        <button class="vocab" data-de="das Haus" data-zh="房子">das Haus</button>
+        <button class="vocab" data-de="der Turm" data-zh="塔楼">der Turm</button>
+        <button class="vocab" data-de="die Gasse" data-zh="弄堂">die Gasse</button>
+        <button class="vocab" data-de="der Garten" data-zh="花园">der Garten</button>
+        <button class="vocab" data-de="die Universität" data-zh="大学">die Universität</button>
+        <button class="vocab" data-de="das Labor" data-zh="实验室">das Labor</button>
+        <button class="vocab" data-de="die Suppe" data-zh="汤">die Suppe</button>
+        <button class="vocab" data-de="der Löffel" data-zh="勺子">der Löffel</button>
+        <button class="vocab" data-de="knusprig" data-zh="脆的">knusprig</button>
+        <button class="vocab" data-de="süß" data-zh="甜的">süß</button>
+        <button class="vocab" data-de="leise" data-zh="安静">leise</button>
+        <button class="vocab" data-de="hoch" data-zh="高">hoch</button>
+        <button class="vocab" data-de="nah" data-zh="近">nah</button>
+      </div>
+    </section>
+
+    <section class="sec reveal" id="saetze">
+      <h2 class="sec-title">Sätze</h2>
+      <p class="sec-sub">Diese Sätze sind kurz und passen zu Shanghai.</p>
+      <div class="phrase-grid">
+        <p class="phrase-card"><strong>Ich stehe am Huangpu-Fluss.</strong><span>我站在黄浦江边。</span></p>
+        <p class="phrase-card"><strong>Am Suzhou-Fluss ist es leiser.</strong><span>苏州河边更安静。</span></p>
+        <p class="phrase-card"><strong>Die Türme sind sehr hoch.</strong><span>这些楼很高。</span></p>
+        <p class="phrase-card"><strong>Die Gasse ist klein und warm.</strong><span>弄堂小而温暖。</span></p>
+        <p class="phrase-card"><strong>Bitte langsam essen.</strong><span>请慢慢吃。</span></p>
+        <p class="phrase-card"><strong>Die Teigtasche ist heiß.</strong><span>这个包子很烫。</span></p>
+      </div>
+    </section>
+
+    <section class="sec reveal" id="quiz">
+      <h2 class="sec-title">Quiz</h2>
+      <p class="sec-sub">Drei kleine Fragen. Wähle eine Antwort.</p>
+      <div class="quiz-card" data-answer="1"><p class="question">1. Welcher zweite Fluss macht Shanghai leiser?</p><div class="options"><button class="option" type="button">Der Rhein</button><button class="option" type="button">Der Suzhou-Fluss</button><button class="option" type="button">Die Donau</button></div><div class="feedback">Richtig. Der Suzhou-Fluss zeigt eine leisere Seite von Shanghai.</div></div>
+      <div class="quiz-card" data-answer="2" style="margin-top:14px"><p class="question">2. Was sieht aus wie ein Schiff an einer Ecke?</p><div class="options"><button class="option" type="button">Der Yu-Garten</button><button class="option" type="button">Das Labor</button><button class="option" type="button">Das Wukang-Gebäude</button></div><div class="feedback">Richtig. Das Wukang-Gebäude hat eine schmale, schiffartige Ecke.</div></div>
+      <div class="quiz-card" data-answer="0" style="margin-top:14px"><p class="question">3. Was ist unten knusprig?</p><div class="options"><button class="option" type="button">Shengjianbao</button><button class="option" type="button">Tangyuan</button><button class="option" type="button">Der Fluss</button></div><div class="feedback">Richtig. Shengjianbao ist unten knusprig und innen heiß.</div></div>
+    </section>
+
+    <section class="final-postcard reveal">
+      <div class="final-inner">
+        <blockquote>Shanghai bleibt wie Licht auf dem Fluss. Die Türme sind hoch, aber die Stimmen aus den Gassen sind nah. Zwischen beidem findest du die Stadt.</blockquote>
+        <p class="footer-meta">Deutsch A2 · Shanghai entdecken · <a href="https://k286c7hg65-hub.github.io/design/shanghai-deutsch/">Seite besuchen</a></p>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    (function () {
+      var els = document.querySelectorAll('.reveal');
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        els.forEach(function (el) { el.classList.add('visible'); });
+        return;
+      }
+      var obs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add('visible'); }
+        });
+      }, { threshold: 0.12 });
+      els.forEach(function (el) { obs.observe(el); });
+    })();
+
+    document.querySelectorAll('.more').forEach(function (button) {
+      button.addEventListener('click', function () {
+        var parent = button.closest('.card, .food-card, .quiet-band');
+        var isOpen = parent.classList.toggle('open');
+        button.textContent = isOpen ? 'Weniger' : 'Mehr';
+      });
+    });
+
+    document.querySelectorAll('.vocab').forEach(function (button) {
+      button.addEventListener('click', function () {
+        var flipped = button.classList.toggle('flipped');
+        button.textContent = flipped ? button.dataset.zh : button.dataset.de;
+      });
+    });
+
+    document.querySelectorAll('.quiz-card').forEach(function (quiz) {
+      var answer = Number(quiz.dataset.answer);
+      var options = [].slice.call(quiz.querySelectorAll('.option'));
+      var feedback = quiz.querySelector('.feedback');
+      var originalText = feedback.textContent;
+      options.forEach(function (option, index) {
+        option.addEventListener('click', function () {
+          options.forEach(function (item, idx) {
+            item.disabled = true;
+            item.classList.toggle('correct', idx === answer);
+            item.classList.toggle('wrong', idx === index && idx !== answer);
+          });
+          feedback.classList.add('show');
+          feedback.textContent = index === answer
+            ? originalText
+            : 'Nicht ganz. Die richtige Antwort ist: ' + options[answer].textContent + '.';
+        });
+      });
+    });
+  </script>
+</body>
+</html>

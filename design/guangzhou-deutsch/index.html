@@ -1,0 +1,785 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Guangzhou entdecken · Deutsch A2</title>
+  <style>
+    :root {
+      --paper: #f4efe0;
+      --paper-soft: #ffffff;
+      --paper-deep: #e6dcc8;
+      --ink: #2c2a26;
+      --muted: #6b5e52;
+      --jade: #3e7568;
+      --jade-deep: #2b5246;
+      --pearl: #5a9b95;
+      --pearl-light: #8ec7c1;
+      --red: #c25a3c;
+      --red-deep: #8a3d28;
+      --gold: #c8923a;
+      --white: #fdfaf2;
+      --blush: #e8aaaa;
+      --line: rgba(62, 117, 104, .2);
+      --shadow: 0 18px 54px rgba(44, 42, 38, .14);
+      --radius: 10px;
+      --font: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: var(--font);
+      line-height: 1.7;
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(90, 155, 149, .06) 0%, transparent 70%),
+        linear-gradient(90deg, rgba(62, 117, 104, .03) 1px, transparent 1px) 0 0 / 38px 38px,
+        var(--paper);
+    }
+
+    img { display: block; max-width: 100%; }
+
+    button { font: inherit; }
+
+    .page { overflow: hidden; }
+
+    /* ── Hero ── */
+    .hero {
+      min-height: 90svh;
+      display: grid;
+      align-items: end;
+      color: var(--white);
+      background:
+        linear-gradient(180deg, rgba(44, 42, 38, .82), rgba(44, 42, 38, .42) 44%, rgba(44, 42, 38, .08)),
+        url("assets/generated/GZ-HERO-yunshan-zhushui.jpg") center / cover no-repeat;
+    }
+
+    .hero-inner {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 120px 0 100px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 36px;
+      padding: 7px 13px;
+      border: 1px solid rgba(253, 250, 242, .36);
+      border-radius: 999px;
+      background: rgba(44, 42, 38, .28);
+      backdrop-filter: blur(12px);
+      color: #ffe6c0;
+      font-size: .85rem;
+      font-weight: 760;
+      letter-spacing: .02em;
+    }
+
+    .hero h1 {
+      margin: 24px 0 16px;
+      max-width: 780px;
+      font-size: clamp(2.3rem, 5vw, 3.4rem);
+      font-weight: 820;
+      line-height: 1.15;
+      letter-spacing: -.01em;
+      text-shadow: 0 2px 12px rgba(0, 0, 0, .45);
+    }
+
+    .hero p {
+      margin: 0;
+      max-width: 620px;
+      font-size: clamp(1.05rem, 2.5vw, 1.18rem);
+      line-height: 1.6;
+      color: rgba(255, 250, 242, .9);
+      text-shadow: 0 1px 6px rgba(0, 0, 0, .3);
+    }
+
+    /* ── Sections ── */
+    .sec {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 80px 0;
+    }
+
+    .sec-title {
+      margin: 0 0 12px;
+      font-size: 1.65rem;
+      font-weight: 780;
+      color: var(--jade-deep);
+      letter-spacing: -.01em;
+    }
+
+    .sec-sub {
+      margin: 0 0 40px;
+      max-width: 580px;
+      font-size: 1.02rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .sec-divider {
+      height: 1px;
+      width: 64px;
+      margin-bottom: 48px;
+      background: var(--jade);
+      opacity: .35;
+    }
+
+    /* ── Cards ── */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 32px;
+    }
+
+    .card {
+      border-radius: var(--radius);
+      background: var(--paper-soft);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transition: transform .35s ease, box-shadow .35s ease;
+    }
+
+    .card:hover { transform: translateY(-4px); }
+
+    .card-img {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+    }
+
+    .card-body { padding: 22px 24px 28px; }
+
+    .card-tag {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: .76rem;
+      font-weight: 740;
+      background: rgba(62, 117, 104, .1);
+      color: var(--jade);
+      margin-bottom: 10px;
+    }
+
+    .card-body h3 {
+      margin: 0 0 8px;
+      font-size: 1.18rem;
+      font-weight: 780;
+      color: var(--ink);
+    }
+
+    .card-body p {
+      margin: 0;
+      font-size: .94rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .card-body .de-name {
+      display: block;
+      font-size: .82rem;
+      color: var(--jade);
+      font-weight: 680;
+      margin-top: 6px;
+    }
+
+    /* ── Narrative blocks ── */
+    .narrative {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 64px 0 0;
+    }
+
+    .nar-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+      margin-bottom: 72px;
+    }
+
+    .nar-img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .nar-text h3 {
+      margin: 0 0 10px;
+      font-size: 1.3rem;
+      font-weight: 780;
+      color: var(--ink);
+    }
+
+    .nar-text .de-name {
+      display: block;
+      font-size: .82rem;
+      color: var(--jade);
+      font-weight: 680;
+      margin-bottom: 12px;
+    }
+
+    .nar-text p {
+      margin: 0;
+      font-size: .98rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* ── Food strip ── */
+    .food-strip {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 0 0 80px;
+    }
+
+    .food-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: center;
+      padding: 36px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .food-card:last-child { border-bottom: none; }
+
+    .food-img {
+      width: 100%;
+      aspect-ratio: 3 / 2;
+      object-fit: cover;
+      border-radius: var(--radius);
+      box-shadow: 0 8px 28px rgba(44, 42, 38, .1);
+    }
+
+    .food-text h3 {
+      margin: 0 0 6px;
+      font-size: 1.22rem;
+      font-weight: 780;
+      color: var(--ink);
+    }
+
+    .food-text .de-name {
+      display: block;
+      font-size: .82rem;
+      color: var(--red);
+      font-weight: 680;
+      margin-bottom: 10px;
+    }
+
+    .food-text p {
+      margin: 0;
+      font-size: .95rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      text-align: center;
+      padding: 64px 0 48px;
+    }
+
+    .footer-inner {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .footer-quote {
+      margin: 0 0 32px;
+      font-size: 1.14rem;
+      font-weight: 640;
+      color: var(--jade-deep);
+      line-height: 1.65;
+      max-width: 580px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .footer-meta {
+      font-size: .82rem;
+      color: var(--muted);
+      opacity: .6;
+    }
+
+    .footer-meta a {
+      color: var(--jade);
+      text-decoration: none;
+    }
+
+    /* ── Reveal ── */
+    @media (prefers-reduced-motion: no-preference) {
+      .reveal {
+        opacity: 0;
+        transform: translateY(28px);
+        transition: opacity .6s ease, transform .6s ease;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .hero { min-height: 70svh; }
+      .hero-inner { padding: 80px 0 64px; }
+      .nar-row { grid-template-columns: 1fr; gap: 24px; }
+      .food-card { grid-template-columns: 1fr; gap: 20px; }
+      .food-card:nth-child(even) .food-img { order: 1; }
+      .food-card:nth-child(even) .food-text { order: 2; }
+      .sec-title { font-size: 1.4rem; }
+      .cards { grid-template-columns: 1fr; }
+      .final-postcard { min-height: 52vh; background-position: center; }
+      .final-postcard blockquote { font-size: 1.02rem; }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 1.8rem; }
+      .hero p { font-size: .95rem; }
+      .card-body h3 { font-size: 1.05rem; }
+      .nar-text h3 { font-size: 1.12rem; }
+      .phrase-grid { grid-template-columns: 1fr; }
+      .vocab-grid { grid-template-columns: repeat(3,1fr); gap: 8px; }
+      .vocab { font-size: .78rem; padding: 8px 12px; }
+    }
+
+    /* ── Expand ("Mehr") ── */
+    .more {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 5px 16px;
+      border: 1px solid var(--jade);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--jade);
+      font-size: .84rem;
+      font-weight: 680;
+      cursor: pointer;
+      transition: background .2s, color .2s;
+    }
+    .more:hover { background: var(--jade); color: var(--white); }
+    .detail { display: none; margin-top: 12px; font-size: .92rem; color: var(--muted); line-height: 1.6; }
+    .card.open .detail, .food-card.open .detail { display: block; }
+
+    /* ── Quiz ── */
+    .quiz-card {
+      width: min(720px, 100%);
+      padding: 28px;
+      border-radius: var(--radius);
+      background: var(--paper-soft);
+      box-shadow: 0 4px 18px rgba(44,42,38,.08);
+    }
+    .question { margin: 0 0 18px; font-size: 1.08rem; font-weight: 740; color: var(--ink); }
+    .options { display: flex; flex-wrap: wrap; gap: 10px; }
+    .option {
+      flex: 1 1 140px;
+      padding: 10px 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+      font-size: .93rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background .2s, border-color .2s;
+    }
+    .option:hover:not(:disabled) { border-color: var(--jade); background: rgba(62,117,104,.06); }
+    .option.correct { background: #d4edda; border-color: #2b8a3e; color: #1a5c2e; }
+    .option.wrong { background: #fce4e4; border-color: #c25a3c; color: #8a3d28; }
+    .option:disabled { cursor: default; }
+    .feedback { display: none; margin-top: 14px; padding: 10px 16px; border-radius: 8px; background: #e8f5e9; color: #2b5246; font-size: .91rem; font-weight: 640; }
+    .feedback.show { display: block; }
+
+    /* ── Vocab ── */
+    .vocab-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 12px; }
+    .vocab {
+      padding: 12px 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+      color: var(--ink);
+      font-size: .88rem;
+      font-weight: 640;
+      cursor: pointer;
+      transition: background .25s, border-color .25s, transform .2s;
+    }
+    .vocab:hover { border-color: var(--jade); background: rgba(62,117,104,.06); }
+    .vocab.flipped { background: var(--jade); color: var(--white); border-color: var(--jade); transform: scale(1.03); }
+
+    /* ── Phrases ── */
+    .phrase-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+    .phrase-card {
+      margin: 0;
+      padding: 16px 20px;
+      border-radius: 8px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      font-size: .93rem;
+      color: var(--ink);
+      line-height: 1.6;
+    }
+    .phrase-card strong { display: block; margin-bottom: 4px; font-weight: 740; }
+    .phrase-card span { font-size: .82rem; color: var(--muted); }
+
+    /* ── Final ── */
+    .final-postcard {
+      min-height: 48vh;
+      display: grid;
+      align-items: end;
+      color: var(--white);
+      background:
+        linear-gradient(90deg, rgba(47, 43, 37, .82), rgba(47, 43, 37, .54) 42%, rgba(47, 43, 37, .14)),
+        linear-gradient(180deg, rgba(47, 43, 37, .08), rgba(47, 43, 37, .55)),
+        url("assets/generated/GZ-FINAL-pearl-river-dusk.jpg") center / cover no-repeat;
+    }
+
+    .final-inner {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 64px 0 38px;
+    }
+
+    .final-postcard blockquote {
+      margin: 0 0 26px;
+      max-width: 680px;
+      font-size: clamp(1.08rem, 2.5vw, 1.45rem);
+      font-weight: 680;
+      line-height: 1.65;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, .46);
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- ════════ HERO ════════ -->
+    <section class="hero">
+      <div class="hero-inner reveal">
+        <span class="eyebrow">Deutsch lernen · Lingnan</span>
+        <h1>Guangzhou — Zwischen Baiyun-Berg und Perlfluss</h1>
+        <p>Eine Stadt, die am Morgen mit Tee beginnt, unter Qilou-Dächern durch den Regen geht und am Abend auf dem Wasser leuchtet.</p>
+      </div>
+    </section>
+
+    <!-- ════════ NARRATIVE INTRO ════════ -->
+    <div class="narrative reveal">
+      <div class="nar-row">
+        <img class="nar-img" src="assets/generated/GZ-1-chen-clan-ancestral-hall.jpg" alt="Chen-Ahnenhalle — Dach-Detail und Keramikrelief" loading="lazy">
+        <div class="nar-text">
+          <h3>Nicht nur eine große Stadt</h3>
+          <span class="de-name">Die Chen-Ahnenhalle · 陈家祠</span>
+          <p>Guangzhou ist alt und neu zugleich. Auf den Dächern der Chen-Ahnenhalle stehen Figuren aus Keramik. Sie erzählen von einer Zeit, in der Handwerk eine Sprache war. Die Stadt spricht leise, aber sie hat viele Stimmen: Teehäuser, Qilou-Gassen, den Baiyun-Berg im Norden und den Perlfluss, der abends weich und hell wird.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════ LANDMARKS ════════ -->
+    <section class="sec reveal">
+      <h2 class="sec-title">Orte, die bleiben</h2>
+      <p class="sec-sub">Acht Stationen durch eine Stadt, die Dampf, Stein, Wasser und Blumen kennt.</p>
+      <div class="sec-divider"></div>
+
+      <div class="cards">
+
+        <div class="card">
+          <img class="card-img" src="assets/generated/GZ-4-baiyun-mountain.jpg" alt="Baiyun-Berg mit Blick nach Norden" loading="lazy">
+          <div class="card-body">
+            <span class="card-tag">Berg</span>
+            <h3>Der Baiyun-Berg</h3>
+            <span class="de-name">白云山</span>
+            <p>Im Norden der Stadt steigt der Baiyun-Berg langsam an. Von oben sieht man den Perlfluss und die ganze Stadt. Guangzhou atmet durch diesen Berg.</p>
+            <button class="more" type="button">Mehr</button>
+            <p class="detail">Der Baiyun-Berg ist kein hoher Gipfel, sondern ein Netz aus Wegen, Pavillons und grünen Hängen. Am Morgen steigt Nebel auf — daher der Name "Weiße-Wolke-Berg". Für die Menschen in Guangzhou ist er der Ort zum Durchatmen.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img class="card-img" src="assets/generated/GZ-2-white-swan-hotel-shamian-reference.jpg" alt="Shamian-Insel mit Wasser und Bäumen" loading="lazy">
+          <div class="card-body">
+            <span class="card-tag">Insel</span>
+            <h3>Die Insel Shamian</h3>
+            <span class="de-name">沙面</span>
+            <p>Alte Bäume, weiße Gebäude und langsames Gehen. Shamian liegt am Wasser. Das Weiße-Schwan-Hotel steht am Ufer, ruhig und groß.</p>
+            <button class="more" type="button">Mehr</button>
+            <p class="detail">Früher war Shamian eine kleine Insel für Händler aus Europa. Heute ist sie ein ruhiger Ort mitten in der Stadt. Man geht unter alten Banyan-Bäumen, hört Wasser und vergisst fast, dass Guangzhou direkt nebenan weitermacht.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img class="card-img" src="assets/generated/GZ-3-canton-tower-pearl-river.jpg" alt="Canton Tower bei Abenddämmerung" loading="lazy">
+          <div class="card-body">
+            <span class="card-tag">Turm</span>
+            <h3>Der Canton Tower</h3>
+            <span class="de-name">广州塔</span>
+            <p>In der Abenddämmerung leuchtet der Canton Tower über dem Perlfluss. Er ist dünn, hoch und voll Licht. Guangzhou zeigt hier sein modernes Gesicht.</p>
+            <button class="more" type="button">Mehr</button>
+            <p class="detail">Mit 600 Metern ist er einer der höchsten Türme der Welt. Seine Form erinnert an eine Sanduhr — schmal in der Mitte, weit oben und unten. Nachts wechseln die Farben, und der ganze Perlfluss spiegelt das Licht.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img class="card-img" src="assets/generated/GZ-5-sun-yat-sen-memorial-hall.jpg" alt="Sun-Yat-sen-Gedächtnishalle mit blauem Dach" loading="lazy">
+          <div class="card-body">
+            <span class="card-tag">Gedächtnis</span>
+            <h3>Die Sun-Yat-sen-Gedächtnishalle</h3>
+            <span class="de-name">中山纪念堂</span>
+            <p>Ein blaues Dach, ein großer Platz. Sun Yat-sen war Arzt und Revolutionär. Seine Halle ist ein Ort der Erinnerung, still und würdig mitten in der Stadt.</p>
+            <button class="more" type="button">Mehr</button>
+            <p class="detail">Sun Yat-sen wird in ganz China "Vater der modernen Nation" genannt. Er ist in Guangdong geboren. Der große Innenraum kommt ohne tragende Säulen aus — eine architektonische Besonderheit.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img class="card-img" src="assets/generated/GZ-6-yuexiu-five-rams.jpg" alt="Fünf-Ziegen-Skulptur im Yuexiu-Park" loading="lazy">
+          <div class="card-body">
+            <span class="card-tag">Legende</span>
+            <h3>Der Yuexiu-Park</h3>
+            <span class="de-name">越秀公园</span>
+            <p>Fünf Ziegen aus Stein stehen im Park. Eine alte Legende sagt: Sie brachten den Menschen Reis und lehrten sie, hier zu leben. Ein grüner Ort voll Stadtgedächtnis.</p>
+            <button class="more" type="button">Mehr</button>
+            <p class="detail">Die Legende erzählt: Vor langer Zeit kamen fünf Unsterbliche auf Ziegen vom Himmel. Sie brachten Reisähren und versprachen, dass Guangzhou nie hungern würde. Deshalb nennt man die Stadt auch "Stadt der Ziegen" oder "Stadt der fünf Ziegen".</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img class="card-img" src="assets/generated/GZ-7-spring-flower-market.jpg" alt="Blumenmarkt vor dem Frühlingsfest" loading="lazy">
+          <div class="card-body">
+            <span class="card-tag">Fest</span>
+            <h3>Der Blumenmarkt zum Frühlingsfest</h3>
+            <span class="de-name">迎春花市</span>
+            <p>Kurz vor dem Neujahrsfest duftet eine ganze Straße nach Blumen, Orangenbäumen und Grün. Menschen gehen langsam, wählen Blumen aus und tragen das Jahr nach Hause.</p>
+            <button class="more" type="button">Mehr</button>
+            <p class="detail">Der Blumenmarkt öffnet in den letzten Tagen vor dem chinesischen Neujahr. Viele Familien kaufen Blumen für das neue Jahr: Orchideen für Glück, Orangenbäume für Geld, Pfingstrosen für Liebe. Es ist laut, eng, warm und voller Hoffnung.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img class="card-img" src="assets/generated/GZ-8-pearl-river-night.jpg" alt="Perlfluss bei Nacht mit Lichtern" loading="lazy">
+          <div class="card-body">
+            <span class="card-tag">Wasser</span>
+            <h3>Der Perlfluss am Abend</h3>
+            <span class="de-name">珠江</span>
+            <p>Am Abend wird der Perlfluss weich. Lichter spiegeln sich auf dem Wasser, Brücken leuchten, und der Wind kommt von Süden. Guangzhou atmet aus.</p>
+            <button class="more" type="button">Mehr</button>
+            <p class="detail">Der Perlfluss ist die Hauptader der Stadt. Früher fuhren hier Boote mit Seide und Tee nach Süden, Richtung Meer. Heute gehen die Menschen abends ans Ufer: Joggen, reden, Musik hören, einfach sitzen und schauen. Das Wasser fließt — langsam, wie Guangzhou selbst.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ════════ FOOD ════════ -->
+    <section class="sec reveal">
+      <h2 class="sec-title">Essen als Sprache</h2>
+      <p class="sec-sub">In Guangzhou isst man nicht nur. Man teilt, wartet auf Dampf und versteht die Stadt durch den Geschmack.</p>
+      <div class="sec-divider"></div>
+    </section>
+
+    <div class="food-strip reveal">
+
+      <div class="food-card">
+        <img class="food-img" src="assets/generated/GZ-F1-yum-cha-dim-sum.jpg" alt="Dim Sum — Bambuskörbe und Tee" loading="lazy">
+        <div class="food-text">
+          <h3>Dim Sum und Morgen-Tee</h3>
+          <span class="de-name">早茶 · 点心</span>
+          <p>Der Tag beginnt mit Tee und kleinen Bambuskörben. Dampf steigt auf, Teller werden geteilt, und niemand hat es eilig. Yum Cha ist kein Essen — es ist eine Uhrzeit.</p>
+          <button class="more" type="button">Mehr</button>
+          <p class="detail">Die Kellnerinnen schieben Wagen zwischen den Tischen. Du zeigst auf einen Korb, sie öffnen den Deckel, und der Dampf steigt dir ins Gesicht. Die besten Dim-Sum-Restaurants sind morgens um acht schon voll — mit Familien, Zeitungen und Teetassen, die nie leer werden.</p>
+        </div>
+      </div>
+
+      <div class="food-card">
+        <img class="food-img" src="assets/generated/GZ-F2-rice-noodle-rolls.jpg" alt="Reisnudelrollen mit Sojasoße" loading="lazy">
+        <div class="food-text">
+          <h3>Reisnudelrollen</h3>
+          <span class="de-name">肠粉</span>
+          <p>Weich, glatt und noch warm vom Dampf. Die Reisnudelrollen kommen in Sojasoße und gleiten fast von selbst. Man isst sie am Morgen, am Mittag, in der Nacht — immer dann, wenn die Straße nach Essen riecht.</p>
+          <button class="more" type="button">Mehr</button>
+          <p class="detail">Der Koch gießt dünnen Reisteig auf ein Tuch, legt Fleisch oder Ei darauf und schiebt alles in den Dampf. Nach zwei Minuten hebt er das Tuch, rollt den Teig mit einem Spachtel und legt ihn auf den Teller. Alles dauert vielleicht drei Minuten — und schmeckt nach zwanzig Jahren Übung.</p>
+        </div>
+      </div>
+
+      <div class="food-card">
+        <img class="food-img" src="assets/generated/GZ-F3-wonton-noodles.jpg" alt="Wonton-Nudeln in klarer Suppe" loading="lazy">
+        <div class="food-text">
+          <h3>Wonton-Nudeln</h3>
+          <span class="de-name">云吞面</span>
+          <p>Klare Suppe, dünne Nudeln, kleine gefüllte Teigtaschen. Kein lautes Gericht — aber eins, das jeder kennt. Am Straßenrand, in alten Läden, überall in Guangzhou.</p>
+          <button class="more" type="button">Mehr</button>
+          <p class="detail">Die Nudeln sind so dünn wie Haare und werden mit Alkalilauge gemacht — darum haben sie einen leichten Biss. Die Wontons sind gefüllt mit Garnelen und Schwein. Die Suppe kocht stundenlang mit getrocknetem Fisch und Ingwer. Das Ergebnis ist klar, tief und warm.</p>
+        </div>
+      </div>
+
+      <div class="food-card">
+        <img class="food-img" src="assets/generated/GZ-F4-double-skin-milk.jpg" alt="Doppelte Milchcreme im weißen Schälchen" loading="lazy">
+        <div class="food-text">
+          <h3>Doppelte Milchcreme</h3>
+          <span class="de-name">双皮奶</span>
+          <p>Nach dem Salzigen kommt das Süße. Die doppelte Milchcreme ist weich, kühl und schmeckt nach Kindheit. Aus Shunde gekommen, in Guangzhou geblieben.</p>
+          <button class="more" type="button">Mehr</button>
+          <p class="detail">Die "doppelte Haut" entsteht so: Man erhitzt Milch, lässt sie abkühlen — die erste Haut bildet sich. Dann mischt man Eiweiß und Zucker unter die Milch und erhitzt sie noch einmal — die zweite Haut entsteht. Das Ergebnis ist seidig, süß und kühl. Ein perfekter Abschluss nach scharfer oder salziger Küche.</p>
+        </div>
+      </div>
+
+      <div class="food-card">
+        <img class="food-img" src="assets/generated/GZ-F5-lychees.jpg" alt="Frische Litschis — rot und saftig" loading="lazy">
+        <div class="food-text">
+          <h3>Litschis</h3>
+          <span class="de-name">荔枝</span>
+          <p>Im Sommer legen die Menschen in Guangzhou rote Litschis in die Hand. Die Schale bricht leicht, das Innere ist süß und kühl. Der Geschmack des Südens.</p>
+          <button class="more" type="button">Mehr</button>
+          <p class="detail">Litschis wachsen in Guangdong seit sehr langer Zeit. Ein alter Dichter schrieb sinngemäß: Mit Litschis könnte er im Süden bleiben. Im Juni sind die Straßenmärkte rot von Litschis — man kauft sie in großen Bündeln, isst sie unter Bäumen und spuckt die Kerne ins Gras.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ════════ WÖRTER ════════ -->
+    <section class="sec reveal" id="woerter">
+      <h2 class="sec-title">Wörter</h2>
+      <p class="sec-sub">Kurze Wörter für Orte, Essen und Stadt. Tippen zum Umklappen.</p>
+      <div class="vocab-grid">
+        <button class="vocab" data-de="der Berg" data-zh="山">der Berg</button>
+        <button class="vocab" data-de="der Fluss" data-zh="河流">der Fluss</button>
+        <button class="vocab" data-de="der Dampf" data-zh="蒸汽">der Dampf</button>
+        <button class="vocab" data-de="der Tee" data-zh="茶">der Tee</button>
+        <button class="vocab" data-de="die Insel" data-zh="岛">die Insel</button>
+        <button class="vocab" data-de="der Turm" data-zh="塔">der Turm</button>
+        <button class="vocab" data-de="der Markt" data-zh="市场">der Markt</button>
+        <button class="vocab" data-de="die Brücke" data-zh="桥">die Brücke</button>
+        <button class="vocab" data-de="die Legende" data-zh="传说">die Legende</button>
+        <button class="vocab" data-de="der Nudelteig" data-zh="米粉">der Nudelteig</button>
+        <button class="vocab" data-de="die Suppe" data-zh="汤">die Suppe</button>
+        <button class="vocab" data-de="süß" data-zh="甜">süß</button>
+        <button class="vocab" data-de="weich" data-zh="软">weich</button>
+        <button class="vocab" data-de="warm" data-zh="温暖">warm</button>
+        <button class="vocab" data-de="leise" data-zh="轻声">leise</button>
+      </div>
+    </section>
+
+    <!-- ════════ SÄTZE ════════ -->
+    <section class="sec reveal" id="saetze">
+      <h2 class="sec-title">Sätze</h2>
+      <p class="sec-sub">Diese Sätze sind kurz. Du kannst sie in Guangzhou benutzen.</p>
+      <div class="phrase-grid">
+        <p class="phrase-card"><strong>Wo ist der Perlfluss?</strong><span>珠江在哪里？</span></p>
+        <p class="phrase-card"><strong>Ich möchte Dim Sum probieren.</strong><span>我想尝尝点心。</span></p>
+        <p class="phrase-card"><strong>Das schmeckt sehr gut.</strong><span>这个非常好吃。</span></p>
+        <p class="phrase-card"><strong>Wie komme ich zum Canton Tower?</strong><span>广州塔怎么走？</span></p>
+        <p class="phrase-card"><strong>Noch eine Tasse Tee, bitte.</strong><span>请再来一杯茶。</span></p>
+        <p class="phrase-card"><strong>Der Markt ist wunderschön.</strong><span>这个市场太美了。</span></p>
+      </div>
+    </section>
+
+    <!-- ════════ QUIZ ════════ -->
+    <section class="sec reveal" id="quiz">
+      <h2 class="sec-title">Quiz</h2>
+      <p class="sec-sub">Drei kleine Fragen. Wähle eine Antwort.</p>
+
+      <div class="quiz-card" data-answer="1">
+        <p class="question">1. Was ist "Yum Cha"?</p>
+        <div class="options">
+          <button class="option" type="button">Ein Berg in Guangzhou</button>
+          <button class="option" type="button">Tee trinken und Dim Sum essen</button>
+          <button class="option" type="button">Eine Brücke über den Perlfluss</button>
+        </div>
+        <div class="feedback">Richtig. Yum Cha bedeutet "Tee trinken" — aber es ist viel mehr: ein langer Morgen mit Tee, Dim Sum und guten Gesprächen.</div>
+      </div>
+
+      <div class="quiz-card" data-answer="0" style="margin-top:14px">
+        <p class="question">2. Wie heißt der Berg im Norden Guangzhous?</p>
+        <div class="options">
+          <button class="option" type="button">Der Baiyun-Berg</button>
+          <button class="option" type="button">Der Perl-Berg</button>
+          <button class="option" type="button">Der Kanton-Berg</button>
+        </div>
+        <div class="feedback">Richtig. Der Baiyun-Berg ("Weiße-Wolke-Berg") liegt im Norden der Stadt.</div>
+      </div>
+
+      <div class="quiz-card" data-answer="2" style="margin-top:14px">
+        <p class="question">3. Warum nennt man Guangzhou "Stadt der fünf Ziegen"?</p>
+        <div class="options">
+          <button class="option" type="button">Weil es fünf Berge gibt</button>
+          <button class="option" type="button">Weil man dort Ziegenfleisch isst</button>
+          <button class="option" type="button">Eine Legende erzählt von fünf Ziegen, die Reis brachten</button>
+        </div>
+        <div class="feedback">Richtig. Die Legende von den fünf Ziegen ist ein Symbol für Guangzhou — sie brachten Reis und lehrten die Menschen zu leben.</div>
+      </div>
+    </section>
+
+    <!-- ════════ FINAL ════════ -->
+    <section class="final-postcard reveal">
+      <div class="final-inner">
+        <blockquote>Guangzhou bleibt nicht laut im Kopf. Es bleibt wie warmer Tee, wie Regen unter einem Qilou-Dach, wie Licht auf dem Perlfluss — und wie ein Tisch, an dem noch ein kleiner Korb frei ist.</blockquote>
+        <p class="footer-meta">
+          Deutsch A2 · Guangzhou entdecken · <a href="https://k286c7hg65-hub.github.io/design/guangzhou-deutsch/">Seite besuchen</a>
+        </p>
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+    (function () {
+      var els = document.querySelectorAll('.reveal');
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        els.forEach(function (el) { el.classList.add('visible'); });
+        return;
+      }
+      var obs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add('visible'); }
+        });
+      }, { threshold: 0.12 });
+      els.forEach(function (el) { obs.observe(el); });
+    })();
+
+    // Expand ("Mehr"/"Weniger")
+    document.querySelectorAll('.more').forEach(function (button) {
+      button.addEventListener('click', function () {
+        var parent = button.closest('.card, .food-card');
+        var isOpen = parent.classList.toggle('open');
+        button.textContent = isOpen ? 'Weniger' : 'Mehr';
+      });
+    });
+
+    // Vocab flip
+    document.querySelectorAll('.vocab').forEach(function (button) {
+      button.addEventListener('click', function () {
+        var flipped = button.classList.toggle('flipped');
+        button.textContent = flipped ? button.dataset.zh : button.dataset.de;
+      });
+    });
+
+    // Quiz
+    document.querySelectorAll('.quiz-card').forEach(function (quiz) {
+      var answer = Number(quiz.dataset.answer);
+      var options = [].slice.call(quiz.querySelectorAll('.option'));
+      var feedback = quiz.querySelector('.feedback');
+      var originalText = feedback.textContent;
+      options.forEach(function (option, index) {
+        option.addEventListener('click', function () {
+          options.forEach(function (item, idx) {
+            item.disabled = true;
+            item.classList.toggle('correct', idx === answer);
+            item.classList.toggle('wrong', idx === index && idx !== answer);
+          });
+          feedback.classList.add('show');
+          if (index !== answer) {
+            feedback.textContent = 'Nicht ganz. Die richtige Antwort ist: ' + options[answer].textContent + '.';
+          } else {
+            feedback.textContent = originalText;
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

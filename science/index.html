@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>科学探索 · 问题驱动实验室</title>
+<meta name="description" content="两个先预测、再实验、最后自己解释的科学探索站：电的发现（6 站电学）与四大神兽（4 个思想实验）。每一页都能离线打开。">
+<meta name="theme-color" content="#10171d">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%2310171d'/%3E%3Cellipse cx='20' cy='20' rx='14' ry='6' fill='none' stroke='%23efbc70' stroke-width='2' transform='rotate(-35 20 20)'/%3E%3Ccircle cx='20' cy='20' r='4' fill='%23efbc70'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#10171d; --panel:#182229; --panel2:#1d2a32; --line:#2e3c45;
+  --text:#f0f2ed; --muted:#a9b7bf; --amber:#efbc70; --cyan:#7bd0d8; --green:#a8d6af;
+  --serif:'Songti SC','STSong','Noto Serif CJK SC',serif;
+  --sans:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.7 var(--sans)}
+a{color:var(--cyan)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--cyan);outline-offset:4px}
+.wrap{max-width:1060px;margin:0 auto;padding:0 24px}
+.skip{position:fixed;left:16px;top:-100px;background:var(--text);color:var(--bg);padding:12px;z-index:30}
+.skip:focus{top:12px}
+
+/* ── Header ── */
+.masthead{border-bottom:1px solid var(--line);padding:clamp(34px,6vw,62px) 0 clamp(24px,4vw,38px)}
+.brand{display:flex;align-items:center;gap:14px;font-size:15px;letter-spacing:2px;color:var(--muted)}
+.brand svg{width:30px;height:30px;flex:0 0 auto}
+h1{font-family:var(--serif);font-weight:500;font-size:clamp(30px,4.4vw,48px);line-height:1.35;letter-spacing:1px;margin:22px 0 14px}
+h1 em{font-style:normal;color:var(--amber)}
+.lede{color:var(--muted);font-size:15px;line-height:1.9;max-width:44em;margin:0}
+.lede strong{color:var(--text);font-weight:500}
+.meta-line{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:22px;color:var(--muted);font-size:12px;letter-spacing:1px}
+
+/* ── Cards ── */
+.stations{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:20px;padding:clamp(28px,5vw,48px) 0 8px}
+.station{display:flex;flex-direction:column;background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden;text-decoration:none;color:inherit;transition:border-color .2s,transform .2s}
+.station:hover,.station:focus-visible{border-color:var(--amber);transform:translateY(-2px)}
+.station-art{height:150px;background:var(--panel2);border-bottom:1px solid var(--line);display:block}
+.station-art svg{width:100%;height:100%;display:block}
+.station-body{padding:20px 22px 22px;display:flex;flex-direction:column;gap:10px;flex:1}
+.kicker{font-size:11px;letter-spacing:2px;color:var(--amber)}
+.station h2{font-family:var(--serif);font-weight:500;font-size:23px;line-height:1.4;margin:0}
+.station .question{color:var(--cyan);font-size:14px;margin:0}
+.station p.desc{color:var(--muted);font-size:14px;line-height:1.85;margin:0}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
+.chips span{border:1px solid var(--line);border-radius:20px;padding:3px 10px;font-size:11px;color:var(--muted);white-space:nowrap}
+.url{margin-top:auto;padding-top:14px;border-top:1px solid var(--line);font:12px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--muted);word-break:break-all}
+.cta{display:inline-flex;align-items:center;gap:7px;margin-top:12px;background:var(--amber);color:#182129;font-weight:650;font-size:14px;border-radius:6px;padding:10px 18px;text-decoration:none;align-self:flex-start}
+
+/* ── Table ── */
+section.compare{padding:clamp(30px,5vw,52px) 0 6px}
+h2.section-title{font-size:12px;letter-spacing:2px;color:var(--muted);font-weight:600;margin:0 0 14px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+caption{text-align:left;color:var(--muted);font-size:13px;padding-bottom:10px}
+th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--muted);font-weight:600;font-size:12px;letter-spacing:1px}
+tbody th{color:var(--text);font-weight:500;font-size:14px;letter-spacing:0}
+td a{text-decoration:none}
+td a:hover{text-decoration:underline}
+.hl{color:var(--green)}
+
+/* ── Notes ── */
+.notes{padding:clamp(28px,5vw,46px) 0 clamp(34px,6vw,58px);border-top:1px solid var(--line);margin-top:clamp(26px,4vw,44px)}
+.notes h2{font-size:19px;font-family:var(--serif);font-weight:500;margin:0 0 14px}
+.notes ul{margin:0;padding-left:20px;color:var(--muted);font-size:14px;line-height:1.95;max-width:62em}
+.notes li{margin:6px 0}
+.notes strong{color:var(--text);font-weight:500}
+footer{border-top:1px solid var(--line);padding:24px 0 34px;color:var(--muted);font-size:12px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+
+@media (max-width:640px){
+  .station-art{height:120px}
+  table thead{display:none}
+  table,tbody,tr,th,td{display:block;width:100%}
+  tbody tr{border-bottom:1px solid var(--line);padding:12px 0}
+  tbody th{border:0;padding:0 0 6px}
+  td{border:0;padding:2px 0}
+  td::before{content:attr(data-label) ' ';color:var(--muted);font-size:12px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#stations">跳到探索站</a>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="brand">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><ellipse cx="20" cy="20" rx="17" ry="7" fill="none" stroke="#efbc70" stroke-width="2" transform="rotate(-35 20 20)"/><ellipse cx="20" cy="20" rx="17" ry="7" fill="none" stroke="#7bd0d8" stroke-width="2" transform="rotate(35 20 20)"/><circle cx="20" cy="20" r="4" fill="#efbc70"/></svg>
+      <span>科学探索 · 问题驱动实验室</span>
+    </div>
+    <h1>先猜一句，再动手，<br>最后<em>自己讲明白</em>。</h1>
+    <p class="lede">
+      这里的每一页都是同一套做法：<strong>先预测 → 动手验证 → 用自己的话解释</strong>。
+      不讲结论先行，也不做自动评分——答错本身就是线索。
+      两页都是单文件页面，可以在浏览器里离线打开。
+    </p>
+    <div class="meta-line">
+      <span>2 个探索站</span>
+      <span>6 站 + 4 个思想实验</span>
+      <span>零外部请求 · 零第三方脚本</span>
+    </div>
+  </div>
+</header>
+
+<main>
+<section id="stations" class="wrap stations" aria-label="探索站列表">
+
+  <a class="station" href="https://k286c7hg65-hub.github.io/electricity-lab/">
+    <span class="station-art" aria-hidden="true">
+      <svg viewBox="0 0 320 150" preserveAspectRatio="xMidYMid slice" role="presentation">
+        <rect width="320" height="150" fill="#1d2a32"/>
+        <path d="M0 118h320" stroke="#2e3c45" stroke-width="1"/>
+        <circle cx="60" cy="72" r="26" fill="none" stroke="#7bd0d8" stroke-width="2"/>
+        <circle cx="52" cy="66" r="7" fill="#e8a194"/><circle cx="68" cy="78" r="6" fill="#efbc70"/>
+        <path d="M118 72h46" stroke="#2e3c45" stroke-width="2"/>
+        <path d="M176 46v52c0 6 18 6 18 0V46" fill="none" stroke="#efbc70" stroke-width="2.5"/>
+        <path d="M185 34l0 12M181 42l8 0" stroke="#a9b7bf" stroke-width="2"/>
+        <path d="M212 74c14-16 30-16 44 0s30 16 44 0" fill="none" stroke="#7bd0d8" stroke-width="2" stroke-dasharray="5 5"/>
+        <path d="M232 104l-12 22h26l-12 22" fill="none" stroke="#efbc70" stroke-width="2.5"/>
+        <circle cx="292" cy="52" r="4" fill="#a8d6af"/>
+      </svg>
+    </span>
+    <div class="station-body">
+      <span class="kicker">电学 · 6 个探索站</span>
+      <h2>电的发现</h2>
+      <p class="question">「电，是被造出来的吗？」</p>
+      <p class="desc">从摩擦起电到发电厂：电荷守恒、电压/电流/电阻、磁通量变化才感应、能量链与科学史，最后用五个新情境检查自己是否真懂。带「高中进阶」档，可切换深度。</p>
+      <div class="chips"><span>摩擦起电</span><span>电路 U·I·P</span><span>电磁感应</span><span>发电与输电</span><span>费曼挑战</span></div>
+      <span class="url">k286c7hg65-hub.github.io/electricity-lab/</span>
+      <span class="cta">进入探索 →</span>
+    </div>
+  </a>
+
+  <a class="station" href="https://k286c7hg65-hub.github.io/future-lab/">
+    <span class="station-art" aria-hidden="true">
+      <svg viewBox="0 0 320 150" preserveAspectRatio="xMidYMid slice" role="presentation">
+        <rect width="320" height="150" fill="#1d2a32"/>
+        <path d="M0 122h320" stroke="#2e3c45" stroke-width="1"/>
+        <path d="M22 100c10-30 26-30 36 0" fill="none" stroke="#a8d6af" stroke-width="2"/>
+        <circle cx="40" cy="96" r="6" fill="#a8d6af"/>
+        <path d="M92 62v40h44V62z" fill="none" stroke="#efbc70" stroke-width="2"/>
+        <path d="M100 74h28M100 84h28" stroke="#2e3c45" stroke-width="2"/>
+        <circle cx="114" cy="104" r="5" fill="#7bd0d8"/>
+        <path d="M178 44c18 26 34 42 22 58-8 11-30 11-38 0-12-16 4-32 16-58z" fill="none" stroke="#efbc70" stroke-width="2"/>
+        <path d="M186 78c6 0 10 4 10 9" fill="none" stroke="#7bd0d8" stroke-width="2"/>
+        <path d="M238 56l30-18M238 74h34M238 92l30 18" stroke="#2e3c45" stroke-width="2"/>
+        <circle cx="286" cy="56" r="5" fill="#e8a194"/><circle cx="288" cy="74" r="5" fill="#efbc70"/><circle cx="286" cy="92" r="5" fill="#7bd0d8"/>
+        <circle cx="262" cy="118" r="4" fill="#a9b7bf"/>
+      </svg>
+    </span>
+    <div class="station-body">
+      <span class="kicker">思想实验 · 4 个实验 · 约 12 分钟</span>
+      <h2>四大神兽 · 未来实验室</h2>
+      <p class="question">「如果算力无限，未来就能预测吗？」</p>
+      <p class="desc">芝诺的龟、拉普拉斯兽、麦克斯韦妖、薛定谔的猫：四个可以亲手做的思想实验，把「规律 / 信息 / 算力 / 概率」四件事拆开——未来难预测，到底难在哪一层。</p>
+      <div class="chips"><span>无限与极限</span><span>决定论与混沌</span><span>信息与热力学</span><span>量子测量</span></div>
+      <span class="url">k286c7hg65-hub.github.io/future-lab/</span>
+      <span class="cta">进入探索 →</span>
+    </div>
+  </a>
+
+</section>
+
+<section class="wrap compare">
+  <h2 class="section-title">对照 · 两页怎么选</h2>
+  <table>
+    <caption>适龄与时长按各页自述；两页结构相同，可以交替使用。</caption>
+    <thead>
+      <tr><th scope="col">探索站</th><th scope="col">核心问题</th><th scope="col">适龄</th><th scope="col">结构</th><th scope="col">入口</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">电的发现</th>
+        <td>电是被造出来的吗？</td>
+        <td>初三 – 高中</td>
+        <td class="hl">6 站 · 预测/实验/解释 + 高中进阶档</td>
+        <td><a href="https://k286c7hg65-hub.github.io/electricity-lab/">electricity-lab →</a></td>
+      </tr>
+      <tr>
+        <th scope="row">四大神兽 · 未来实验室</th>
+        <td>算力无限就能预测未来吗？</td>
+        <td>12 岁以上 · 无需物理基础</td>
+        <td class="hl">4 个思想实验 · 先猜 → 动手 → 复述</td>
+        <td><a href="https://k286c7hg65-hub.github.io/future-lab/">future-lab →</a></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="wrap notes">
+  <h2>用法与边界</h2>
+  <ul>
+    <li><strong>怎么用：</strong>先让孩子点一个猜想，再动实验，最后写/说出自己的解释。这两页都不打分——「对照关键点」只做提示，判断留给讲的人。</li>
+    <li><strong>模型不是仪器：</strong>页内的粒子、磁场、分子与概率抽样都是教学示意，经过简化；真实测量与工程计算请以课本和实验为准。</li>
+    <li><strong>回答不上传：</strong>实测两页在打开与交互全程<strong>没有任何外部请求</strong>（零第三方脚本、零 CDN）。「电的发现」把学习记录存在浏览器本地，页脚可一键清除；「四大神兽」的复述不落盘，刷新即清。</li>
+    <li><strong>单文件可带走：</strong>两页都是自包含单文件页面，图片内嵌，断网也能打开——适合课前拷进平板、或投到教室大屏。</li>
+  </ul>
+</section>
+</main>
+
+<footer class="wrap">
+  <span>科学探索 · 问题驱动实验室 · 2026-09-26</span>
+  <span>两页均含「资料与模型说明」，引用逐条给出</span>
+</footer>
+</body>
+</html>

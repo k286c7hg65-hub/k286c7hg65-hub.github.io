@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>安妮·卡森（Anne Carson）· 2026 诺贝尔文学奖 · 小册</title>
+<meta name="description" content="2026 年诺贝尔文学奖得主安妮·卡森（Anne Carson）介绍小册网页版：官方原文、中英对照、作品细读与出处对照。事实全部取自诺贝尔奖官方页面。">
+<style>/* Anne Carson 小册 — 版式样式（190×260mm，印刷向）
+   色板：纸白 + 墨黑 + 朱砂红；只有 3 色。字体：EB Garamond（拉丁/希腊）+ 思源宋体（中文）。*/
+@font-face{font-family:'EBG';src:url('fonts/eb-garamond-latin-400-normal.woff2') format('woff2');font-weight:400;font-style:normal;}
+@font-face{font-family:'EBG';src:url('fonts/eb-garamond-latin-400-italic.woff2') format('woff2');font-weight:400;font-style:italic;}
+@font-face{font-family:'EBG';src:url('fonts/eb-garamond-latin-500-normal.woff2') format('woff2');font-weight:500;font-style:normal;}
+@font-face{font-family:'EBG';src:url('fonts/eb-garamond-latin-600-normal.woff2') format('woff2');font-weight:600;font-style:normal;}
+@font-face{font-family:'EBG Greek';src:url('fonts/eb-garamond-greek-400-normal.woff2') format('woff2');font-weight:400;font-style:normal;}
+
+:root{
+  --paper:#F9F7F3; --ink:#191714; --ink-2:#4A4640; --ink-3:#6E675E;
+  --line:#D6D2C9; --red:#A32E24;
+  --serif:'EBG','Noto Serif CJK SC',serif;
+  --cjk:'Noto Serif CJK SC','EBG',serif;
+}
+@page{size:190mm 260mm;margin:0;}
+html,body{margin:0;padding:0;background:#fff;}
+.page{width:190mm;height:260mm;box-sizing:border-box;position:relative;background:var(--paper);
+  overflow:hidden;padding:20mm 22mm 18mm 22mm;break-after:page;}
+.page:last-child{break-after:auto;}
+img{display:block;max-width:100%;}
+figure{margin:0;}
+
+/* 通用件 */
+.eyebrow{font-family:var(--serif);font-size:7.6pt;letter-spacing:.24em;text-transform:uppercase;color:var(--red);}
+.rule{width:26mm;height:.6pt;background:var(--red);margin:6mm 0;}
+.folio{position:absolute;left:22mm;bottom:11mm;font-family:var(--serif);font-size:8pt;color:var(--ink-3);letter-spacing:.08em;}
+.folio-r{position:absolute;right:22mm;bottom:11mm;font-family:var(--serif);font-size:8pt;color:var(--ink-3);letter-spacing:.08em;}
+.runhead{position:absolute;left:22mm;top:12mm;font-family:var(--serif);font-size:7.4pt;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);}
+h1,h2{margin:0;}
+h2.sec{font-family:var(--cjk);font-size:15pt;font-weight:600;letter-spacing:.06em;color:var(--ink);margin:0 0 1.5mm 0;}
+.sec-en{font-family:var(--serif);font-size:9.4pt;font-style:italic;color:var(--ink-3);letter-spacing:.02em;}
+p.zh{font-family:var(--cjk);font-size:10.12pt;line-height:1.98;color:var(--ink-2);margin:0 0 4mm 0;letter-spacing:.01em;text-wrap:pretty;}
+p.en{font-family:var(--serif);font-size:10.6pt;line-height:1.62;color:var(--ink-2);margin:0 0 4mm 0;}
+.quote-en{font-family:var(--serif);font-size:11.4pt;line-height:1.62;color:var(--ink);font-style:italic;}
+.quote-src{font-family:var(--serif);font-size:7.8pt;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-top:3mm;}
+.footnote{font-family:var(--cjk);font-size:7.7pt;line-height:1.7;color:var(--ink-3);}
+.footnote b{font-weight:600;color:var(--red);}
+.br{color:var(--red);}
+em{font-style:italic;}
+
+/* 图 */
+.fig{margin:6mm 0 0 0;}
+.figbox{border:.6pt solid var(--line);overflow:hidden;background:#fff;}
+.figbox img{width:100%;height:100%;object-fit:cover;}
+.fig figcaption{font-family:var(--cjk);font-size:7.4pt;line-height:1.6;color:var(--ink-3);margin-top:2.2mm;}
+
+/* P1 / P14 封面 */
+.cover-outer{padding:26mm 22mm 20mm 22mm;}
+.cover-name{font-family:var(--serif);font-weight:600;font-size:39pt;line-height:1.02;letter-spacing:.035em;color:var(--ink);margin:9mm 0 0 -1mm;}
+.cover-zh{font-family:var(--cjk);font-size:18pt;font-weight:400;letter-spacing:.36em;color:var(--ink);margin:7mm 0 0 1mm;}
+.bracketline{font-family:var(--cjk);font-size:8.6pt;line-height:1.9;color:var(--ink-3);margin-top:9mm;}
+.bracketline .lat{font-family:var(--serif);font-size:9.4pt;color:var(--ink-2);letter-spacing:.02em;}
+.cover-foot{display:flex;justify-content:space-between;align-items:baseline;font-family:var(--serif);font-size:8.4pt;color:var(--ink-3);letter-spacing:.06em;border-top:.6pt solid var(--line);padding-top:4mm;}
+.cover-foot .zh{font-family:var(--cjk);font-size:8.2pt;letter-spacing:.04em;}
+
+/* P3 词源窄栏 */
+.two-col{display:grid;grid-template-columns:37mm 1fr;gap:10mm;}
+.gloss{border-right:.6pt solid var(--line);padding-right:6mm;}
+.gloss h4{font-family:var(--serif);font-size:7.2pt;letter-spacing:.16em;text-transform:uppercase;color:var(--red);margin:0 0 4mm 0;font-weight:500;}
+.gloss .g{margin-bottom:5.5mm;}
+.gloss .g b{display:block;font-family:var(--serif);font-size:9.2pt;font-weight:500;color:var(--ink);margin-bottom:.8mm;}
+.gloss .g span{font-family:var(--serif);font-size:7.8pt;line-height:1.5;color:var(--ink-3);display:block;}
+.gloss .g .gk{font-family:'EBG Greek',serif;font-size:8.8pt;color:var(--red);}
+.voices{margin-top:7mm;border-top:.6pt solid var(--line);padding-top:5mm;}
+.voices h5{font-family:var(--serif);font-size:7.2pt;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);margin:0 0 3.5mm 0;font-weight:500;}
+.voice{display:grid;grid-template-columns:50mm 1fr;gap:6mm;padding:2.2mm 0;border-bottom:.6pt solid rgba(217,211,200,.55);}
+.voice:last-child{border-bottom:none;}
+.voice .who{font-family:var(--cjk);font-size:8.8pt;color:var(--ink);line-height:1.6;}
+.voice .who em{font-family:var(--serif);color:var(--ink-3);}
+.voice .what{font-family:var(--cjk);font-size:8.6pt;color:var(--ink-2);line-height:1.72;}
+.voice .what i{font-family:var(--serif);font-style:italic;}
+
+/* P4 年表 */
+.tl{margin-top:2mm;}
+.tlrow{display:grid;grid-template-columns:16mm 62mm 1fr;gap:5mm;align-items:baseline;
+  padding:2.05mm 0;border-bottom:.6pt solid rgba(217,211,200,.7);}
+.tlrow:last-child{border-bottom:none;}
+.tlrow .y{font-family:var(--serif);font-size:9.6pt;color:var(--red);letter-spacing:.04em;}
+.tlrow .t{font-family:var(--cjk);font-size:9.4pt;color:var(--ink);}
+.tlrow .t em{font-family:var(--serif);}
+.tlrow .s{font-family:var(--cjk);font-size:8pt;color:var(--ink-3);line-height:1.55;}
+
+/* 作品页头 */
+.workhead{display:flex;justify-content:space-between;align-items:flex-end;}
+.workhead .yr{font-family:var(--serif);font-size:15pt;color:var(--red);letter-spacing:.06em;}
+.split{display:grid;grid-template-columns:1fr 62mm;gap:9mm;align-items:start;}
+.workhead .wk{max-width:118mm;}
+
+/* P7 折页 */
+.foldmeta{display:flex;justify-content:space-between;font-family:var(--serif);font-size:7.2pt;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);margin:6mm 0 2.5mm;}
+.fold{display:grid;grid-template-columns:repeat(4,1fr);border-top:.6pt solid var(--ink-3);border-bottom:.6pt solid var(--ink-3);}
+.panel{padding:5mm 4mm;border-right:.6pt dashed var(--line);min-height:92mm;position:relative;}
+.panel:last-child{border-right:none;}
+.panel .tag{font-family:var(--serif);font-size:6.8pt;letter-spacing:.16em;text-transform:uppercase;color:var(--red);margin-bottom:4mm;}
+.panel .dict{font-family:var(--serif);font-size:9.6pt;line-height:1.55;color:var(--ink);}
+.panel .dict i{color:var(--ink-3);}
+.panel .lat{font-family:var(--serif);font-size:9.6pt;line-height:1.55;font-style:italic;color:var(--ink);}
+.panel .pimg{border:.6pt solid var(--line);height:38mm;overflow:hidden;background:#fff;}
+.panel .pimg img{width:100%;height:100%;object-fit:cover;}
+.panel .pn{position:absolute;left:4mm;bottom:3.5mm;font-family:var(--serif);font-size:6.6pt;letter-spacing:.14em;color:var(--ink-3);}
+.cap{font-family:var(--cjk);font-size:7.6pt;line-height:1.68;color:var(--ink-3);margin-top:3.5mm;}
+.cap b{color:var(--ink-2);font-weight:600;}
+.caption-block{border-top:.6pt solid var(--line);margin-top:6mm;padding-top:4mm;display:grid;grid-template-columns:1fr 60mm;gap:10mm;}
+
+/* P8 方括号演示 */
+.bracketdemo{margin-top:7mm;padding-top:4mm;border-top:.6pt solid var(--line);font-family:var(--cjk);font-size:8.6pt;color:var(--ink-3);letter-spacing:.04em;}
+.bracketdemo .br{font-family:var(--serif);font-size:11pt;}
+
+/* P9 双引框 */
+.twocol-quote{display:grid;grid-template-columns:1fr 1fr;gap:7mm;margin-top:6mm;}
+.qbox{border:.6pt solid var(--line);padding:5mm;}
+.qbox .qh{font-family:var(--serif);font-size:7pt;letter-spacing:.16em;text-transform:uppercase;color:var(--red);margin-bottom:3mm;}
+.qbox .qb{font-family:var(--cjk);font-size:9.2pt;line-height:1.8;color:var(--ink-2);}
+
+/* P10 物件格 */
+.objgrid{display:grid;grid-template-columns:1fr 1fr;gap:6mm;}
+.obj{border-top:.6pt solid var(--ink-3);padding-top:3.5mm;}
+.obj .oh{font-family:var(--serif);font-size:7.4pt;letter-spacing:.14em;text-transform:uppercase;color:var(--red);margin-bottom:2.5mm;}
+.obj .ob{font-family:var(--cjk);font-size:9pt;line-height:1.82;color:var(--ink-2);}
+
+/* P11 小词典 */
+.termgrid{display:grid;grid-template-columns:1fr 1fr;gap:6.5mm 9mm;}
+.term{border-bottom:.6pt solid rgba(214,210,201,.7);padding-bottom:3.6mm;}
+.term .tz{font-family:var(--cjk);font-size:9.6pt;color:var(--ink);font-weight:600;}
+.term .te{font-family:var(--serif);font-size:7.6pt;font-style:italic;color:var(--ink-3);margin-bottom:1.6mm;}
+.term .td{font-family:var(--cjk);font-size:8.2pt;line-height:1.7;color:var(--ink-2);}
+.term .tx{font-family:var(--cjk);font-size:7.6pt;line-height:1.65;color:var(--ink-3);margin-top:1.4mm;}
+
+/* P12 入口 */
+.doors{display:grid;gap:5mm;}
+.door{border-top:.6pt solid var(--ink-3);padding-top:3.5mm;display:grid;grid-template-columns:40mm 1fr;gap:7mm;}
+.door .dh{font-family:var(--cjk);font-size:9.4pt;color:var(--red);}
+.door .dt{font-family:var(--serif);font-size:9pt;font-style:italic;color:var(--ink);grid-column:2;margin-bottom:1.5mm;}
+.door .db{font-family:var(--cjk);font-size:8.8pt;line-height:1.85;color:var(--ink-2);grid-column:2;}
+.door .dt,.door .db{grid-column:2;}
+.door .dh{grid-row:1 / span 2;}
+.obs{margin-top:8mm;border:.6pt solid var(--line);padding:5mm;}
+.obs .oh{font-family:var(--serif);font-size:7.2pt;letter-spacing:.16em;text-transform:uppercase;color:var(--red);margin-bottom:3mm;}
+.obs .ol{font-family:var(--cjk);font-size:8.8pt;line-height:1.95;color:var(--ink-2);}
+
+/* P13 出处 */
+.srclist{margin-top:5mm;}
+.srcrow{display:grid;grid-template-columns:12mm 1fr;gap:4mm;padding:1.9mm 0;border-bottom:.6pt solid rgba(214,210,201,.6);font-family:var(--cjk);font-size:8.2pt;line-height:1.6;color:var(--ink-2);}
+.srcrow .k{font-family:var(--serif);color:var(--red);}
+.quotetable{margin-top:7mm;}
+.quotetable .qh2{font-family:var(--serif);font-size:7.2pt;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);margin-bottom:3mm;}
+.qrow{display:grid;grid-template-columns:1fr 46mm;gap:6mm;padding:1.9mm 0;border-bottom:.6pt solid rgba(214,210,201,.6);font-family:var(--serif);font-size:8.6pt;color:var(--ink-2);}
+.qrow span{font-family:var(--serif);font-size:7.4pt;letter-spacing:.08em;color:var(--ink-3);text-align:right;}
+
+/* P14 封底 */
+.backcover{display:flex;flex-direction:column;height:100%;justify-content:center;}
+.bc-quote{font-family:var(--serif);font-size:15pt;font-style:italic;line-height:1.55;color:var(--ink);max-width:118mm;}
+.bc-src{font-family:var(--serif);font-size:8.4pt;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-top:5mm;}
+.bc-foot{position:absolute;left:22mm;right:22mm;bottom:20mm;display:flex;justify-content:space-between;align-items:baseline;
+  border-top:.6pt solid var(--line);padding-top:4mm;font-family:var(--serif);font-size:8.4pt;color:var(--ink-3);letter-spacing:.06em;}
+
+/* ── v2 修订（设计评审后）── */
+.hair{height:.6pt;background:var(--line);margin:0 0 6mm 0;}
+.figbox{border:none;}
+.obs{border:none;border-top:.6pt solid var(--line);padding:5mm 0 0 0;}
+</style>
+<style>
+/* ── 屏幕层：印刷件保持原比例，按视口缩放 ── */
+html,body{background:#E9E5DD;}
+body.screen{padding:0;margin:0;}
+.sitebar{position:sticky;top:0;z-index:50;background:#191714;color:#F9F7F3;
+  font-family:var(--cjk);font-size:12.5px;letter-spacing:.02em;}
+.sitebar .in{max-width:1180px;margin:0 auto;padding:9px 16px;display:flex;align-items:center;gap:14px;justify-content:space-between;}
+.sitebar .brand{font-family:var(--serif);letter-spacing:.16em;text-transform:uppercase;font-size:11.5px;white-space:nowrap;}
+.sitebar .brand b{color:#D98A7E;font-weight:500;}
+.sitebar nav{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;}
+.sitebar nav::-webkit-scrollbar{display:none;}
+.sitebar nav a{color:rgba(249,247,243,.72);text-decoration:none;padding:4px 9px;border-radius:3px;white-space:nowrap;}
+.sitebar nav a:hover{color:#fff;background:rgba(255,255,255,.12);border-bottom:none;}
+.stage{max-width:1180px;margin:0 auto;padding:26px 16px 60px;}
+.stagebox{position:relative;margin:0 auto 22px;overflow:hidden;}
+.stagebox .page{margin:0;position:absolute;top:0;left:0;transform-origin:top left;}
+.stagebox .scaler{transform-origin:top left;}
+.stagebox .page{box-shadow:0 2px 26px rgba(25,23,20,.14);}
+.footer{max-width:1180px;margin:0 auto;padding:0 16px 56px;font-family:var(--cjk);font-size:12px;
+  line-height:1.9;color:#6E675E;text-align:center;}
+.footer a{color:#A32E24;text-decoration:none;border-bottom:1px solid rgba(163,46,36,.3);}
+.zoom{display:flex;gap:6px;}
+.zoom button{font:inherit;font-family:var(--cjk);font-size:11.5px;color:rgba(249,247,243,.8);
+  background:transparent;border:.6pt solid rgba(249,247,243,.35);border-radius:3px;padding:3px 9px;cursor:pointer;}
+.zoom button.on{color:#191714;background:#F9F7F3;border-color:#F9F7F3;}
+@media (max-width:760px){
+  .sitebar .in{flex-wrap:wrap;gap:8px;padding:8px 14px;}
+  .sitebar .brand{order:1;flex:1 1 auto;}
+  .sitebar .zoom{order:2;}
+  .sitebar nav{order:3;flex-basis:100%;justify-content:flex-start;}
+  .sitebar nav a{padding:3px 8px;font-size:12px;}
+}
+</style>
+<style>
+/* ── 手机阅读模式：同一内容重排为单栏（非缩放）── */
+body.flow .stage{padding:18px 14px 40px;}
+body.flow .stagebox{width:auto!important;height:auto!important;overflow:visible;
+  background:var(--paper);border-radius:3px;box-shadow:0 1px 14px rgba(25,23,20,.09);margin-bottom:20px;}
+body.flow .stagebox .page{position:static;width:auto;height:auto;transform:none!important;
+  padding:22px 18px 26px;box-shadow:none;}
+body.flow .runhead,body.flow .folio,body.flow .folio-r{display:none;}
+body.flow .two-col,body.flow .split,body.flow .pair,body.flow .objgrid,body.flow .termgrid,
+body.flow .doors,body.flow .twocol-quote,body.flow .fold,body.flow .caption-block,
+body.flow .voice,body.flow .tlrow,body.flow .door,body.flow .quote{display:block;}
+body.flow .gloss{border-right:none;border-bottom:.6pt solid var(--line);padding:0 0 12px;margin-bottom:14px;}
+body.flow .fold .panel{border-right:none;border-bottom:.6pt dashed var(--line);min-height:0;padding:12px 0;}
+body.flow .fold .panel:last-child{border-bottom:none;}
+body.flow .panel .pn{display:none;}
+body.flow .voice{padding:10px 0;}
+body.flow .tlrow{padding:9px 0;}
+body.flow .tlrow .y{margin-bottom:2px;}
+body.flow .obj{border-top:.6pt solid var(--ink-3);padding:10px 0 4px;margin-bottom:8px;}
+body.flow .term{margin-bottom:14px;}
+body.flow .door{padding:12px 0;}
+body.flow .door .dh{margin-bottom:4px;}
+body.flow .workhead .yr{margin-top:6px;}
+body.flow p.zh{font-size:15.6px;line-height:1.95;}
+body.flow p.en{font-size:15px;line-height:1.7;}
+body.flow .quote-en{font-size:16.5px;line-height:1.66;}
+body.flow h2.sec{font-size:20px;line-height:1.35;margin-bottom:4px;}
+body.flow .sec-en{font-size:13px;margin-bottom:10px;}
+body.flow .hair{margin:12px 0 14px;}
+body.flow .rule{margin:14px 0;}
+body.flow .cap,body.flow .footnote{font-size:12.4px;line-height:1.8;}
+body.flow .fig{margin:14px 0 0;}
+body.flow .gloss .g span{font-size:13px;line-height:1.7;}
+body.flow .gloss .g b{font-size:15px;}
+body.flow .gloss .g .gk{font-size:14px;}
+body.flow .voice .who,body.flow .voice .what{font-size:14px;line-height:1.8;}
+body.flow .tlrow .y{font-size:14.5px;} body.flow .tlrow .t{font-size:15px;} body.flow .tlrow .s{font-size:12.8px;}
+body.flow .term .tz{font-size:15.5px;} body.flow .term .te{font-size:12.4px;}
+body.flow .term .td{font-size:13.4px;} body.flow .term .tx{font-size:12.4px;}
+body.flow .obj .ob{font-size:14px;} body.flow .obj .oh{font-size:12.6px;}
+body.flow .door .dh{font-size:15px;} body.flow .door .dt{font-size:13.4px;} body.flow .door .db{font-size:14px;}
+body.flow .obs .ol{font-size:14px;} body.flow .obs .oh{font-size:12.6px;}
+body.flow .qbox{margin-bottom:10px;} body.flow .qbox .qb{font-size:14px;}
+body.flow .srcrow{font-size:13px;} body.flow .qrow{font-size:13px;} body.flow .qrow span{font-size:11.6px;}
+body.flow .bracketline{font-size:13.6px;}
+body.flow .cover-name{font-size:34px;} body.flow .cover-zh{font-size:20px;}
+body.flow .cover-outer{padding:22px 18px 26px;}
+body.flow .bc-quote{font-size:20px;} body.flow .bc-foot{position:static;margin-top:26px;}
+body.flow .caption-block > div,body.flow .split > div,body.flow .two-col > div,body.flow .two-col > aside{margin-bottom:12px;}
+body.flow .stagebox .page .figbox img{width:100%;height:auto;}
+body.flow .pimg{height:190px;}
+</style>
+</head>
+<body class="screen">
+<header class="sitebar">
+  <div class="in">
+    <div class="brand">Anne Carson <b>·</b> 2026 诺贝尔文学奖</div>
+    <nav><a href="#p01">封面</a><a href="#p02">其人</a><a href="#p03">方法</a><a href="#p04">年表</a><a href="#p05">作品</a><a href="#p10">书作为物件</a><a href="#p11">小词典</a><a href="#p12">从哪本开始</a><a href="#p13">出处</a></nav>
+    <div class="zoom">
+      <button data-mode="flow">手机阅读</button>
+      <button data-mode="fit">适应窗口</button>
+      <button data-mode="full">原始尺寸</button>
+    </div>
+  </div>
+</header>
+<div class="stage">
+<div class="stagebox" data-p="p01"><section id="p01" class="page cover-outer">
+  <div style="display:flex;flex-direction:column;height:100%;justify-content:space-between;padding-top:6mm">
+    <div class="eyebrow" style="color:var(--ink-3)">Nobel Prize in Literature · 2026</div>
+    <div>
+      <h1 class="cover-name">ANNE CARSON</h1>
+      <div class="cover-zh">安妮·卡森</div>
+    </div>
+    <div>
+      <div class="rule"></div>
+      <p class="en quote-en" style="max-width:120mm">“for her bold and inventive oeuvre that, in playful dialogue with the classical tradition, has created new forms for contemporary literature”</p>
+      <p class="zh" style="margin-top:4mm;max-width:120mm">官方颁奖词：她大胆而富有创造力的作品，在与古典传统嬉戏般的对话中，为当代文学创造了新的形式。</p>
+      <div class="quote-src">Nobel Prize in Literature 2026</div>
+      <div class="bracketline"><span class="br">[</span> <span class="lat">Sappho · Catullus · Simonides · Celan</span> <span class="br">]</span><br>她反复回去的几个人。这本小书从他们开始。</div>
+    </div>
+    <div class="cover-foot">
+      <div>b. 1950 · Toronto, Canada <span class="br">[</span> <span class="zh">古典学者 / 诗人 / 译者</span> <span class="br">]</span></div>
+      <div>2026</div>
+    </div>
+  </div></section></div>
+
+<div class="stagebox" data-p="p02"><section id="p02" class="page "><div class="runhead">Anne Carson · 其人</div>
+  <h2 class="sec">奖颁给了一位「不像作家」的作家</h2>
+  <div class="sec-en">Who is Anne Carson</div>
+  <div class="hair"></div>
+  <div class="split" style="grid-template-columns:1fr 52mm">
+  <div>
+  <p class="en quote-en" style="max-width:96mm">“The Nobel Prize in Literature for 2026 is awarded to the Canadian author Anne Carson…”</p>
+  <div class="quote-src" style="margin-bottom:8mm">— 官方新闻稿，2026-10-08</div>
+  <p class="zh">她 1950 年生于加拿大多伦多。1981 年，她出版了自己在古典学（研究古希腊罗马语言文学的学问）的博士论文，题目是拉丁文《Odi et Amo Ergo Sum》。此后四十多年，她的三件事一起做：写诗、翻译古典希腊语、在几所大学教书。</p>
+  <p class="zh">官方给出的总概括是：她几乎全部作品都落在<b>语文学家对词语的执念</b>与<b>诗人对新意义的渴望</b>的交汇处。她自己则说，一切工作的起点是词的<b>词源</b>。</p>
+  </div>
+  <div><figure class="fig"><div class="figbox" style="aspect-ratio:3/4"><img src="assets/portrait.jpg" style="object-position:50% 50%"></div><figcaption>Ill. Niklas Elmehed © Nobel Prize Outreach</figcaption></figure></div>
+  </div>
+  <figure class="fig"><div class="figbox" style="aspect-ratio:21/9"><img src="assets/papyrus-homer.jpg" style="object-position:50% 50%"></div><figcaption>纸草上的荷马史诗残句（《奥德赛》），约公元前 285–250 年 · Papyrus fragment with lines from Homer's Odyssey，ca. 285–250 BCE · The Met（CC0）</figcaption></figure>
+  <div class="footnote"><b>[术语]</b> 古典学 Classics —— 研究古希腊与古罗马的语言、文学与文化的学问。像考古学的另一面：考古学家挖出实物，古典学者挖出句子。</div>
+  <div class="folio">[ 2 ]</div><div class="folio-r">2026 · Anne Carson</div></section></div>
+
+<div class="stagebox" data-p="p03"><section id="p03" class="page "><div class="runhead">Anne Carson · 方法</div>
+  <div class="two-col">
+    <aside class="gloss">
+      <h4>[ 词源栏 ]</h4>
+      <div class="g"><b>etymology</b><span>她说，一切作品的起点是词源。</span></div>
+      <div class="g"><b>stereoscopic</b><span><span class="gk">στερεός</span> 坚实 + <span class="gk">σκοπεῖν</span> 看<br>两只眼睛看同一物，才有深度。</span></div>
+      <div class="g"><b>equipoise</b><span>aequus 相等 + pensare 称量<br>两端等重，互不倾斜。</span></div>
+    </aside>
+    <div>
+      <h2 class="sec">她怎么同时说两件事</h2>
+      <div class="sec-en">Stereoscopic vision</div>
+      <div class="hair"></div>
+      <p class="en quote-en" style="max-width:86mm">“…she speaks of a ‘stereoscopic vision’ that allows her to ‘hold in equipoise two perspectives at once’.”</p>
+      <div class="quote-src" style="margin-bottom:7mm">— 官方 Biobibliography</div>
+      <p class="zh">卡森说自己是「立体视觉」：一只眼睛不够，要两只同时看同一个东西，才看得出远近。落到写作上，就是让两个本来相隔极远的视角同时在场，且不给任何一方让路。</p>
+      <p class="zh" style="margin-bottom:0">官方说，正是靠这种把两个视角同时握在平衡里的能力，她<b>脱离了绑定在叙事自我上的抒情诗</b>——不再是一个「我」对着空气说自己的心事，而是让好几个人同时在场上说话。</p>
+      <div class="voices">
+        <h5>[ 她并置过的几组声音 ]</h5>
+        <div class="voice"><div class="who">西蒙尼德斯 <em>×</em> 保罗·策兰</div>
+          <div class="what">公元前六世纪希腊诗人 × 二十世纪德语诗人<br><i>The Economy of the Unlost</i>, 1999</div></div>
+        <div class="voice"><div class="who">修昔底德 <em>×</em> 弗吉尼亚·伍尔夫</div>
+          <div class="what">古希腊史家 × 现代小说家<br><i>Men in the Off Hours</i>, 2000</div></div>
+        <div class="voice"><div class="who">革律翁神话 <em>×</em> 现代成长小说</div>
+          <div class="what">公元前六世纪残篇 × 当代少年的故事<br><i>Autobiography of Red</i>, 1998</div></div>
+      </div>
+    </div>
+  </div><div class="folio">[ 3 ]</div><div class="folio-r">2026 · Anne Carson</div></section></div>
+
+<div class="stagebox" data-p="p04"><section id="p04" class="page "><div class="runhead">Anne Carson · 年表</div>
+  <h2 class="sec">一条线：从博士论文到诺奖</h2>
+  <div class="sec-en">1950 — 2026</div>
+  <div class="tl"><div class="tlrow"><span class="y">1950</span><span class="t">生于多伦多</span><span class="s">Toronto, Canada</span></div><div class="tlrow"><span class="y">1981</span><span class="t">古典学博士论文</span><span class="s">《Odi et Amo Ergo Sum》</span></div><div class="tlrow"><span class="y">1986</span><span class="t">《Eros the Bittersweet》</span><span class="s">为她此后全部写作奠基</span></div><div class="tlrow"><span class="y">1992</span><span class="t">《Short Talks》</span><span class="s">短章集</span></div><div class="tlrow"><span class="y">1995</span><span class="t">《Glass, Irony, and God》</span><span class="s">含长诗 The Glass Essay</span></div><div class="tlrow"><span class="y">1998</span><span class="t">《Autobiography of Red》</span><span class="s">韵文体小说，常被推为最伟大</span></div><div class="tlrow"><span class="y">1999</span><span class="t">《Economy of the Unlost》</span><span class="s">西蒙尼德斯 × 策兰</span></div><div class="tlrow"><span class="y">2000</span><span class="t">《Men in the Off Hours》</span><span class="s">修昔底德 × 伍尔夫</span></div><div class="tlrow"><span class="y">2001</span><span class="t">《The Beauty of the Husband》</span><span class="s">29 首探戈；并译《厄勒克特拉》</span></div><div class="tlrow"><span class="y">2002</span><span class="t">《If Not, Winter》</span><span class="s">萨福残篇翻译</span></div><div class="tlrow"><span class="y">2005</span><span class="t">《Decreation》</span><span class="s">诗、文、歌剧</span></div><div class="tlrow"><span class="y">2010</span><span class="t">《Nox》</span><span class="s">为亡兄而作的折页之书</span></div><div class="tlrow"><span class="y">2014</span><span class="t">《The Albertine Workout》</span><span class="s">以及欧里庇得斯译本</span></div><div class="tlrow"><span class="y">2016</span><span class="t">《Float》</span><span class="s">22 本小册子，任意顺序</span></div><div class="tlrow"><span class="y">2021</span><span class="t">《H of H Playbook》</span><span class="s">并译《特洛伊妇女》漫画本</span></div><div class="tlrow"><span class="y">2024</span><span class="t">《Wrong Norma》</span><span class="s">跨界的表演性文本</span></div><div class="tlrow"><span class="y">2026</span><span class="t">诺贝尔文学奖</span><span class="s">1/1</span></div></div>
+  <div class="footnote" style="margin-top:6mm"><b>[说明]</b> 年份与作品名取自官方 Biobibliography 的英文书目（Works in English），中文名不外译、不加猜测性译名；作品原名一律保留。</div>
+  <div class="folio">[ 4 ]</div><div class="folio-r">2026 · Anne Carson</div></section></div>
+
+<div class="stagebox" data-p="p05"><section id="p05" class="page "><div class="runhead">Anne Carson · 作品</div>
+  <div class="workhead">
+    <div class="wk"><h2 class="sec">红翅膀的少年</h2>
+      <div class="sec-en">Autobiography of Red: A Novel in Verse, 1998</div></div>
+    <div class="yr">1998</div>
+  </div>
+  <div class="hair" style="margin-top:2mm"></div>
+  <p class="en quote-en" style="max-width:100mm">“With a precise feel for contemporary idioms and experiences…”</p>
+  <div class="quote-src" style="margin-bottom:7mm">— 官方 Biobibliography</div>
+  <p class="zh">官方说，这部作品展示了她<b>让古典文学传统在当下真正活过来</b>的能力，也常被推为卡森最伟大的一部。</p>
+  <p class="zh">她从公元前六世纪希腊诗人斯特西科罗斯关于<b>红翼怪物革律翁</b>的残篇出发。神话里，赫拉克勒斯为完成自己的一项功业杀死了革律翁、抢走他的牛群；卡森把这个可怕的巨人改写成依恋母亲的温柔「英雄」，于是它成了一部现代的<b>成长小说</b>。</p>
+  <p class="zh">少年革律翁先遭兄长侵害，随后爱上了自负而粗鲁的赫拉克勒斯。官方把它概括为一个古老的问题：<b>当你爱上一个终将毁掉你的人，会发生什么？</b></p>
+  <figure class="fig"><div class="figbox" style="aspect-ratio:16/9"><img src="assets/eros-lyre.jpg" style="object-position:50% 50%"></div><figcaption>厄洛斯弹里拉陶像，公元前 3–2 世纪 · Terracotta statuette of Eros playing a lyre，3rd–2nd century BCE · The Met（CC0）</figcaption></figure>
+  <div class="folio">[ 5 ]</div><div class="folio-r">2026 · Anne Carson</div></section></div>
+
+<div class="stagebox" data-p="p06"><section id="p06" class="page "><div class="runhead">Anne Carson · 作品</div>
+  <div class="workhead">
+    <div class="wk"><h2 class="sec">厨房桌边的三个孤独女人</h2>
+      <div class="sec-en">“The Glass Essay”, in Glass, Irony, and God, 1995</div></div>
+    <div class="yr">1995</div>
+  </div>
+  <div class="hair" style="margin-top:2mm"></div>
+  <p class="zh">官方说，这首长诗展示了<b>长诗能把体裁边界模糊掉</b>的潜力：它写成分行的诗，同时也是一个关于失去与单恋的长故事。</p>
+  <p class="zh">叙述者是一位被丈夫离开的女性，她去看望独居在荒原上的母亲；同行的行李里是她最爱的作家艾米莉·勃朗特的书。勃朗特的荒原与她的内心世界，就这样被织进文本里。</p>
+  <p class="zh">它围绕「厨房桌边的三个孤独女人」构成——既是长诗，也是一次对勃朗特的阅读，最终变成一篇关于<b>被遗弃</b>的论文。官方说：诗需要故事，故事又依赖诗的跳跃与场景转换，而卡森把这些手法用得极为精湛。</p>
+  <figure class="fig"><div class="figbox" style="aspect-ratio:16/10"><img src="assets/roman-relief.jpg" style="object-position:50% 50%"></div><figcaption>罗马墓葬浮雕，约公元 125–150 年 · Funerary relief，ca. 125–150 · The Met（CC0）（此图为罗马墓葬石刻，非卡图卢斯或任何具体人物的肖像）</figcaption></figure>
+  <div class="folio">[ 6 ]</div><div class="folio-r">2026 · Anne Carson</div></section></div>
+
+<div class="stagebox" data-p="p07"><section id="p07" class="page "><div class="runhead">Anne Carson · 作品</div>
+  <div class="workhead">
+    <div class="wk"><h2 class="sec">Nox · 一个盒子里的书</h2>
+      <div class="sec-en">Nox, 2010 — “as sculptural as it is literary”</div></div>
+    <div class="yr">2010</div>
+  </div>
+  <div class="foldmeta"><span>[ 折页展开示意 · 四个面 ]</span><span>Accordion fold · 4 panels</span></div>
+  <div class="fold">
+    <div class="panel"><div class="tag">左栏 · 词典</div>
+      <div class="dict"><b>nox</b> <i>拉丁语</i><br>夜。</div>
+      <div class="dict" style="margin-top:7mm;font-size:8.6pt;color:var(--ink-3);line-height:1.7">逐词释义，一路查到卡图卢斯第 101 首的每一个字。</div>
+      <div class="pn">FOLIO 1 / 4</div></div>
+    <div class="panel"><div class="tag">贴上去的照片</div>
+      <div class="pimg"><img src="assets/roman-relief.jpg"></div>
+      <div class="cap" style="margin-top:2mm">她自己贴的照片、旧信、拼贴与速写。此处以公版墓葬浮雕示意。</div>
+      <div class="pn">FOLIO 2 / 4</div></div>
+    <div class="panel"><div class="tag">打字稿 · 信</div>
+      <div class="pimg"><img src="assets/papyrus-letter.jpg"></div>
+      <div class="cap" style="margin-top:2mm">书里的诗是后来用电脑打上去的，与手贴的物件并置。此处以公版纸草书信示意。</div>
+      <div class="pn">FOLIO 3 / 4</div></div>
+    <div class="panel"><div class="tag">第三个声音 · 卡图卢斯</div>
+      <div class="lat">Multas per gentes<br>et multa per aequora<br>vectus…</div>
+      <div class="cap" style="margin-top:4mm">卡图卢斯第 101 首哀歌，写给同样客死异乡的亡兄。拉丁原文已入公版；卡森的英译仍在版权内，此处不录。</div>
+      <div class="pn">FOLIO 4 / 4</div></div>
+  </div>
+  <div class="caption-block">
+    <div><p class="zh" style="margin-bottom:0">官方把这本书描述成「一个盒子，里面是折页展开的图片、信件和其他文字」，并说它「既是文学也是雕塑」。它为纪念她哥哥迈克尔而作——他 2000 年在丹麦去世，此前一直下落不明。书中第三个声音是卡图卢斯：他那首著名哀歌也是写给客死异乡的亡兄。</p></div>
+    <div class="cap" style="margin-top:0"><b>说明</b>：折页面板内的照片位为示意，成品替换为无可争议的公版影像或官方肖像。</div>
+  </div><div class="folio">[ 7 ]</div><div class="folio-r">2026 · Anne Carson</div></section></div>
+
+<div class="stagebox" data-p="p08"><section id="p08" class="page "><div class="runhead">Anne Carson · 作品</div>
+  <div class="workhead">
+    <div class="wk"><h2 class="sec">方括号里的萨福</h2>
+      <div class="sec-en">If Not, Winter: Fragments of Sappho, 2002</div></div>
+    <div class="yr">2002</div>
+  </div>
+  <div class="hair" style="margin-top:2mm"></div>
+  <div class="split">
+    <div>
+      <p class="zh">萨福的诗没有一首完整传下来。她活在公元前六世纪的莱斯博斯岛，作品靠后人的引用、以及埃及沙漠里挖出的纸草碎片拼回来——纸上常有洞、有断行、有只剩一半的词。</p>
+      <p class="zh">古典学的通行做法是用<b>方括号 [ ]</b> 标出「这里原本有字，但没有留下来」。卡森把萨福的残篇译成英文，并且<b>把缺口也一起译出来</b>：一行行印着 [ ] 的地方不是排版事故，是这首诗现在真实的样子。</p>
+      <p class="zh" style="margin-bottom:0">官方说，她译自古典希腊语的作品「本身可被视为独立作品」——不是搬运，是写作。</p>
+    </div>
+    <div><figure class="fig"><div class="figbox" style="aspect-ratio:3/4"><img src="assets/sappho-bust.jpg" style="object-position:50% 50%"></div><figcaption>《Sappho》，大理石，1855 年作、1861 年刻 · Sappho，1855; carved 1861 · The Met（CC0）（萨福没有留下同时代的肖像；这是十九世纪雕刻家的想象）</figcaption></figure></div>
+  </div>
+  <div class="bracketdemo">
+    <span class="br">[</span> · · · · · ·
+    <span class="br">]</span>&nbsp;&nbsp;&nbsp;
+    <span class="br">[</span> 　　.
+    <span class="br">]</span>&nbsp;&nbsp;&nbsp;
+    这一个装置，是她整本书的排版语言。
+  </div>
+  <div class="folio">[ 8 ]</div><div class="folio-r">2026 · Anne Carson</div></section></div>
+
+<div class="stagebox" data-p="p09"><section id="p09" class="page "><div class="runhead">Anne Carson · 作品</div>
+  <div class="workhead">
+    <div class="wk"><h2 class="sec">无聊是她的头号敌人</h2>
+      <div class="sec-en">The Beauty of the Husband: A Fictional Essay in 29 Tangos, 2001</div></div>
+    <div class="yr">2001</div>
+  </div>
+  <div class="hair" style="margin-top:2mm"></div>
+  <p class="zh">官方记载，卡森曾把<b>无聊</b>称为她的头号敌人（arch-enemy），而她对付它的方式是「极端的幽默与机智」。</p>
+  <p class="zh">这本书就是那种气质：它写一场尖锐、带讽刺的婚姻争吵，共 29 段，每一段都以浪漫派诗人约翰·济慈的诗句开篇。济慈关于「美即是真」的崇高句子，被既残酷又俏皮地放进一场使人疲惫的夫妻对峙里。</p>
+  <div class="twocol-quote">
+    <div class="qbox"><div class="qh">济慈的话</div><div class="qb">美即是真，真即是美。</div></div>
+    <div class="qbox"><div class="qh">放进去之后</div><div class="qb">它被拿去和一场婚姻争吵并置——崇高与琐碎互不客气。</div></div>
+  </div>
+  <div class="footnote" style="margin-top:7mm"><b>[注]</b> 上框为济慈名句的中文转述；官方原文只说明 29 段各以济慈诗句开篇，未逐条列出诗句。</div>
+  <div class="folio">[ 9 ]</div><div class="folio-r">2026 · Anne Carson</div></section></div>
+
+<div class="stagebox" data-p="p10"><section id="p10" class="page "><div class="runhead">Anne Carson · 书作为物件</div>
+  <h2 class="sec">她的书，本身就是作品</h2>
+  <div class="sec-en">Books as objects</div>
+  <div class="hair"></div>
+  <div class="objgrid">
+    <div class="obj"><div class="oh">[ Nox · 2010 ]</div>
+      <div class="ob">盒子里的折页书：贴上去的照片、旧信、拼贴与速写，诗后打上去。官方称它「既是文学也是雕塑」。</div></div>
+    <div class="obj"><div class="oh">[ Antigonick · 2012 ]</div>
+      <div class="ob">索福克勒斯《安提戈涅》的译本，Bianca Stone 作画，Robert Currie 做设计（官方书目写明）。译本本身是一件被设计过的物件。</div></div>
+    <div class="obj"><div class="oh">[ Float · 2016 ]</div>
+      <div class="ob">22 本小册子，主题各异，<b>可以任意顺序读</b>。她说文学素描（literary sketch）对她格外有价值——这本书就是那个判断的形状。</div></div>
+    <div class="obj"><div class="oh">[ Wrong Norma · 2024 ]</div>
+      <div class="ob">不同文本的组合，表演性很强，跨越多个艺术与学术领域。</div></div>
+  </div>
+  <p class="zh" style="margin-top:8mm">官方还提到她与视觉艺术家、编舞、歌剧与戏剧导演的合作——这些合作同她的书一样，都在回答同一个问题：<b>一首诗可以长成什么形状？</b></p>
+  <div class="folio">[ 10 ]</div><div class="folio-r">2026 · Anne Carson</div></section></div>
+
+<div class="stagebox" data-p="p11"><section id="p11" class="page "><div class="runhead">Anne Carson · 小词典</div>
+  <h2 class="sec">八个词，读她之前先认识</h2>
+  <div class="sec-en">A small glossary</div>
+  <div class="hair"></div>
+  <div class="termgrid"><div class="term"><div class="tz">古典学</div><div class="te">Classics</div><div class="td">研究古希腊与古罗马的语言、文学与文化。</div><div class="tx">像考古学的另一面：一个挖实物，一个挖句子。</div></div><div class="term"><div class="tz">词源</div><div class="te">etymology</div><div class="td">一个词的历史与出身。卡森说，自己一切工作以词源为起点。</div><div class="tx">像查家谱：知道它从哪儿来，才明白它现在背着什么。</div></div><div class="term"><div class="tz">抒情诗</div><div class="te">lyric poetry</div><div class="td">以「我」的感受为核心的传统诗体。</div><div class="tx">像独白。官方说卡森脱离了这种写法——她让好几个人同时在场上。</div></div><div class="term"><div class="tz">立体视觉</div><div class="te">stereoscopic vision</div><div class="td">卡森自己的说法：能同时把两个视角握在平衡里。</div><div class="tx">像两只眼睛：只用一只也看得见，看远近必须两只一起。</div></div><div class="term"><div class="tz">残篇</div><div class="te">fragment</div><div class="td">古人作品只剩片段，靠引用与纸草拼回。</div><div class="tx">像拼图缺了大半盒，还被允许只拼一半。</div></div><div class="term"><div class="tz">纸草</div><div class="te">papyrus</div><div class="td">古埃及、希腊罗马时代用的书写材料；沙漠里挖出的纸草是古典文本的重要来源。</div><div class="tx">像古代版草稿纸，只不过它比书更长寿。</div></div><div class="term"><div class="tz">成长小说</div><div class="te">Bildungsroman</div><div class="td">写一个人如何长大、如何成为自己的小说类型。</div><div class="tx">《Autobiography of Red》就是一部现代成长小说。</div></div><div class="term"><div class="tz">韵文体小说</div><div class="te">novel in verse</div><div class="td">用诗行写成的长篇故事。</div><div class="tx">既不是纯诗，也不是纯小说：两条路同时走。</div></div></div>
+  <div class="footnote" style="margin-top:5mm"><b>[注]</b> 释义为阅读辅助，非官方定义；涉及卡森本人的说法处，均标注「官方说 / 她自己说」。</div>
+  <div class="folio">[ 11 ]</div><div class="folio-r">2026 · Anne Carson</div></section></div>
+
+<div class="stagebox" data-p="p12"><section id="p12" class="page "><div class="runhead">Anne Carson · 阅读入口</div>
+  <h2 class="sec">从哪一本开始</h2>
+  <div class="sec-en">Three doors</div>
+  <div class="hair"></div>
+  <div class="doors">
+    <div class="door"><div class="dh">入口一 · 从散文进</div>
+      <div class="dt"><i>Eros the Bittersweet</i>, 1986</div>
+      <div class="db">官方说，这本长文为她此后全部写作奠基：谈爱欲为何既是痛也是甜，靠的是萨福的一个复合形容词。想先听懂她的思路，从这里进。</div></div>
+    <div class="door"><div class="dh">入口二 · 从诗进</div>
+      <div class="dt"><i>Autobiography of Red</i>, 1998</div>
+      <div class="db">一头红翅膀的怪物少年，长大、恋爱、被毁掉。不必先懂希腊神话；读完再回头看残篇也不迟。</div></div>
+    <div class="door"><div class="dh">入口三 · 从翻译进</div>
+      <div class="dt"><i>If Not, Winter</i>, 2002</div>
+      <div class="db">萨福的残篇，连同那些 [　] 一起读。这是她最容易被立刻感受到的一本：缺的地方也是内容。</div></div>
+  </div>
+  <div class="obs">
+    <div class="oh">[ 读的时候留意三件事 ]</div>
+    <div class="ol">一、她在同一页里放进了几个时代的声音；<br>二、她写在页面上的空白和写在字里的东西一样重要；<br>三、她反复回到的词，通常就是入口。</div>
+  </div>
+  <div class="folio">[ 12 ]</div><div class="folio-r">2026 · Anne Carson</div></section></div>
+
+<div class="stagebox" data-p="p13"><section id="p13" class="page "><div class="runhead">Anne Carson · 出处</div>
+  <h2 class="sec">出处与引文对照</h2>
+  <div class="sec-en">Sources &amp; citations</div>
+  <div class="hair"></div>
+  <p class="zh" style="font-size:9.4pt">本册全部事实与英文引语来自诺贝尔奖官方页面（2026-10-08 发布），未采用任何二手转述。中文除标明为引语外，均为转述。</p>
+  <div class="srclist">
+    <div class="srcrow"><span class="k">[ 1 ]</span><span>Press release: <i>The Nobel Prize in Literature 2026</i> — nobelprize.org/prizes/literature/2026/press-release/</span></div>
+    <div class="srcrow"><span class="k">[ 2 ]</span><span>Summary — nobelprize.org/prizes/literature/2026/summary/</span></div>
+    <div class="srcrow"><span class="k">[ 3 ]</span><span>Facts — nobelprize.org/prizes/literature/2026/carson/facts/</span></div>
+    <div class="srcrow"><span class="k">[ 4 ]</span><span>Biobibliography（含官方书目与评述）— nobelprize.org/prizes/literature/2026/bio-bibliography/</span></div>
+    <div class="srcrow"><span class="k">[ 5 ]</span><span>得主肖像：Ill. Niklas Elmehed © Nobel Prize Outreach</span></div>
+    <div class="srcrow"><span class="k">[ 6 ]</span><span>配图：The Metropolitan Museum of Art Open Access（CC0 公有领域），逐张标注见各页图注</span></div>
+  </div>
+  <div class="quotetable">
+    <div class="qh2">[ 本册引用的英文原句 → 出处 ]</div>
+    <div class="qrow"><i>“for her bold and inventive oeuvre…”</i><span>Press release / Summary / Facts</span></div>
+    <div class="qrow"><i>“stereoscopic vision … hold in equipoise two perspectives at once”</i><span>Biobibliography</span></div>
+    <div class="qrow"><i>“as sculptural as it is literary”</i><span>Biobibliography（Nox）</span></div>
+    <div class="qrow"><i>“hold in equipoise…” ／ Simonides–Celan ／ Thucydides–Woolf</i><span>Biobibliography</span></div>
+  </div>
+  <div class="footnote" style="margin-top:6mm"><b>[ 边界 ]</b> 卡森的诗句与译文仍在版权保护期内，本册不录原文（卡图卢斯拉丁文除外，已入公版）。标注为「示意」的图片，成品将替换或删除。</div>
+  <div class="folio">[ 13 ]</div><div class="folio-r">2026 · Anne Carson</div></section></div>
+
+<div class="stagebox" data-p="p14"><section id="p14" class="page cover-outer">
+  <div class="backcover">
+    <div class="bc-quote">“She is one of the few writers writing in English that I would read anything she wrote.”</div>
+    <div class="bc-src">— Susan Sontag（New Directions 官方页收录的评论）</div>
+    <div class="bc-foot">
+      <div>2026 · 诺贝尔文学奖 · 安妮·卡森小册</div>
+      <div><span class="br">[</span> 完 <span class="br">]</span></div>
+    </div>
+  </div></section></div>
+
+</div>
+<div class="footer">
+  事实与英文引语出自诺贝尔奖官方页面（press release / summary / facts / biobibliography，2026-10-08）。<br>
+  配图：The Metropolitan Museum of Art Open Access（CC0）与 Nobel Prize Outreach 官方肖像；逐张标注见图注。<br>
+  同源 PDF 版本见群内交付件。
+</div>
+<script>
+(function(){
+  var stage=document.querySelector('.stage');
+  var boxes=[].slice.call(document.querySelectorAll('.stagebox'));
+  var PW=718, PH=983;
+  var mode = window.innerWidth < 820 ? 'flow' : 'fit';
+  function layout(){
+    document.body.classList.toggle('flow', mode==='flow');
+    document.querySelectorAll('.zoom button').forEach(function(x){x.classList.toggle('on',x.dataset.mode===mode);});
+    if(mode==='flow'){ boxes.forEach(function(b){var pg=b.querySelector('.page');
+        pg.style.transform='none'; b.style.width=''; b.style.height=''; b.style.overflow=''; }); return; }
+    var cs=getComputedStyle(stage);
+    var avail=stage.clientWidth-parseFloat(cs.paddingLeft)-parseFloat(cs.paddingRight);
+    var s = mode==='fit' ? Math.min(1, avail/PW) : 1;
+    boxes.forEach(function(b){
+      var pg=b.querySelector('.page');
+      pg.style.transform='scale('+s+')';
+      b.style.width=(PW*s)+'px';
+      b.style.height=(PH*s)+'px';
+      if(mode!=='fit'){ b.style.overflow='auto'; } else { b.style.overflow='hidden'; }
+    });
+  }
+  document.querySelectorAll('.zoom button').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      mode=btn.dataset.mode;
+      document.querySelectorAll('.zoom button').forEach(function(x){x.classList.toggle('on',x===btn);});
+      layout();
+    });
+  });
+  window.addEventListener('resize',layout);
+  window.addEventListener('load',layout);
+  document.fonts.ready.then(layout);
+  layout();
+})();
+</script>
+</body>
+</html>

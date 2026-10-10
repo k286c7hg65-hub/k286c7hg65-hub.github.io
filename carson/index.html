@@ -188,15 +188,10 @@ body.screen{padding:0;margin:0;}
 .footer{max-width:1180px;margin:0 auto;padding:0 16px 56px;font-family:var(--cjk);font-size:12px;
   line-height:1.9;color:#6E675E;text-align:center;}
 .footer a{color:#A32E24;text-decoration:none;border-bottom:1px solid rgba(163,46,36,.3);}
-.zoom{display:flex;gap:6px;}
-.zoom button{font:inherit;font-family:var(--cjk);font-size:11.5px;color:rgba(249,247,243,.8);
-  background:transparent;border:.6pt solid rgba(249,247,243,.35);border-radius:3px;padding:3px 9px;cursor:pointer;}
-.zoom button.on{color:#191714;background:#F9F7F3;border-color:#F9F7F3;}
 @media (max-width:760px){
   .sitebar .in{flex-wrap:wrap;gap:8px;padding:8px 14px;}
   .sitebar .brand{order:1;flex:1 1 auto;}
-  .sitebar .zoom{order:2;}
-  .sitebar nav{order:3;flex-basis:100%;justify-content:flex-start;}
+  .sitebar   .sitebar nav{order:3;flex-basis:100%;justify-content:flex-start;}
   .sitebar nav a{padding:3px 8px;font-size:12px;}
 }
 </style>
@@ -258,11 +253,6 @@ body.flow .pimg{height:190px;}
   <div class="in">
     <div class="brand">Anne Carson <b>·</b> 2026 诺贝尔文学奖</div>
     <nav><a href="#p01">封面</a><a href="#p02">其人</a><a href="#p03">方法</a><a href="#p04">年表</a><a href="#p05">作品</a><a href="#p10">书作为物件</a><a href="#p11">小词典</a><a href="#p12">从哪本开始</a><a href="#p13">出处</a></nav>
-    <div class="zoom">
-      <button data-mode="flow">手机阅读</button>
-      <button data-mode="fit">适应窗口</button>
-      <button data-mode="full">原始尺寸</button>
-    </div>
   </div>
 </header>
 <div class="stage">
@@ -529,7 +519,6 @@ body.flow .pimg{height:190px;}
   var mode = window.innerWidth < 820 ? 'flow' : 'fit';
   function layout(){
     document.body.classList.toggle('flow', mode==='flow');
-    document.querySelectorAll('.zoom button').forEach(function(x){x.classList.toggle('on',x.dataset.mode===mode);});
     if(mode==='flow'){ boxes.forEach(function(b){var pg=b.querySelector('.page');
         pg.style.transform='none'; b.style.width=''; b.style.height=''; b.style.overflow=''; }); return; }
     var cs=getComputedStyle(stage);
@@ -543,13 +532,6 @@ body.flow .pimg{height:190px;}
       if(mode!=='fit'){ b.style.overflow='auto'; } else { b.style.overflow='hidden'; }
     });
   }
-  document.querySelectorAll('.zoom button').forEach(function(btn){
-    btn.addEventListener('click',function(){
-      mode=btn.dataset.mode;
-      document.querySelectorAll('.zoom button').forEach(function(x){x.classList.toggle('on',x===btn);});
-      layout();
-    });
-  });
   window.addEventListener('resize',layout);
   window.addEventListener('load',layout);
   document.fonts.ready.then(layout);

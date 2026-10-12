@@ -160,6 +160,8 @@ sub,sup{ font-size:var(--fs-xs); line-height:0; }
   min-height:44px; display:inline-flex; align-items:center; white-space:nowrap; border-radius:var(--r-sm);
 }
 .bar-nav a:hover{ color:var(--ink); background:var(--panel); border-bottom-color:transparent; }
+.bar-nav a b{ font-family:var(--font-mono); font-weight:var(--fw-max); }
+.bar-nav a span{ margin-left:6px; }
 .bar-nav a.on{ color:var(--plasma-ink); background:var(--panel-2); }
 .bar-btn{
   flex:none; margin-left:var(--s2); width:44px; height:44px; display:grid; place-items:center;
@@ -169,14 +171,19 @@ sub,sup{ font-size:var(--fs-xs); line-height:0; }
 .bar-btn:hover{ color:var(--ink); border-color:var(--line-2); }
 #prog{ height:3px; background:linear-gradient(90deg, var(--plasma), var(--ice)); width:0; }
 @media (max-width:820px){ .bar-nav a{ padding:var(--s2); } }
-/* ≤560px：导航改第二行（全宽），避免半截字看着像故障 */
-@media (max-width:560px){
-  html{ scroll-padding-top:104px; }
+/* ≤820px：导航改第二行、只留编号并自动换行 —— 不滚动就不会出现半截字 */
+@media (max-width:820px){
+  html{ scroll-padding-top:168px; }
   .bar-in{ flex-wrap:wrap; padding-bottom:var(--s2); }
   .bar-logo{ flex:1 1 auto; }
   .bar-btn{ margin-left:0; }
-  .bar-nav{ order:3; flex:1 0 100%; margin-left:0; margin-top:var(--s2); padding-right:0; }
+  .bar-nav{
+    order:3; flex:1 0 100%; margin-left:0; margin-top:var(--s2); padding-right:0;
+    flex-wrap:wrap; overflow:visible; gap:var(--s1);
+    -webkit-mask-image:none; mask-image:none;
+  }
   .bar-nav a{ min-height:40px; padding:var(--s2) var(--s3); font-size:13px; }
+  .bar-nav a span{ display:none; }
 }
 
 /* --- 首屏 ---------------------------------------------------------------- */
@@ -436,16 +443,16 @@ footer.site{ padding:var(--s8) 0 var(--s10); background:var(--bg-alt); }
       <span>星舰 · 科普</span>
     </div>
     <nav class="bar-nav" aria-label="章节导航">
-      <a href="#s1">01 扔东西</a>
-      <a href="#s2">02 那个对数</a>
-      <a href="#s3">03 回来</a>
-      <a href="#s4">04 不锈钢</a>
-      <a href="#s5">05 猛禽</a>
-      <a href="#s6">06 一次飞行</a>
-      <a href="#s7">07 试飞日志</a>
-      <a href="#s8">08 找错</a>
-      <a href="#s9">09 复述</a>
-      <a href="#appendix">附录</a>
+      <a href="#s1"><b>01</b><span>扔东西</span></a>
+      <a href="#s2"><b>02</b><span>那个对数</span></a>
+      <a href="#s3"><b>03</b><span>回来</span></a>
+      <a href="#s4"><b>04</b><span>不锈钢</span></a>
+      <a href="#s5"><b>05</b><span>猛禽</span></a>
+      <a href="#s6"><b>06</b><span>一次飞行</span></a>
+      <a href="#s7"><b>07</b><span>试飞日志</span></a>
+      <a href="#s8"><b>08</b><span>找错</span></a>
+      <a href="#s9"><b>09</b><span>复述</span></a>
+      <a href="#appendix"><b>附</b><span>附录</span></a>
     </nav>
     <button class="bar-btn" id="themebtn" type="button" aria-label="切换主题">◐</button>
   </div>

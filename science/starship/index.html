@@ -1,0 +1,1369 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>星舰 Starship · 一支不锈钢火箭为什么必须这么大</title>
+<meta name="description" content="面向初中生的星舰科普：先猜后验、动手滑杆、找错游戏与 60 秒复述。含 34 条中英术语对照、逐次试飞记录与数据口径声明。">
+<link rel="canonical" href="https://k286c7hg65-hub.github.io/science/starship/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="星舰 Starship · 一支不锈钢火箭为什么必须这么大">
+<meta property="og:description" content="面向初中生的星舰科普：先猜后验、动手滑杆、找错游戏与 60 秒复述。含 34 条中英术语对照、逐次试飞记录与数据口径声明。">
+<meta property="og:url" content="https://k286c7hg65-hub.github.io/science/starship/">
+<meta property="og:image" content="https://k286c7hg65-hub.github.io/science/starship/assets/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0a0f16">
+<link rel="icon" href="assets/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<script>
+/* 主题预置：在任何绘制之前决定，避免闪白 */
+(function(){try{var t=localStorage.getItem('starship.theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+</script>
+<style>
+/* ==========================================================================
+   星舰 · Starship — 视觉系统
+   起点取自主题自身的世界：不锈钢箭体的冷银、星舰基地的夜空、
+   再入等离子体的橙。钢是材料，也是这套页面的底色。
+   ========================================================================== */
+
+/* --- 令牌 ---------------------------------------------------------------- */
+:root{
+  /* 字号：6 档，令牌 + 断点（不用 clamp/vw —— 流体值会让同角色漂档） */
+  --fs-xs: 12px;
+  --fs-sm: 14px;
+  --fs-md: 17px;
+  --fs-lg: 21px;
+  --fs-xl: 28px;
+  --fs-2xl: 40px;
+  /* 字重 3 档 · 行高 3 档 · 字距 2 档 */
+  --fw-body: 400; --fw-mid: 700; --fw-max: 900;
+  --lh-tight: 1.2; --lh-body: 1.75; --lh-loose: 2;
+  --ls-normal: 0; --ls-wide: .04em;
+  /* 间距：4px 网格 */
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:20px; --s6:24px; --s7:32px; --s8:40px; --s9:56px; --s10:72px;
+  --r-sm:6px; --r-md:10px; --r-lg:16px;
+  --maxw: 1180px;
+  --font-body: "Noto Sans CJK SC", "Source Han Sans SC", "Noto Sans SC", sans-serif;
+  --font-mono: "Noto Sans Mono CJK SC", "Noto Sans Mono", ui-monospace, monospace;
+}
+
+/* 主题：夜航（默认，深） */
+html[data-theme="dark"]{
+  --bg:      #0a0f16;
+  --bg-alt:  #0e141d;
+  --panel:   #141c27;
+  --panel-2: #18222f;
+  --line:    #26313f;
+  --line-2:  #35455a;
+  --ink:     #e9eff7;
+  --ink-2:   #aab8c9;
+  --ink-3:   #8494a6;
+  --steel:   #ccd6e0;
+  --plasma:  #ff6a2b;
+  --plasma-ink: #ffc9a3;
+  --btn-bg:  #ff6a2b;
+  --on-plasma: #0a0f16;
+  --ice:     #6fc9f0;
+  --ok:      #58d19a;
+  --bad:     #ff7a7a;
+  --warn:    #ffc857;
+  --shadow:  0 10px 30px rgba(0,0,0,.45);
+  --glow:    0 0 0 1px rgba(255,106,43,.35), 0 6px 24px rgba(255,106,43,.14);
+  --grid:    rgba(140,170,200,.07);
+}
+/* 主题：白昼（浅） */
+html[data-theme="light"]{
+  --bg:      #eef1f5;
+  --bg-alt:  #e6eaf0;
+  --panel:   #ffffff;
+  --panel-2: #f6f8fb;
+  --line:    #d3dae3;
+  --line-2:  #b9c4d1;
+  --ink:     #16202c;
+  --ink-2:   #46566a;
+  --ink-3:   #55677d;
+  --steel:   #475a70;
+  --plasma:  #b83f08;
+  --plasma-ink: #8f3208;
+  --btn-bg:  #a8370a;
+  --on-plasma: #ffffff;
+  --ice:     #106b93;
+  --ok:      #177a52;
+  --bad:     #b62b2b;
+  --warn:    #8a6100;
+  --shadow:  0 8px 24px rgba(23,38,56,.10);
+  --glow:    0 0 0 1px rgba(200,68,10,.28), 0 6px 20px rgba(200,68,10,.10);
+  --grid:    rgba(50,80,110,.07);
+}
+
+@media (max-width: 900px){
+  :root{ --fs-2xl: 32px; --fs-xl: 24px; --fs-lg: 19px; }
+}
+@media (max-width: 480px){
+  :root{ --fs-2xl: 27px; --fs-xl: 21px; --fs-lg: 18px; --fs-md: 16.5px; }
+}
+
+/* --- 基础 ---------------------------------------------------------------- */
+*{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; scroll-padding-top:76px; }
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:var(--font-body); font-weight:var(--fw-body);
+  font-size:var(--fs-md); line-height:var(--lh-body);
+  letter-spacing:var(--ls-normal);
+  -webkit-font-smoothing:antialiased;
+  overflow-wrap:break-word;
+}
+/* 无 JS 兜底：只有 html.js 存在时才允许淡入初始为 0 */
+html.js .fadein{ opacity:0; transform:translateY(10px); transition:opacity .5s ease, transform .5s ease; }
+html.js .fadein.in{ opacity:1; transform:none; }
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior:auto; }
+  html.js .fadein{ opacity:1; transform:none; transition:none; }
+  *{ animation-duration:.001ms !important; transition-duration:.001ms !important; }
+}
+img{ max-width:100%; height:auto; display:block; }
+a{ color:var(--plasma); text-decoration:none; border-bottom:1px solid transparent; }
+a:hover{ border-bottom-color:var(--plasma); }
+:focus-visible{ outline:3px solid var(--ice); outline-offset:2px; border-radius:2px; }
+h1,h2,h3,h4{ line-height:var(--lh-tight); font-weight:var(--fw-max); margin:0 0 var(--s4); }
+h2{ font-size:var(--fs-xl); letter-spacing:var(--ls-normal); }
+h3{ font-size:var(--fs-lg); font-weight:var(--fw-mid); }
+p{ margin:0 0 var(--s5); }
+strong{ font-weight:var(--fw-mid); }
+code,.mono{ font-family:var(--font-mono); }
+sub,sup{ font-size:var(--fs-xs); line-height:0; }
+.sr{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
+
+.wrap{ width:100%; max-width:var(--maxw); margin:0 auto; padding:0 var(--s6); }
+@media (max-width:640px){ .wrap{ padding:0 var(--s4); } }
+
+/* --- 顶部导航 ------------------------------------------------------------ */
+.bar{
+  position:sticky; top:0; z-index:50;
+  background:color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.bar-in{ display:flex; align-items:center; gap:var(--s4); min-height:56px; }
+.bar-logo{ display:flex; align-items:center; gap:var(--s2); font-weight:var(--fw-max); letter-spacing:var(--ls-wide); font-size:var(--fs-sm); }
+.bar-logo .mk{ width:22px; height:22px; flex:none; }
+.bar-nav{ display:flex; gap:var(--s1); margin-left:auto; overflow-x:auto; scrollbar-width:none; -ms-overflow-style:none; }
+.bar-nav::-webkit-scrollbar{ display:none; }
+.bar-nav a{
+  color:var(--ink-2); font-size:var(--fs-xs); padding:var(--s2) var(--s3);
+  min-height:44px; display:inline-flex; align-items:center; white-space:nowrap; border-radius:var(--r-sm);
+}
+.bar-nav a:hover{ color:var(--ink); background:var(--panel); border-bottom-color:transparent; }
+.bar-nav a.on{ color:var(--plasma-ink); background:var(--panel-2); }
+.bar-btn{
+  flex:none; margin-left:var(--s2); width:44px; height:44px; display:grid; place-items:center;
+  background:var(--panel); color:var(--ink-2); border:1px solid var(--line); border-radius:var(--r-sm);
+  cursor:pointer; font-size:var(--fs-md); font-family:var(--font-body);
+}
+.bar-btn:hover{ color:var(--ink); border-color:var(--line-2); }
+#prog{ height:3px; background:linear-gradient(90deg, var(--plasma), var(--ice)); width:0; }
+@media (max-width:820px){ .bar-nav a{ padding:var(--s2); } }
+
+/* --- 首屏 ---------------------------------------------------------------- */
+.hero{ position:relative; padding:var(--s10) 0 var(--s8); border-bottom:1px solid var(--line); overflow:hidden; }
+.hero-grid{
+  position:absolute; inset:0;
+  background-image:linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size:44px 44px; mask-image:linear-gradient(180deg, rgba(0,0,0,.9), transparent 78%);
+}
+.hero .wrap{ position:relative; }
+.kicker{ font-size:var(--fs-xs); letter-spacing:var(--ls-wide); color:var(--ice); text-transform:uppercase; margin-bottom:var(--s3); }
+.hero h1{ font-size:var(--fs-2xl); margin-bottom:var(--s3); }
+.hero h1 .en{ display:block; font-size:var(--fs-lg); color:var(--ink-2); font-weight:var(--fw-mid); letter-spacing:var(--ls-wide); margin-top:var(--s2); }
+.lede{ font-size:var(--fs-lg); color:var(--ink-2); max-width:52ch; }
+.lede b{ color:var(--ink); }
+.stats{ display:grid; grid-template-columns:repeat(4,1fr); gap:var(--s4); margin-top:var(--s8); }
+@media (max-width:820px){ .stats{ grid-template-columns:repeat(2,1fr); } }
+.stat{ background:var(--panel); border:1px solid var(--line); border-radius:var(--r-md); padding:var(--s4); }
+.stat .n{ font-family:var(--font-mono); font-size:var(--fs-xl); font-weight:var(--fw-max); color:var(--steel); line-height:var(--lh-tight); }
+.stat .n em{ font-style:normal; font-size:var(--fs-sm); font-family:var(--font-body); color:var(--ink-3); font-weight:var(--fw-body); margin-left:var(--s1); }
+.stat .l{ font-size:var(--fs-xs); color:var(--ink-2); margin-top:var(--s2); }
+.stat .s{ font-size:var(--fs-xs); color:var(--ink-3); margin-top:var(--s1); }
+.hero-note{ margin-top:var(--s5); font-size:var(--fs-xs); color:var(--ink-3); }
+
+/* --- 章节 ---------------------------------------------------------------- */
+section.sec{ padding:var(--s9) 0; border-bottom:1px solid var(--line); }
+.sec-head{ display:flex; gap:var(--s4); align-items:baseline; margin-bottom:var(--s6); }
+.sec-no{ font-family:var(--font-mono); font-size:var(--fs-sm); color:var(--plasma); font-weight:var(--fw-max); letter-spacing:var(--ls-wide); }
+.sec-sub{ color:var(--ink-3); font-size:var(--fs-sm); margin-top:var(--s2); }
+.cols{ display:grid; grid-template-columns:minmax(0,1.35fr) minmax(0,1fr); gap:var(--s8); align-items:start; }
+@media (max-width:900px){ .cols{ grid-template-columns:1fr; gap:var(--s6); } }
+.col-wide{ grid-template-columns:1fr; }
+
+.card{ background:var(--panel); border:1px solid var(--line); border-radius:var(--r-md); padding:var(--s5); }
+.card h4{ font-size:var(--fs-sm); color:var(--ink-2); letter-spacing:var(--ls-wide); margin-bottom:var(--s3); }
+.card ul{ margin:0; padding-left:var(--s5); }
+.card li{ margin-bottom:var(--s2); }
+.card li:last-child{ margin-bottom:0; }
+.card.tight{ padding:var(--s4); }
+.hint{ font-size:var(--fs-xs); color:var(--ink-3); }
+
+.pull{
+  border-left:3px solid var(--plasma); padding:var(--s2) 0 var(--s2) var(--s5);
+  font-size:var(--fs-lg); color:var(--ink); margin:var(--s6) 0;
+}
+.pull cite{ display:block; font-size:var(--fs-xs); color:var(--ink-3); font-style:normal; margin-top:var(--s3); }
+
+/* 术语注解（点击展开白话解释，不跳转） */
+.term{
+  font:inherit; color:var(--ice); background:transparent; border:0; border-bottom:1px dashed var(--ice);
+  padding:0 var(--s1); cursor:pointer; text-align:left; border-radius:2px;
+}
+.term:hover{ background:var(--panel-2); }
+.term::after{ content:"?"; font-size:11px; vertical-align:super; margin-left:2px; color:var(--ink-3); }
+.term-pop{
+  margin:var(--s2) 0 var(--s4); padding:var(--s4); background:var(--panel-2);
+  border:1px solid var(--line-2); border-left:3px solid var(--ice); border-radius:var(--r-sm);
+  font-size:var(--fs-sm); color:var(--ink-2);
+}
+.term-pop .en{ display:block; font-family:var(--font-mono); font-size:var(--fs-xs); color:var(--ink-3); margin-bottom:var(--s2); }
+.term-pop b{ color:var(--ink); }
+
+/* --- 先猜后验 ------------------------------------------------------------ */
+.guess{ background:var(--panel); border:1px solid var(--line); border-radius:var(--r-md); padding:var(--s5); margin:var(--s6) 0; }
+.guess .q{ font-weight:var(--fw-mid); margin-bottom:var(--s4); }
+.opts{ display:flex; flex-wrap:wrap; gap:var(--s2); }
+.opt{
+  font:inherit; font-size:var(--fs-sm); min-height:44px; padding:var(--s2) var(--s4);
+  background:var(--panel-2); color:var(--ink); border:1px solid var(--line-2); border-radius:var(--r-sm); cursor:pointer;
+}
+.opt:hover{ border-color:var(--plasma); }
+.opt[aria-pressed="true"]{ border-color:var(--plasma); background:color-mix(in srgb, var(--plasma) 14%, var(--panel-2)); }
+.guess .rev{ margin-top:var(--s4); padding-top:var(--s4); border-top:1px dashed var(--line-2); display:none; }
+.guess.done .rev{ display:block; }
+.rev .verdict{ font-weight:var(--fw-mid); margin-bottom:var(--s2); }
+.rev .verdict.y{ color:var(--ok); }
+.rev .verdict.n{ color:var(--bad); }
+.rev .why{ font-size:var(--fs-sm); color:var(--ink-2); }
+.rev .calc{ margin-top:var(--s3); font-family:var(--font-mono); font-size:var(--fs-sm); color:var(--steel);
+  background:var(--bg-alt); border:1px solid var(--line); border-radius:var(--r-sm); padding:var(--s3) var(--s4); overflow-x:auto; }
+.retry{ margin-top:var(--s3); font-size:var(--fs-xs); color:var(--ink-3); }
+
+/* --- 滑杆（扔燃料换速度） ------------------------------------------------ */
+.sim{ background:var(--panel); border:1px solid var(--line); border-radius:var(--r-md); padding:var(--s5); }
+.sim-track{ position:relative; height:44px; display:flex; align-items:center; }
+.sim input[type=range]{
+  -webkit-appearance:none; appearance:none; width:100%; height:44px; margin:0; font-size:var(--fs-md);
+  background:linear-gradient(90deg, var(--ice), var(--steel), var(--plasma)) center/100% 6px no-repeat;
+  border-radius:3px; cursor:pointer;
+}
+.sim input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none; width:26px; height:26px; border-radius:50%;
+  background:var(--panel-2); border:3px solid var(--plasma); cursor:grab;
+}
+.sim input[type=range]::-moz-range-thumb{
+  width:22px; height:22px; border-radius:50%; background:var(--panel-2); border:3px solid var(--plasma); cursor:grab;
+}
+.sim-row{ display:flex; justify-content:space-between; gap:var(--s4); margin-top:var(--s3); font-size:var(--fs-sm); color:var(--ink-2); }
+.sim-row b{ font-family:var(--font-mono); color:var(--steel); font-size:var(--fs-lg); }
+.sim-bar{ height:26px; background:var(--bg-alt); border:1px solid var(--line); border-radius:var(--r-sm); overflow:hidden; margin-top:var(--s4); }
+.sim-fill{ height:100%; width:0; background:linear-gradient(90deg, var(--ice), var(--plasma)); transition:width .18s linear; }
+.sim-goal{ font-size:var(--fs-xs); color:var(--ink-3); margin-top:var(--s2); }
+
+/* --- 飞行剖面 / 时间轴 ---------------------------------------------------- */
+.tl{ position:relative; margin:var(--s6) 0; padding-left:var(--s7); }
+.tl::before{ content:""; position:absolute; left:11px; top:6px; bottom:6px; width:2px; background:linear-gradient(180deg, var(--plasma), var(--ice), var(--line-2)); }
+.tl-item{ position:relative; margin-bottom:var(--s6); }
+.tl-item:last-child{ margin-bottom:0; }
+.tl-item::before{
+  content:""; position:absolute; left:calc(-1 * var(--s7) + 5px); top:8px; width:14px; height:14px; border-radius:50%;
+  background:var(--bg); border:3px solid var(--plasma);
+}
+.tl-item.ice::before{ border-color:var(--ice); }
+.tl-t{ font-family:var(--font-mono); font-size:var(--fs-sm); color:var(--plasma); letter-spacing:var(--ls-wide); }
+.tl-item.ice .tl-t{ color:var(--ice); }
+.tl-h{ font-weight:var(--fw-mid); margin:var(--s1) 0 var(--s2); }
+.tl-b{ font-size:var(--fs-sm); color:var(--ink-2); }
+
+/* --- 表格 ---------------------------------------------------------------- */
+.tbl-wrap{ overflow-x:auto; margin:var(--s5) 0; border:1px solid var(--line); border-radius:var(--r-md); }
+table{ width:100%; border-collapse:collapse; font-size:var(--fs-sm); min-width:560px; }
+th,td{ text-align:left; padding:var(--s3) var(--s4); border-bottom:1px solid var(--line); vertical-align:top; }
+th{ background:var(--panel-2); color:var(--ink-2); font-weight:var(--fw-mid); font-size:var(--fs-xs); letter-spacing:var(--ls-wide); }
+tr:last-child td{ border-bottom:0; }
+td.mono,th.mono{ font-family:var(--font-mono); }
+.tag{ display:inline-block; font-size:var(--fs-xs); padding:2px var(--s2); border-radius:var(--r-sm); border:1px solid var(--line-2); color:var(--ink-2); }
+.tag.g{ color:var(--ok); border-color:color-mix(in srgb, var(--ok) 45%, var(--line-2)); }
+.tag.y{ color:var(--warn); border-color:color-mix(in srgb, var(--warn) 45%, var(--line-2)); }
+.tag.r{ color:var(--bad); border-color:color-mix(in srgb, var(--bad) 45%, var(--line-2)); }
+@media (max-width:640px){
+  table{ min-width:0; }
+  thead{ display:none; }
+  tr{ display:block; border-bottom:1px solid var(--line); padding:var(--s3) 0; }
+  td{ display:grid; grid-template-columns:88px minmax(0,1fr); gap:var(--s3); border:0; padding:var(--s1) var(--s3); }
+  td::before{ content:attr(data-label); color:var(--ink-3); font-size:var(--fs-xs); }
+}
+
+/* --- 试飞日志 ------------------------------------------------------------ */
+.log{ display:grid; gap:var(--s2); }
+.log-row{ display:grid; grid-template-columns:64px 1fr 74px; gap:var(--s3); align-items:center; font-size:var(--fs-sm); }
+.log-date{ font-family:var(--font-mono); font-size:var(--fs-xs); color:var(--ink-3); }
+.log-bar{ height:18px; border-radius:3px; background:var(--panel-2); border:1px solid var(--line); position:relative; overflow:hidden; }
+.log-bar i{ position:absolute; inset:0 auto 0 0; display:block; border-radius:3px; }
+.log-bar i.ok{ background:linear-gradient(90deg, color-mix(in srgb, var(--ok) 70%, transparent), color-mix(in srgb, var(--ok) 30%, transparent)); width:100%; }
+.log-bar i.part{ background:linear-gradient(90deg, color-mix(in srgb, var(--warn) 70%, transparent), color-mix(in srgb, var(--warn) 25%, transparent)); width:58%; }
+.log-bar i.no{ background:linear-gradient(90deg, color-mix(in srgb, var(--bad) 70%, transparent), color-mix(in srgb, var(--bad) 25%, transparent)); width:26%; }
+.log-st{ font-size:var(--fs-xs); }
+.log-st.ok{ color:var(--ok); } .log-st.part{ color:var(--warn); } .log-st.no{ color:var(--bad); }
+.log-mile{ font-size:var(--fs-xs); color:var(--plasma-ink); margin-top:var(--s1); }
+@media (max-width:560px){ .log-row{ grid-template-columns:56px 1fr; } .log-st{ grid-column:2; } }
+
+/* --- 找错游戏 ------------------------------------------------------------ */
+.quiz{ background:var(--panel); border:1px solid var(--line); border-radius:var(--r-md); padding:var(--s5); margin:var(--s5) 0; }
+.quiz h4{ margin-bottom:var(--s3); }
+.quiz .ins{ font-size:var(--fs-sm); color:var(--ink-2); margin-bottom:var(--s4); }
+.stmt{ margin-bottom:var(--s3); }
+.stmt-btn{
+  font:inherit; font-size:var(--fs-md); width:100%; text-align:left; min-height:44px;
+  padding:var(--s3) var(--s4); background:var(--panel-2); color:var(--ink);
+  border:1px solid var(--line-2); border-radius:var(--r-sm); cursor:pointer; line-height:var(--lh-body);
+}
+.stmt-btn:hover{ border-color:var(--plasma); }
+.stmt.right{ border-color:var(--ok); background:color-mix(in srgb, var(--ok) 12%, var(--panel-2)); }
+.stmt.wrong{ border-color:var(--bad); background:color-mix(in srgb, var(--bad) 12%, var(--panel-2)); }
+.stmt-why{ display:none; font-size:var(--fs-sm); color:var(--ink-2); padding:var(--s2) var(--s4) var(--s3); }
+.stmt-why.show{ display:block; }
+.quiz-foot{ display:flex; align-items:center; gap:var(--s4); flex-wrap:wrap; margin-top:var(--s4); padding-top:var(--s4); border-top:1px dashed var(--line-2); }
+.score{ font-family:var(--font-mono); font-weight:var(--fw-max); color:var(--steel); font-size:var(--fs-lg); }
+.btn{
+  font:inherit; font-size:var(--fs-sm); min-height:44px; padding:var(--s2) var(--s5);
+  background:var(--btn-bg); color:var(--on-plasma); border:0; border-radius:var(--r-sm); cursor:pointer; font-weight:var(--fw-mid);
+}
+.btn.ghost{ background:var(--panel-2); color:var(--ink); border:1px solid var(--line-2); }
+.btn:disabled{ cursor:not-allowed; }
+
+/* --- 复述 ---------------------------------------------------------------- */
+.recall textarea{
+  width:100%; min-height:150px; font:inherit; font-size:var(--fs-md); line-height:var(--lh-body);
+  padding:var(--s4); background:var(--panel-2); color:var(--ink);
+  border:1px solid var(--line-2); border-radius:var(--r-sm); resize:vertical;
+}
+.timer{ display:flex; align-items:center; gap:var(--s4); margin:var(--s4) 0; flex-wrap:wrap; }
+.timer .clock{ font-family:var(--font-mono); font-size:var(--fs-xl); font-weight:var(--fw-max); color:var(--steel); }
+.timer .clock.warn{ color:var(--bad); }
+.saved{ font-size:var(--fs-xs); color:var(--ink-3); }
+
+/* --- 折叠（进阶层 / 附录） ----------------------------------------------- */
+details.box{ background:var(--panel); border:1px solid var(--line); border-radius:var(--r-md); margin:var(--s5) 0; }
+details.box > summary{
+  cursor:pointer; padding:var(--s4) var(--s5); font-weight:var(--fw-mid); min-height:44px;
+  display:flex; align-items:center; gap:var(--s3); list-style:none;
+}
+details.box > summary::-webkit-details-marker{ display:none; }
+details.box > summary::before{ content:"▸"; color:var(--plasma); font-size:var(--fs-sm); }
+details.box[open] > summary::before{ content:"▾"; }
+.box-body{ padding:0 var(--s5) var(--s5); }
+.formula{
+  font-family:var(--font-mono); font-size:var(--fs-md); color:var(--steel);
+  background:var(--bg-alt); border:1px solid var(--line); border-left:3px solid var(--ice);
+  border-radius:var(--r-sm); padding:var(--s4); margin:var(--s4) 0; overflow-x:auto;
+}
+.formula em{ color:var(--plasma-ink); font-style:normal; }
+
+/* --- 图 ---------------------------------------------------------------- */
+figure{ margin:var(--s6) 0; }
+figure img{ border-radius:var(--r-md); border:1px solid var(--line); }
+figcaption{ font-size:var(--fs-xs); color:var(--ink-3); margin-top:var(--s3); line-height:var(--lh-body); }
+figcaption b{ color:var(--ink-2); font-weight:var(--fw-mid); }
+/* 首屏图带：21:9 裁切，移动端改 4:3，出处写在图下方 */
+.hero-fig{ margin-top:var(--s8); border:1px solid var(--line); border-radius:var(--r-md); overflow:hidden; background:var(--panel); }
+.hero-fig img{ width:100%; border:0; border-radius:0; aspect-ratio:21/9; object-fit:cover; object-position:50% 45%; }
+.hero-fig figcaption{ margin:0; padding:var(--s3) var(--s4); border-top:1px solid var(--line); background:var(--panel); }
+@media (max-width:700px){ .hero-fig img{ aspect-ratio:4/3; } }
+.fig-duo{ display:grid; grid-template-columns:1fr 1fr; gap:var(--s4); }
+@media (max-width:700px){ .fig-duo{ grid-template-columns:1fr; } }
+
+/* --- 页脚 ---------------------------------------------------------------- */
+footer.site{ padding:var(--s8) 0 var(--s10); background:var(--bg-alt); }
+.srcs{ font-size:var(--fs-sm); color:var(--ink-2); }
+.srcs h3{ font-size:var(--fs-md); }
+.srcs ol{ padding-left:var(--s6); }
+.srcs li{ margin-bottom:var(--s3); }
+.srcs .u{ font-family:var(--font-mono); font-size:var(--fs-xs); color:var(--ink-2); word-break:break-all; }
+.foot-note{ margin-top:var(--s6); padding-top:var(--s5); border-top:1px solid var(--line); font-size:var(--fs-xs); color:var(--ink-3); }
+
+/* --- 打印 ---------------------------------------------------------------- */
+@media print{
+  html{ --bg:#fff; --bg-alt:#fff; --panel:#fff; --panel-2:#fff; --line:#bbb; --line-2:#888;
+        --ink:#000; --ink-2:#222; --ink-3:#333; --steel:#000; --plasma:#a33a00; --plasma-ink:#7a2c00;
+        --btn-bg:#a33a00; --on-plasma:#fff;
+        --ice:#0b5c80; --ok:#0d5c3d; --bad:#8c1c1c; --warn:#6b4a00; --shadow:none; --glow:none; --grid:transparent; }
+  body{ font-size:11pt; }
+  .bar, #prog, .hero-grid, .sim, .quiz, .recall, .guess .opts, .bar-btn{ display:none !important; }
+  .guess .rev{ display:block !important; border-top:0; }
+  .guess .q::before{ content:"【问题】"; }
+  .term-pop{ display:none !important; }
+  details.box{ break-inside:avoid; } details.box > summary{ list-style:none; }
+  details.box > summary::before{ content:""; }
+  section.sec, .card, .tl-item, .tbl-wrap, figure{ break-inside:avoid; }
+  .hero{ padding-top:0; }
+  footer.site{ break-before:page; }
+  a{ color:#000; border-bottom:0; }
+  .srcs .u{ font-size:9pt; }
+}
+
+</style>
+</head>
+<body>
+<header class="bar">
+  <div class="wrap bar-in">
+    <div class="bar-logo">
+      <svg class="mk" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 2c3.2 2.6 4.6 6.2 4.6 10.2L12 22l-4.6-9.8C7.4 8.2 8.8 4.6 12 2z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+        <path d="M12 8.4v6.2" stroke="currentColor" stroke-width="1.2"/>
+        <path d="M7.6 13.6 4.4 17h3.2M16.4 13.6 19.6 17h-3.2" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+      </svg>
+      <span>星舰 · 科普</span>
+    </div>
+    <nav class="bar-nav" aria-label="章节导航">
+      <a href="#s1">01 扔东西</a>
+      <a href="#s2">02 那个对数</a>
+      <a href="#s3">03 回来</a>
+      <a href="#s4">04 不锈钢</a>
+      <a href="#s5">05 猛禽</a>
+      <a href="#s6">06 一次飞行</a>
+      <a href="#s7">07 试飞日志</a>
+      <a href="#s8">08 找错</a>
+      <a href="#s9">09 复述</a>
+      <a href="#appendix">附录</a>
+    </nav>
+    <button class="bar-btn" id="themebtn" type="button" aria-label="切换主题">◐</button>
+  </div>
+  <div id="prog" role="progressbar" aria-label="阅读进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+</header>
+
+<main>
+
+<section class="hero">
+  <div class="hero-grid" aria-hidden="true"></div>
+  <div class="wrap">
+    <p class="kicker">科学探索 · 初中生版 · 中英对照</p>
+    <h1>星舰<span class="en">Starship — 一支不锈钢火箭，为什么必须这么大</span></h1>
+    <p class="lede">把 <b>5,000 吨</b>的东西加速到每秒 <b>7.7 公里</b>，再让它<b>完好地回来</b>——这两件事，才是星舰真正要解决的难题。</p>
+
+    <div class="stats">
+      <div class="stat"><div class="n">124.4<em>米</em></div><div class="l">总高 · 堆叠全高</div><div class="s">Block 3 现行构型</div></div>
+      <div class="stat"><div class="n">9<em>米</em></div><div class="l">直径</div><div class="s">各代构型一致</div></div>
+      <div class="stat"><div class="n">≈5,000<em>吨</em></div><div class="l">起飞质量</div><div class="s">加满推进剂时</div></div>
+      <div class="stat"><div class="n">100<em>吨</em></div><div class="l">近地轨道运力</div><div class="s">完全复用构型</div></div>
+    </div>
+    <p class="hero-note">数字口径与来源见页脚「附录 B」；其中「100 吨运力」来自 SpaceX 向美国证监会提交的上市申报文件，「33 台发动机」的出处见第 05 节。</p>
+
+    <figure class="hero-fig">
+      <img src="assets/web/iss-starship-flight6.jpg" width="1600" height="1067"
+           alt="从国际空间站拍摄的星舰第 6 次试飞发射尾迹：白天，海面与海岸线上空拖出一道白色烟柱"
+           loading="eager" decoding="async">
+      <figcaption><b>这不是插图，是实拍。</b>国际空间站上的相机拍到第 6 次试飞（2024-11-19）点火升空后的尾迹：海面、海岸线与一道白色烟柱。图片：NASA 约翰逊航天中心（编号 iss072e220043），NASA 影像库公有领域。</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="sec" id="s1">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="sec-no">01</div>
+        <h2>火箭为什么必须「扔东西」？</h2>
+        <div class="sec-sub">先猜，再看答案。这一步比结论重要。</div>
+      </div>
+    </div>
+
+    <div class="cols">
+      <div>
+        <p>你坐在滑板上，怀里抱着一摞球。你把球一个个往前扔出去——滑板会往后滑。火箭用的就是这个道理：它把燃料燃烧后的气体<b>高速往后喷</b>，换来向前的推力。</p>
+        <p>妙的地方在于：火箭不推别的，它推的是<b>自己身上的东西</b>。每喷出去一份质量，剩下的部分就更轻、更容易被推动。所以火箭的速度不是「踩油门踩出来」的，是<b>越扔越轻攒出来</b>的。</p>
+        <p>于是就有了一个反直觉的结论：火箭起飞时绝大部分重量都是燃料，而这些燃料里的大部分，是用来「举起燃料自己」的。</p>
+      </div>
+
+      <div class="card">
+        <h4>三个词先认识一下</h4>
+        <ul>
+          <li><span class="term" data-term="thrust">推力</span> — 发动机往后喷气产生的反作用力，单位常用「吨力」。</li>
+          <li><span class="term" data-term="isp">比冲</span> — 同样一公斤推进剂能换来多少「冲量」，可以理解成<b>燃料的效率分</b>。</li>
+          <li><span class="term" data-term="staging">级间分离</span> — 用完的空壳直接扔掉，不让它继续占着重量。</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="guess" data-guess="g1">
+      <div class="q">先押注：假设一枚火箭的九成重量是燃料，它能把自己加速到多快？（先选一个，再揭晓）</div>
+      <div class="opts">
+        <button class="opt" type="button" data-i="0">比汽车快一些 · 约 100 米/秒</button>
+        <button class="opt" type="button" data-i="1">和步枪子弹差不多 · 约 900 米/秒</button>
+        <button class="opt" type="button" data-i="2">比子弹快 8～10 倍 · 约 7,700 米/秒</button>
+      </div>
+      <div class="rev">
+        <div class="verdict" aria-live="polite"></div>
+        <div class="why"></div>
+        <div class="calc"></div>
+      </div>
+    </div>
+
+    <div class="sim" id="sim">
+      <h3 style="margin-bottom:var(--s2)">动手拨一下：燃料占多少，才够入轨？</h3>
+      <p class="hint" style="margin-bottom:var(--s4)">这个滑杆是一个<b>简化模型</b>：假设单级火箭、喷气速度固定 3.2 公里/秒（依据猛禽系列海平面效率的公开数值换算，属社群整理口径），用它算速度增量。真实火箭还要扣掉重力和空气带来的损失。</p>
+      <div class="sim-track">
+        <input type="range" id="simRange" min="40" max="98" step="1" value="60" aria-label="燃料占火箭总重的比例（%）">
+      </div>
+      <div class="sim-row">
+        <span>燃料占比：<b id="simPct">60%</b></span>
+        <span>速度增量 Δv：<b id="simDv">0</b> 米/秒</span>
+      </div>
+      <div class="sim-bar"><div class="sim-fill" id="simFill"></div></div>
+      <div class="sim-goal" id="simGoal">入轨门槛：约 7,740 米/秒（在 275 公里高度环绕地球所需的速度）</div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="s2">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="sec-no">02</div>
+        <h2>再深一档：那个对数</h2>
+        <div class="sec-sub">想跳过的同学可以直接去第 03 节，不影响后面的阅读。</div>
+      </div>
+    </div>
+
+    <p>上一节滑杆里那条曲线，来自一个一百多年前的公式。它长这样——不用怕，我们一个符号一个符号拆：</p>
+
+    <div class="formula">Δ<em>v</em> = <em>I</em><sub>sp</sub> · <em>g</em><sub>0</sub> · ln( <em>m</em><sub>0</sub> / <em>m</em><sub>f</sub> )</div>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>符号</th><th>读作</th><th>在这句话里是什么</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">Δv</td><td>速度增量</td><td data-label="含义">火箭一共能给自己「加」多少速度。想去近地轨道，它至少要 ≥ 7.7 公里/秒。</td></tr>
+          <tr><td class="mono"><em>I</em><sub>sp</sub></td><td>比冲</td><td data-label="含义">发动机效率分。数值越高，同样的燃料换来的速度越多。</td></tr>
+          <tr><td class="mono"><em>g</em><sub>0</sub></td><td>标准重力</td><td data-label="含义">9.8 米/秒²，只是用来把「比冲」的单位换算成速度，不是火箭受的重力。</td></tr>
+          <tr><td class="mono">ln(m<sub>0</sub>/m<sub>f</sub>)</td><td>质量比的自然对数</td><td data-label="含义">起飞质量 ÷ 烧完后的质量，再取对数。<b>这一项是全场最关键的一项。</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>为什么是<b>对数</b>而不是乘法？因为燃料是一份一份被扔掉的：每扔掉一份，火箭就更轻一点，剩下的燃料效率就更高一点。这种「自己帮自己」的过程，累积起来就是指数关系——反过来看，就是对数。</p>
+
+    <p class="pull">想快一点，最有效的办法不是换更强的发动机，而是<b>让壳更轻</b>：因为速度随「质量比」取对数，而质量比的每一次提升都要求你把结构做得更薄、更轻。</p>
+
+    <details class="box">
+      <summary>再深一档：为什么「越大越划算」——面积与体积的赛跑</summary>
+      <div class="box-body">
+        <p>把一个形状按比例放大一倍：它的<b>表面积变成 4 倍</b>（2×2），<b>体积变成 8 倍</b>（2×2×2）。</p>
+        <p>火箭的推进剂装在<b>体积</b>里，而箭体结构、贮箱壁、隔热层大致随<b>表面积</b>增长。于是放大之后：能装的燃料涨了 8 倍，要背的结构只涨了 4 倍——<b>结构占的比例直接减半</b>。</p>
+        <div class="formula">尺度 ×2 → 推进剂 ×8，结构 ×4 → 结构质量占比 1/2</div>
+        <p>这是星舰做成这么大的第一个物理理由，也是「火箭越大越厉害」这句话唯一成立的地方。</p>
+        <p><b>但这条规律有边界</b>（重要）：它只在「形状相似、材料相同、壁厚等比」时成立。真实结构还要扛住自身重量、气动载荷和振动，越大的箭体壁厚必须额外加厚，加工与运输也更难；而且一发失败，损失也按体积增长。所以放大不是无限的，工程师是在这条曲线和代价之间找位置。</p>
+        <p class="hint">本节结论属于推理与量级估算，页面已把它与「官方公布数字」区分标注（见附录 B）。</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<section class="sec" id="s3">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="sec-no">03</div>
+        <h2>最难的不是上天，是回来</h2>
+        <div class="sec-sub">入轨的门槛不是「高」，是「快」。</div>
+      </div>
+    </div>
+
+    <div class="cols">
+      <div>
+        <p>很多人以为火箭的难点是把东西送「高」。其实不是。国际空间站的轨道高度大约 <b>400 公里</b>——比广州到长沙的直线距离还近。开车都能到的距离，为什么还要造这么大的火箭？</p>
+        <p>因为它要的不是高度，是<b>横向速度</b>。想要不被地球拉下来，航天器必须绕着地球「横着飞」得足够快：在几百公里的高度，这个速度大约是<b>每秒 7.7 公里</b>——大约是一颗步枪子弹初速的 <b>9 倍</b>，音速的 <b>23 倍</b>。</p>
+        <p>而回来的时候，这份动能一分不少都要还回去——它必须变成<b>热</b>。</p>
+      </div>
+
+      <div class="card">
+        <h4>回来要过四关</h4>
+        <ul>
+          <li><b>减速</b> — 靠空气，不靠燃料。大气层是最省钱的刹车片。</li>
+          <li><b>姿态</b> — 用箭体上的翼面控制「哪儿迎风」，不然会翻滚。</li>
+          <li><b>热防护</b> — 迎风面贴满隔热瓦，靠它们被烧掉/辐射散热来保护箭体。</li>
+          <li><b>着陆</b> — 最后一刻发动机点火或者被发射塔夹住。</li>
+        </ul>
+      </div>
+    </div>
+
+    <figure>
+      <img src="assets/web/nasa-marshall-thermal.jpg" width="1400" height="890"
+           alt="实验室里的真空热试验装置：蓝色立方体腔体、圆形观察窗、法兰与真空管路"
+           loading="lazy" decoding="async">
+      <figcaption>热防护不是“贴上去就行”：材料要先在真空热试验装置里过一遍上天的环境。图为 NASA 马歇尔航天飞行中心的真空热试验设备（编号 _KSH0088，NASA 公有领域）。
+      <br><b>为什么第 03 节没有再入实拍图？</b>本页只采用能查到出处的一手图片，NASA 影像库里没有星舰再入等离子体的实拍照片（真正的高清再入画面多为公司自有版权）。找不到就不放——用一张不相干的图填空，比空白骗人。</figcaption>
+    </figure>
+
+    <div class="guess" data-guess="g2">
+      <div class="q">先押注：一颗 1 公斤的卫星在近地轨道上飞，它的动能如果全变成热，够把多少公斤的水从 0℃ 烧开？</div>
+      <div class="opts">
+        <button class="opt" type="button" data-i="0">大约半公斤，一杯水的事</button>
+        <button class="opt" type="button" data-i="1">大约 70 公斤，够一家人洗澡</button>
+        <button class="opt" type="button" data-i="2">大约 7,000 公斤，一辆卡车都拉不动</button>
+      </div>
+      <div class="rev">
+        <div class="verdict" aria-live="polite"></div>
+        <div class="why"></div>
+        <div class="calc"></div>
+      </div>
+    </div>
+
+    <p>这个数量级解释了为什么「回来」比「上去」更让工程师头疼：上去是可控地加能量，回来是<b>想方设法把能量倒掉</b>，而且还不能把箭体一起倒掉。</p>
+
+    <p>星舰用的办法是：箭体贴满六边形<b>隔热瓦</b>，迎风面朝向大气，用两个<b>翼面</b>调整姿态，让箭体像「跳石头」一样斜着掠过大气、一点点把速度磨掉。这套动作在 2026 年 7 月的第 13 次试飞上做过一次检查：那一次飞船带了 20 颗新一代星链卫星，其中 6 颗加装了相机，专门回头拍自己的热盾；箭体上还有几块瓦被<b>故意涂成白色</b>，用来模拟「瓦掉了」的样子，检验相机能不能看出来。</p>
+
+    <div class="card tight">
+      <p style="margin:0" class="hint">为什么非要用「被烧」的材料？因为用燃料反推把 7.7 公里/秒减到零，需要的推进剂多到火箭根本带不动——回到第 01 节那条曲线，答案就在里面。</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="s4">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="sec-no">04</div>
+        <h2>为什么用不锈钢？</h2>
+        <div class="sec-sub">看起来「土」的材料，往往是算过账之后的答案。</div>
+      </div>
+    </div>
+
+    <p>星舰的箭体是不锈钢做的，焊接成一圈一圈的环段。第一次听到的人多半会皱眉：不锈钢？那不是厨房水槽的材料吗？</p>
+    <p>但把条件摊开，问题就变了：火箭的贮箱里装的是 <b>-183℃ 的液氧</b>和液态甲烷，而它的迎风面又要面对再入时的高温。一种材料要同时伺候这两种极端，还要便宜、好焊、能快速修——名单一下子就短了。</p>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>比较项</th><th>碳纤维复合材料</th><th>铝锂合金</th><th>不锈钢</th></tr></thead>
+        <tbody>
+          <tr><td>极低温（液氧）下</td><td data-label="碳纤维">低温下偏脆，性能不稳</td><td data-label="铝锂">可用</td><td data-label="不锈钢"><b>低温下强度反而上升</b></td></tr>
+          <tr><td>再入高温</td><td data-label="碳纤维">需额外隔热，树脂会分解</td><td data-label="铝锂">熔点偏低，撑不住</td><td data-label="不锈钢">熔点高，能扛更高温度</td></tr>
+          <tr><td>成本</td><td data-label="碳纤维">最贵</td><td data-label="铝锂">中等</td><td data-label="不锈钢"><b>最便宜，供应链成熟</b></td></tr>
+          <tr><td>加工与修补</td><td data-label="碳纤维">需要大烘炉，现场难修</td><td data-label="铝锂">一般</td><td data-label="不锈钢"><b>现场焊接，坏了好补</b></td></tr>
+          <tr><td>重量</td><td data-label="碳纤维">最轻（代价是上面那些）</td><td data-label="铝锂">轻</td><td data-label="不锈钢">明显更重：<b>用重量换简单</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>所以这不是「选了落后的材料」，而是把「性能、成本、制造速度、可维修性」放在一张桌子上算账。星舰的目标是<b>快速重复使用</b>，而不锈钢恰好擅长这件事：便宜、好焊、坏了能当场补。重量的代价，用第 02 节那条「越大越划算」的规律补回来一部分。</p>
+
+    <figure>
+      <img src="assets/web/nasa-ames-windtunnel.jpg" width="1500" height="1000"
+           alt="NASA 艾姆斯研究中心风洞厂房内，一名工作人员正在检查一根长圆柱形金属试验件"
+           loading="lazy" decoding="async">
+      <figcaption>材料选完，还要知道它在风里会发生什么。图为 NASA 艾姆斯研究中心「单列式风洞」的 11×11 英尺跨声速试验段，箭体缩比试验件正在接受检查（NASA 与 SpaceX 联合风洞试验，影像编号 ACD25-0156-005，2025-07-31，NASA 公有领域）。</figcaption>
+    </figure>
+
+    <div class="guess" data-guess="g3">
+      <div class="q">先押注：不锈钢比铝合金重大约 2.5 倍。那为什么火箭还愿意用它？</div>
+      <div class="opts">
+        <button class="opt" type="button" data-i="0">因为不锈钢看起来更像火箭</button>
+        <button class="opt" type="button" data-i="1">因为它在极冷和极热两头都不掉链子，而且便宜、好焊、好修</button>
+        <button class="opt" type="button" data-i="2">因为不锈钢比铝更轻</button>
+      </div>
+      <div class="rev">
+        <div class="verdict" aria-live="polite"></div>
+        <div class="why"></div>
+        <div class="calc"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="s5">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="sec-no">05</div>
+        <h2>猛禽：把同一份燃料多榨一点</h2>
+        <div class="sec-sub">术语最多的一节，遇到不认识的词点一下就有白话解释。</div>
+      </div>
+    </div>
+
+    <div class="cols">
+      <div>
+        <p>星舰的超重助推器上装了 <b>33 台猛禽发动机</b>；上面的飞船装了 6 台（3 台适应海平面、3 台适应真空）。这些发动机烧的是<b>液态甲烷和液氧</b>，用了一种叫做<span class="term" data-term="ffsc">全流量分级燃烧</span>的循环方式。</p>
+        <p>白话版：把燃料和氧气<b>分别</b>先送进两个小燃烧室烧一遍（一个富燃、一个富氧），烧出来的高温气体不去推火箭，而是各自去转动一个<span class="term" data-term="turbopump">涡轮泵</span>；两股气体最后再进入主燃烧室彻底燃烧。这样做的好处是主燃烧室能承受更高的压力，同样的发动机可以做得更小、更猛。</p>
+      </div>
+      <div class="card">
+        <h4>为什么选甲烷</h4>
+        <ul>
+          <li>燃烧更干净，发动机内部不容易积碳，重复使用少拆洗。</li>
+          <li>和液氧的温差不算极端，贮箱设计更简单。</li>
+          <li>比冲（燃料效率分）表现好。</li>
+        </ul>
+        <p class="hint" style="margin:var(--s3) 0 0">以上属于工程通识性说明；具体数值口径见附录 B。</p>
+      </div>
+    </div>
+
+    <h3>三代猛禽，推力涨了三分之一</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>型号</th><th class="mono">单台推力（海平面）</th><th>用在哪儿</th></tr></thead>
+        <tbody>
+          <tr><td>猛禽 1（Raptor 1）</td><td class="mono" data-label="推力">185 吨力</td><td data-label="用途">早期原型机</td></tr>
+          <tr><td>猛禽 2（Raptor 2）</td><td class="mono" data-label="推力">230 吨力</td><td data-label="用途">Block 1 / Block 2 飞行</td></tr>
+          <tr><td>猛禽 3（Raptor 3）</td><td class="mono" data-label="推力">250 吨力</td><td data-label="用途">Block 3（现行版本）</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h4>自己算一遍：33 台推得动吗？</h4>
+      <p style="margin-bottom:var(--s3)">助推器 33 台猛禽 3 全开：<span class="mono">33 × 250 = 8,250 吨力</span></p>
+      <p style="margin-bottom:var(--s3)">火箭起飞质量约 <span class="mono">5,000 吨</span></p>
+      <p style="margin:0">推重比 ≈ <span class="mono">8,250 ÷ 5,000 ≈ 1.65</span></p>
+      <p class="hint" style="margin:var(--s3) 0 0">推重比必须大于 1，火箭才离得开地面。1.65 意味着「推力是重量的 1.65 倍」——不是特别宽裕，所以每一克多余的结构重量都要省。这个数是本页用公开推力值<b>自行换算</b>的，不是官方公布值。</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="s6">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="sec-no">06</div>
+        <h2>一次飞行的八分钟</h2>
+        <div class="sec-sub">从点火到入轨，星舰要在这几分钟里完成一连串「不能出错」的动作。</div>
+      </div>
+    </div>
+
+    <div class="tl">
+      <div class="tl-item">
+        <div class="tl-t">T-00:00 · 点火</div>
+        <div class="tl-h">33 台猛禽同时点火</div>
+        <div class="tl-b">总推力约 8,250 吨力（自算），起飞质量约 5,000 吨。整支火箭靠 1.65 的推重比慢慢「抬」离地面。</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-t">T+约 2～3 分钟 · 热分离</div>
+        <div class="tl-h">上面级的发动机先点，再把下面级甩开</div>
+        <div class="tl-b">传统做法是先分开再点火，星舰改成<b>先点火再分开</b>：飞船发动机的火焰从级间缝隙喷出，把自己「推」离助推器。省下的这几秒钟，也能换回一点运力。</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-t">T+约 4 分钟 · 助推器返场</div>
+        <div class="tl-h">掉头、返场点火、准备落地</div>
+        <div class="tl-b">超重助推器在分离后掉头往回飞，用几台发动机减速。结局有两种：被发射塔的机械臂<b>夹住</b>（2024 年 10 月第 5 次试飞首次实现），或者落到指定落点（2026 年 9 月第 14 次试飞用的是海上落点）。</div>
+      </div>
+      <div class="tl-item ice">
+        <div class="tl-t">T+约 8 分钟 · 入轨</div>
+        <div class="tl-h">速度到达约 7.7 公里/秒</div>
+        <div class="tl-b">到这一刻，飞船不再需要靠发动机托着——它已经绕地球飞了。<b>注意：入轨靠的是速度，不是高度。</b></div>
+      </div>
+      <div class="tl-item ice">
+        <div class="tl-t">在轨 · 数十小时到数月</div>
+        <div class="tl-h">释放载荷，或者等下一次加注</div>
+        <div class="tl-b">2026 年 9 月 28 日第 14 次试飞，飞船把 26 颗新一代星链卫星送进了稳定的近地轨道。更远的任务（去月球、去火星）需要先在轨道上把燃料加满，也就是<b>在轨加注</b>。</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-t">返程 · 最后十分钟</div>
+        <div class="tl-h">再入、减速、溅落或着陆</div>
+        <div class="tl-b">第 14 次试飞中，飞船在约 275 公里的高度绕地球飞了大约 6 圈、接近 10 小时，最后溅落在智利以西的太平洋。而星舰的终极目标是<b>回到发射塔上被夹住</b>——FAA 在 2026 年 2 月完成的环境评估，评估的正是这套「返回发射场」方案。</div>
+      </div>
+    </div>
+
+    <p class="hint">上表时间为量级示意，实际每次飞行略有差异；任务细节以官方发布为准。</p>
+  </div>
+</section>
+
+<section class="sec" id="s7">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="sec-no">07</div>
+        <h2>它到底成不成功？</h2>
+        <div class="sec-sub">先把数字摊开，再下结论。</div>
+      </div>
+    </div>
+
+    <p>截至 <b>2026 年 9 月 28 日</b>，星舰的两级堆叠构型一共飞了 <b>14 次</b>（这一层口径叫「入轨级试飞」）。把这 14 次的结局画出来是这样：</p>
+
+    <div class="log" id="flightlog"></div>
+
+    <div class="tl" style="margin-top:var(--s7)">
+      <div class="tl-item">
+        <div class="tl-t">2024-10-13 · 第 5 次</div>
+        <div class="tl-h">第一次用发射塔「夹住」返回的助推器</div>
+        <div class="tl-b">一枚 71 米高的助推器飞回来，被发射塔的机械臂在半空中接住。这是「快速重复使用」从口号变成动作的第一步。</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-t">2025-05-27 · 第 9 次</div>
+        <div class="tl-h">第一次用「飞过的」助推器再飞一次</div>
+        <div class="tl-b">这一发的助推器不是新的，是之前飞过的那一枚——重复使用不再只是返场表演，而是真的又干了一次活。</div>
+      </div>
+      <div class="tl-item ice">
+        <div class="tl-t">2026-09-28 · 第 14 次</div>
+        <div class="tl-h">第一次把卫星送进稳定轨道</div>
+        <div class="tl-b">26 颗新一代星链卫星进入稳定近地轨道。有意思的是，SpaceX 在 2026 年 5 月的上市申报文件里就写过一句话：<b>「我们预期星舰将在 2026 年下半年开始向轨道投送载荷。」</b>——四个月后，这句预期兑现了。</div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:var(--s3);flex-wrap:wrap;margin-top:var(--s5)">
+      <details class="box" style="flex:1 1 320px">
+        <summary>为什么失败了那么多次，还叫「进展」？</summary>
+        <div class="box-body">
+          <p>因为这是一种把「失败」当数据用的开发方式：先造一个能飞的东西，让它去撞真实的墙，然后根据碎片改图纸。2025 年的三次连续失败（第 7、8、9 次）之后，团队改的是飞船的姿态控制与发动机布局，第 10 次就飞成了。</p>
+          <p>但这不等于「失败无所谓」——每一次失败都烧掉一枚箭和一整年的产能。它成立的前提是：<b>要能快速再造一枚，而且每一次失败都带来可用的信息</b>。</p>
+        </div>
+      </details>
+      <details class="box" style="flex:1 1 320px">
+        <summary>这套数字是怎么核对的？（两个独立来源）</summary>
+        <div class="box-body">
+          <p>① 逐次试飞的日期与状态，来自公开发射数据库 Launch Library 2 的 27 条星舰记录（含早期的亚轨道跳飞与计划中的任务）。</p>
+          <p>② 公司自己在季度财报里披露的发射次数：截至 2026 年 6 月 30 日的半年内，星舰发射 <b>1 次</b>；去年同期半年是 <b>3 次</b>。</p>
+          <p>两边对得上：第 11 次试飞在 2025 年 10 月，第 12 次在 2026 年 5 月——中间那段空档，正好是半年报里的「1 次」。<b>两个独立来源互相印证，才敢把数字写进页面。</b></p>
+        </div>
+      </details>
+    </div>
+
+    <details class="box">
+      <summary>再看一层：把 2019—2021 年的早期跳飞也算上</summary>
+      <div class="box-body">
+        <p>在两级堆叠飞行之前，SpaceX 用单级的原型机做过 9 次亚轨道试验（「跳飞」）：2019 年星虫的 20 米和 150 米跳飞、2020—2021 年 SN5/SN6 的 150 米跳飞，以及 SN8 到 SN15 的 10～12.5 公里级飞行。</p>
+        <p>这些试验里，SN8、SN9、SN11 都在着陆阶段炸了，SN10 落地后不久也炸了，只有 SN15 稳稳落住。今天星舰能自己落回地面，用的就是那几次摔出来的数据。</p>
+        <p class="hint">口径提醒：把这 9 次和上面的 14 次加在一起是 <b>23 次飞行器试验</b>，但它与「入轨级试飞 14 次」不是同一件事。看到「星舰飞了多少次」这种说法，先问是哪一层。</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<section class="sec" id="s8">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="sec-no">08</div>
+        <h2>找错游戏</h2>
+        <div class="sec-sub">两轮，题目全部来自人们真实的误解。</div>
+      </div>
+    </div>
+
+    <div class="quiz" id="quiz1">
+      <h4>第一轮：下面四句话里，只有一句是对的。把它找出来。</h4>
+      <p class="ins">规则：点一句判断它「对不对」；这四句里<b>恰有一句</b>正确。</p>
+      <div class="stmts"></div>
+      <div class="quiz-foot">
+        <span class="score" aria-live="polite">已找到 0 / 4</span>
+        <button class="btn ghost reset" type="button">重来</button>
+      </div>
+    </div>
+
+    <div class="quiz" id="quiz2">
+      <h4>第二轮：反过来——下面四句话里，只有一句是错的。</h4>
+      <p class="ins">难度升级：这一轮大多数话都对，你要找出那颗唯一的坏果子。</p>
+      <div class="stmts"></div>
+      <div class="quiz-foot">
+        <span class="score" aria-live="polite">已找到 0 / 4</span>
+        <button class="btn ghost reset" type="button">重来</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="s9">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="sec-no">09</div>
+        <h2>现在轮到你讲</h2>
+        <div class="sec-sub">费曼学习法的最后一关：讲出来才算真懂。</div>
+      </div>
+    </div>
+
+    <p>合上页面，用你自己的话讲给同学听，时限 <b>60 秒</b>。讲不顺的地方，就是你还没真的懂的地方——回去看那一节。</p>
+    <p class="hint">提示（真的卡住了再看）：① 星舰为什么必须这么大？② 上天和回来，哪个更难、难在哪？③ 为什么用不锈钢？④ 一共飞了几次、成功到什么程度？</p>
+
+    <div class="recall card">
+      <label class="sr" for="recallText">你的复述</label>
+      <textarea id="recallText" placeholder="用你自己的话写下来（自动保存在这台设备上，不会上传）…"></textarea>
+      <div class="timer">
+        <span class="clock" id="clock">60</span>
+        <button class="btn" id="startTimer" type="button">开始计时</button>
+        <button class="btn ghost" id="resetTimer" type="button">重置</button>
+        <span class="saved" id="savedHint">尚未输入</span>
+      </div>
+      <p class="hint" style="margin:0">内容只存在你浏览器的本地存储里；换设备、清缓存就会消失。</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="appendix">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="sec-no">附录 A</div>
+        <h2>中英术语对照</h2>
+        <div class="sec-sub">星舰的一手资料几乎全是英文，这 30 个词能帮你直接读懂原文。</div>
+      </div>
+    </div>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>中文</th><th>English</th><th>一句话解释</th></tr></thead>
+        <tbody id="glossary"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="appendix-b">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="sec-no">附录 B</div>
+        <h2>数据来源与口径</h2>
+        <div class="sec-sub">每个数字都能追到出处；追不到的，页面上标了「自算」或「社群整理」。</div>
+      </div>
+    </div>
+
+    <div class="cols">
+      <div>
+        <h3>三个口径声明</h3>
+        <p><b>1）什么叫「飞了一次」？</b>本页的「14 次」指的是<b>两级堆叠的入轨级试飞</b>（2023-04-20 起）。2019—2021 年的 9 次单级亚轨道跳飞另算，合并计 23 次。两种说法都对，但<b>说的是不同的东西</b>。</p>
+        <p><b>2）型号版本要跟着走。</b>星舰分 Block 1 / Block 2 / Block 3 等版本，总高分别是 121.3 米、123.1 米、124.4 米。本页首屏用的是<b>现行 Block 3</b> 的高度，与早期新闻里的 121 米不是一个版本。</p>
+        <p><b>3）官方公布 vs 自行换算。</b>凡是本页用公式算出来的数（总推力、推重比、轨道速度、动能），都明确标了「自算」；属于媒体或社群整理、公司未发布规格表的数字，标了「社群整理」。没有来源的数字，本页不留。</p>
+      </div>
+      <div class="card">
+        <h4>证据分级标记</h4>
+        <ul>
+          <li><span class="tag g">一手</span> 政府文件或公司申报文件（美国证监会申报文件 / NASA / FAA）</li>
+          <li><span class="tag y">二手带出处</span> 百科条目或专业媒体，且每条带引用来源</li>
+          <li><span class="tag r">未核</span> 本页不使用</li>
+        </ul>
+        <p class="hint" style="margin:var(--s3) 0 0">SpaceX 官网正文在本页制作时无法从境内网络访问（站点有反自动化拦截），因此本页<b>没有</b>任何「据官网介绍」式的引用——宁可不写，也不假装查过。</p>
+        <h4 style="margin-top:var(--s5)">图片也讲出处</h4>
+        <ul>
+          <li>本页 3 张配图全部来自 <b>NASA 影像库</b>（公有领域，允许自由使用，需署名 NASA，且不得暗示 NASA 为本页背书）。</li>
+          <li>每张图的<b>影像编号、拍摄机构、日期</b>都写进了图注，可以直接拿编号到 NASA 影像库核对原图。</li>
+          <li>图中每一张都经过逐张识图核对——确认它到底画的是什么，才写图注。<b>没有一张“看起来像”就配上去的图。</b></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap srcs">
+    <h3>主要来源</h3>
+    <ol id="srclist"></ol>
+    <p class="foot-note">
+      本页为面向初中生的科普作品，由机器辅助整理与核验，制作日期 2026-10-12。<br>
+      页面内所有推理过程可复算：轨道速度、动能、推力与推重比的计算脚本随作品一同保存。<br>
+      发现错误欢迎指出——勘误优先于面子。
+    </p>
+  </div>
+</footer>
+
+<script>
+/* 星舰 · 科普页 — 交互脚本
+   原则：不依赖任何站外资源；所有数字在本地可复算；无 JS 时页面仍可读。 */
+(function () {
+  'use strict';
+  document.documentElement.classList.add('js');
+
+  /* ---------------------------------------------------------------- 主题 */
+  var root = document.documentElement;
+  var LS_THEME = 'starship.theme';
+  try {
+    var saved = localStorage.getItem(LS_THEME);
+    if (saved === 'light' || saved === 'dark') root.setAttribute('data-theme', saved);
+  } catch (e) { /* 隐私模式下忽略 */ }
+  var themeBtn = document.getElementById('themebtn');
+  if (themeBtn) {
+    themeBtn.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      themeBtn.setAttribute('aria-label', next === 'dark' ? '切换为白昼主题' : '切换为夜航主题');
+      try { localStorage.setItem(LS_THEME, next); } catch (e) {}
+    });
+  }
+
+  /* ------------------------------------------------------------ 阅读进度 */
+  var prog = document.getElementById('prog');
+  function onScroll() {
+    if (!prog) return;
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    var p = h > 0 ? Math.min(100, Math.max(0, window.scrollY / h * 100)) : 0;
+    prog.style.width = p + '%';
+    prog.setAttribute('aria-valuenow', Math.round(p));
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  /* ------------------------------------------------------------ 章节高亮 */
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('.bar-nav a'));
+  var secs = Array.prototype.slice.call(document.querySelectorAll('section[id]'));
+  if ('IntersectionObserver' in window && secs.length) {
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        var id = en.target.id;
+        navLinks.forEach(function (a) {
+          if (a.getAttribute('href') === '#' + id) a.classList.add('on');
+          else a.classList.remove('on');
+        });
+      });
+    }, { rootMargin: '-25% 0px -65% 0px', threshold: 0 });
+    secs.forEach(function (s) { spy.observe(s); });
+  }
+
+  /* ------------------------------------------------------------ 淡入 */
+  if ('IntersectionObserver' in window) {
+    var faders = document.querySelectorAll('.fadein');
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -8% 0px' });
+    faders.forEach(function (f) { io.observe(f); });
+  } else {
+    document.querySelectorAll('.fadein').forEach(function (f) { f.classList.add('in'); });
+  }
+
+  /* ================================================================ 数据 */
+  var N = {
+    ve: 3200,             // 排气速度（米/秒）：猛禽海平面比冲公开值 327 s × 9.8 ≈ 3,206 —— 社群整理口径
+    orbital: 7744,        // 275 km 高度圆轨道速度（本页脚本自算）
+    joulesPerKg: 30e6,    // 入轨动能（本页脚本自算）
+    waterJoules: 419000   // 1 kg 水 0→100℃ 所需能量（本页脚本自算）
+  };
+
+  var GUESSES = {
+    g1: {
+      ok: 2,
+      verdictOk: '对了。答案是第三档：约 7,700 米/秒。',
+      verdictNo: '再想想——正确答案是第三档：约 7,700 米/秒。',
+      why: '火箭加速靠的是「越扔越轻」：燃料被喷出去以后，剩下的部分轻了，同样的推力就能换来更多速度。这个累积过程不是加减法，而是指数关系。',
+      calc: '按滑杆里的简化模型：Δv = 3,200 × ln(10) ≈ 7,368 米/秒\n入轨门槛（275 km 圆轨道）≈ 7,740 米/秒\n也就是说：燃料占到九成，单级才刚刚够——这就是真实火箭必须分级的原因。'
+    },
+    g2: {
+      ok: 1,
+      verdictOk: '对了：大约 70 公斤，够一家人好好洗个澡。',
+      verdictNo: '差得有点远——正确答案是「大约 70 公斤」。',
+      why: '速度的平方决定动能。7.7 公里/秒听起来只是「很快」，但它被平方了两次之后，一公斤东西身上就攒着一份相当可观的能量。回来时，这份能量必须全变成热。',
+      calc: '动能 = ½ × 1 kg × (7,744 m/s)² ≈ 3.0 × 10⁷ 焦耳\n烧开 1 kg 水（0→100℃）= 4,186 × 100 ≈ 4.19 × 10⁵ 焦耳\n3.0 × 10⁷ ÷ 4.19 × 10⁵ ≈ 72 公斤'
+    },
+    g3: {
+      ok: 1,
+      verdictOk: '对了。',
+      verdictNo: '不对——正确答案是「两头都不掉链子，而且便宜、好焊、好修」。',
+      why: '贮箱里是 -183℃ 的液氧，迎风面又要面对再入高温。不锈钢在低温下强度反而上升、熔点高，还能在现场焊接修补；代价是更重，而这份重量靠「越大越划算」的放大规律补回来一部分。',
+      calc: '碳纤维：低温偏脆、需要大烘炉、坏了难修\n铝锂：轻，但两头都只是「够用」\n不锈钢：重，但便宜、好焊、耐冷热 —— 目标是「快速复用」，这一项权重最高'
+    }
+  };
+
+  /* 先猜后验 */
+  Array.prototype.forEach.call(document.querySelectorAll('.guess'), function (box) {
+    var key = box.getAttribute('data-guess');
+    var cfg = GUESSES[key];
+    if (!cfg) return;
+    var opts = Array.prototype.slice.call(box.querySelectorAll('.opt'));
+    var verdict = box.querySelector('.verdict');
+    var why = box.querySelector('.why');
+    var calc = box.querySelector('.calc');
+    var picked = false;
+    opts.forEach(function (b) {
+      b.addEventListener('click', function () {
+        opts.forEach(function (o) { o.setAttribute('aria-pressed', 'false'); o.disabled = true; });
+        b.setAttribute('aria-pressed', 'true');
+        var i = parseInt(b.getAttribute('data-i'), 10);
+        var right = i === cfg.ok;
+        box.classList.add('done');
+        verdict.textContent = (right ? '✅ ' : '✖️ ') + (right ? cfg.verdictOk : cfg.verdictNo);
+        verdict.className = 'verdict ' + (right ? 'y' : 'n');
+        why.textContent = cfg.why;
+        calc.textContent = cfg.calc;
+        if (!picked) {
+          picked = true;
+          var r = document.createElement('p');
+          r.className = 'retry';
+          r.textContent = '（选项已锁定——先看完解释，再去滑杆上亲手拨一遍。）';
+          box.appendChild(r);
+        }
+      });
+    });
+  });
+
+  /* 滑杆：燃料占比 → 速度增量 */
+  var range = document.getElementById('simRange');
+  if (range) {
+    var pct = document.getElementById('simPct');
+    var dvOut = document.getElementById('simDv');
+    var fill = document.getElementById('simFill');
+    var goal = document.getElementById('simGoal');
+    var goalText = goal.textContent;
+    function upd() {
+      var p = parseInt(range.value, 10);
+      var massRatio = 1 / (1 - p / 100);
+      var dv = N.ve * Math.log(massRatio);
+      pct.textContent = p + '%';
+      dvOut.textContent = Math.round(dv).toLocaleString('en-US');
+      fill.style.width = Math.min(100, dv / N.orbital * 100) + '%';
+      if (dv >= N.orbital) {
+        goal.textContent = '✅ 到 7,740 米/秒了：按这个简化模型，燃料至少要占 ' + p + '%。真实火箭还要扣掉重力和空气的损失，所以必须分级。';
+      } else {
+        goal.textContent = goalText + '（现在差 ' + Math.round(N.orbital - dv).toLocaleString('en-US') + ' 米/秒）';
+      }
+    }
+    range.addEventListener('input', upd);
+    upd();
+  }
+
+  /* 试飞日志 */
+  var FLIGHTS = [
+    ['2023-04-20', '第 1 次', 'no'],
+    ['2023-11-18', '第 2 次', 'part'],
+    ['2024-03-14', '第 3 次', 'ok'],
+    ['2024-06-06', '第 4 次', 'ok'],
+    ['2024-10-13', '第 5 次 · 首次塔捕助推器', 'ok'],
+    ['2024-11-19', '第 6 次 · 首次真空重启发动机', 'ok'],
+    ['2025-01-16', '第 7 次', 'no'],
+    ['2025-03-06', '第 8 次', 'no'],
+    ['2025-05-27', '第 9 次 · 首次用飞过的助推器', 'no'],
+    ['2025-08-26', '第 10 次', 'ok'],
+    ['2025-10-13', '第 11 次', 'ok'],
+    ['2026-05-22', '第 12 次 · 第三代首飞', 'ok'],
+    ['2026-07-24', '第 13 次 · 首次带 20 颗新一代星链', 'ok'],
+    ['2026-09-28', '第 14 次 · 首次送卫星入稳定轨道', 'ok']
+  ];
+  var logEl = document.getElementById('flightlog');
+  if (logEl) {
+    var LABEL = { ok: '成功', part: '部分成功', no: '失败' };
+    FLIGHTS.forEach(function (f) {
+      var row = document.createElement('div');
+      row.className = 'log-row';
+      var mile = f[1].indexOf('·') > -1;
+      row.innerHTML = '<span class="log-date">' + f[0] + '</span>' +
+        '<span class="log-bar"><i class="' + f[2] + '"></i></span>' +
+        '<span class="log-st ' + f[2] + '">' + LABEL[f[2]] + '</span>';
+      var wrap = document.createElement('div');
+      wrap.appendChild(row);
+      if (mile) {
+        var m = document.createElement('div');
+        m.className = 'log-mile';
+        m.style.paddingLeft = '64px';
+        m.textContent = '↳ ' + f[1].split('· ')[1];
+        wrap.appendChild(m);
+      }
+      logEl.appendChild(wrap);
+    });
+  }
+
+  /* 找错游戏 */
+  var QUIZ = {
+    quiz1: {
+      mode: 'one-right',
+      items: [
+        { t: '火箭做得越大，性能就一定越强。', ok: false, why: '大只是让「面积/体积」的放大规律更划算，真正决定性能的是燃料占比与结构效率。做大了但结构低效，一样飞不上去。' },
+        { t: '到达近地轨道的关键是横向速度（约 7.7 公里/秒），而不是单纯的高度。', ok: true, why: '正确。国际空间站的高度只有约 400 公里，比广州到长沙还近；难的是要横着飞得足够快，才不会被地球拉下来。' },
+        { t: '不锈钢强度低、熔点低，用它纯粹是为了省钱。', ok: false, why: '恰恰相反：不锈钢在极低温下强度上升、熔点高，还能现场焊接修补。用它是「性能＋成本＋制造速度＋可维修性」一起算账的结果。' },
+        { t: '到 2026 年星舰已经成熟，可以像飞机一样每天飞。', ok: false, why: '截至 2026 年 9 月，入轨级试飞共 14 次，仍在试错阶段（2025 年还连续失败三次）。成熟的标准是「稳定重复使用」，那还在路上。' }
+      ]
+    },
+    quiz2: {
+      mode: 'one-wrong',
+      items: [
+        { t: '截至 2026 年 9 月 28 日，星舰的入轨级试飞共进行了 14 次。', ok: true, why: '对。第 1 次是 2023 年 4 月 20 日，第 14 次是 2026 年 9 月 28 日。' },
+        { t: '2025 年星舰曾连续三次试飞失败。', ok: true, why: '对。第 7、8、9 次（1 月、3 月、5 月）连续失败，第 10 次才成功。' },
+        { t: '2026 年 9 月的第 14 次试飞，第一次把卫星送进了稳定的近地轨道。', ok: true, why: '对。26 颗新一代星链卫星进入稳定轨道——而公司在 5 月的上市文件里刚写过「预计 2026 年下半年开始向轨道投送载荷」。' },
+        { t: '星舰的助推器和飞船都已经实现回收并重复使用多次。', ok: false, why: '这是错的。助推器在 2025 年 5 月第 9 次试飞首次用「飞过的」再飞一次；而飞船的回收复用还没有完成——第 14 次试飞的飞船是溅落在太平洋里的。' }
+      ]
+    }
+  };
+  Object.keys(QUIZ).forEach(function (id) {
+    var root2 = document.getElementById(id);
+    if (!root2) return;
+    var cfg = QUIZ[id];
+    var box = root2.querySelector('.stmts');
+    var scoreEl = root2.querySelector('.score');
+    var found = 0;
+    function build() {
+      box.innerHTML = '';
+      found = 0;
+      scoreEl.textContent = '已找到 0 / ' + cfg.items.length;
+      cfg.items.forEach(function (it) {
+        var d = document.createElement('div');
+        d.className = 'stmt';
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'stmt-btn';
+        b.textContent = it.t;
+        var w = document.createElement('div');
+        w.className = 'stmt-why';
+        b.addEventListener('click', function () {
+          if (b.dataset.done) return;
+          b.dataset.done = '1';
+          var isTarget = (cfg.mode === 'one-right') ? it.ok : !it.ok;
+          b.classList.add(isTarget ? 'right' : 'wrong');
+          w.className = 'stmt-why show';
+          w.textContent = (isTarget ? '✔ 找到了。' : '✘ 不是它。') + it.why;
+          if (isTarget) { found++; scoreEl.textContent = '已找到 ' + found + ' / ' + cfg.items.length + (found === cfg.items.length ? ' —— 通关！' : ''); }
+        });
+        d.appendChild(b); d.appendChild(w); box.appendChild(d);
+      });
+    }
+    build();
+    var rb = root2.querySelector('.reset');
+    if (rb) rb.addEventListener('click', build);
+  });
+
+  /* 术语注解 */
+  var TERMS = {
+    thrust: ['推力', 'thrust', '发动机往后喷出气体，气体给发动机一个向前的反作用力。单位常用「吨力」，1 吨力约等于 9.8 千牛。'],
+    isp: ['比冲', 'specific impulse', '衡量燃料效率的指标：同样一公斤推进剂能换来多少冲量。数值越高，说明「同样的燃料能换更多速度」。单位是秒。'],
+    staging: ['级间分离', 'staging / stage separation', '把已经烧完燃料的空壳扔掉，让剩下的部分不带无用的重量继续飞。这是火箭能入轨的关键一招。'],
+    ffsc: ['全流量分级燃烧', 'full-flow staged combustion', '把燃料和氧化剂分别送进两个预燃室先烧一遍：一个富燃、一个富氧；两股高温气体各自推动一个涡轮泵，最后再进主燃烧室完全燃烧。好处是主燃烧室压力能做得更高，发动机更小更猛。'],
+    turbopump: ['涡轮泵', 'turbopump', '把推进剂高速泵进燃烧室的装置，相当于火箭的「心脏」。猛禽每一台发动机有两个涡轮泵。'],
+    hotstaging: ['热分离', 'hot staging', '上面级发动机在两级还没分开时先点火，火焰从级间缝隙喷出，把上面级「推」离下面级。']
+  };
+  Array.prototype.forEach.call(document.querySelectorAll('.term'), function (t) {
+    var k = t.getAttribute('data-term');
+    var d = TERMS[k];
+    if (!d) return;
+    var pop = document.createElement('div');
+    pop.className = 'term-pop';
+    pop.hidden = true;
+    pop.innerHTML = '<span class="en">' + d[1] + '</span><b>' + d[0] + '</b>：' + d[2];
+    t.parentNode.insertBefore(pop, t.nextSibling);
+    t.setAttribute('aria-expanded', 'false');
+    t.addEventListener('click', function () {
+      pop.hidden = !pop.hidden;
+      t.setAttribute('aria-expanded', String(!pop.hidden));
+    });
+  });
+
+  /* 复述：计时 + 本地保存 */
+  var ta = document.getElementById('recallText');
+  if (ta) {
+    var LS_R = 'starship.recall';
+    try {
+      var v = localStorage.getItem(LS_R);
+      if (v) { ta.value = v; document.getElementById('savedHint').textContent = '已恢复上次保存的内容（' + v.length + ' 字）'; }
+    } catch (e) {}
+    var t0 = 0;
+    ta.addEventListener('input', function () {
+      try { localStorage.setItem(LS_R, ta.value); } catch (e) {}
+      t0 = t0 || Date.now();
+      document.getElementById('savedHint').textContent = '已保存 ' + ta.value.length + ' 字（本机）';
+    });
+    var clock = document.getElementById('clock');
+    var timer = null;
+    var left = 60;
+    function paint() { clock.textContent = left; clock.className = 'clock' + (left <= 10 ? ' warn' : ''); }
+    document.getElementById('startTimer').addEventListener('click', function () {
+      if (timer) return;
+      if (left === 0) left = 60;
+      timer = setInterval(function () {
+        left--; paint();
+        if (left <= 0) { clearInterval(timer); timer = null; clock.textContent = '时间到'; clock.className = 'clock warn'; }
+      }, 1000);
+    });
+    document.getElementById('resetTimer').addEventListener('click', function () {
+      if (timer) { clearInterval(timer); timer = null; }
+      left = 60; paint();
+    });
+    paint();
+  }
+
+  /* 术语对照表 */
+  var GLOSSARY = [
+    ['星舰', 'Starship', '两级构型的统称；也可单独指上面级飞船'],
+    ['超重助推器', 'Super Heavy', '第一级，装 33 台猛禽发动机，可重复使用'],
+    ['推力', 'thrust', '发动机往后喷气产生的反作用力'],
+    ['比冲', 'specific impulse (Isp)', '燃料效率分，单位是秒'],
+    ['推重比', 'thrust-to-weight ratio', '推力 ÷ 重量，必须大于 1 才能离地'],
+    ['推进剂', 'propellant', '火箭自己带着的「燃料 + 氧化剂」'],
+    ['液氧', 'liquid oxygen (LOX)', '氧化剂，零下 183℃'],
+    ['液态甲烷', 'liquid methane', '燃料，燃烧干净、不易积碳'],
+    ['全流量分级燃烧', 'full-flow staged combustion', '两级预燃室各自驱动涡轮泵的循环方式'],
+    ['涡轮泵', 'turbopump', '把推进剂泵进燃烧室的装置'],
+    ['燃烧室', 'combustion chamber', '推进剂真正燃烧的地方'],
+    ['级间分离', 'stage separation', '扔掉用完的下面级'],
+    ['热分离', 'hot staging', '上面级先点火，再与下面级分开'],
+    ['起飞质量', 'liftoff mass', '加满推进剂后的总重量'],
+    ['近地轨道', 'low Earth orbit (LEO)', '约 200～2,000 公里高度的轨道'],
+    ['速度增量', 'delta-v (Δv)', '火箭能给自己「加」多少速度'],
+    ['质量比', 'mass ratio', '起飞质量 ÷ 燃尽后质量'],
+    ['自然对数', 'natural logarithm (ln)', '齐奥尔科夫斯基公式里的关键运算'],
+    ['再入', 'atmospheric reentry', '从轨道冲回大气层的过程'],
+    ['气动减速', 'aerodynamic deceleration', '靠空气而不是燃料减速'],
+    ['隔热瓦', 'heat shield tile', '贴在迎风面、负责被烧的六边形瓦片'],
+    ['翼面', 'flap', '控制再入姿态的活动翼'],
+    ['返场点火', 'boostback burn', '助推器掉头往回飞时的点火'],
+    ['着陆点火', 'landing burn', '落地前最后减速的点火'],
+    ['塔捕', 'tower catch', '用发射塔机械臂夹住返回的助推器'],
+    ['溅落', 'splashdown', '落在海面上'],
+    ['复用', 'reusability / reuse', '把飞过的东西再飞一次'],
+    ['重复使用飞行', 'reflight', '用「飞过的」硬件执行的新一次飞行'],
+    ['有效载荷', 'payload', '真正要送上去的货物（卫星、飞船、人）'],
+    ['星舰基地', 'Starbase', '位于得州博卡奇卡的制造与发射基地'],
+    ['发射台', 'launch pad', '火箭点火起飞的位置'],
+    ['在轨加注', 'orbital propellant transfer', '在轨道上给飞船补燃料'],
+    ['载人着陆系统', 'Human Landing System (HLS)', 'NASA 选定的登月着陆器方案，由星舰改装'],
+    ['星链', 'Starlink', 'SpaceX 的卫星互联网星座，也是星舰的早期客户']
+  ];
+  var gEl = document.getElementById('glossary');
+  if (gEl) {
+    GLOSSARY.forEach(function (g) {
+      var tr = document.createElement('tr');
+      tr.innerHTML = '<td>' + g[0] + '</td><td class="mono" data-label="English">' + g[1] + '</td><td data-label="解释">' + g[2] + '</td>';
+      gEl.appendChild(tr);
+    });
+  }
+
+  /* 来源清单 */
+  var SOURCES = [
+    ['美国政府 · 联邦航空管理局（FAA）', 'Final Tiered Environmental Assessment — 星舰返回发射场（RTLS）与附加弹道评估，2026-02-12', 'https://www.faa.gov/space/stakeholder_engagement/spacex_starship/'],
+    ['美国证监会 EDGAR · SpaceX S-1 上市申报文件', '公司自述：超重助推器由 33 台猛禽发动机驱动；第三代星舰完全复用配置下向近地轨道投送 100 吨', 'https://www.sec.gov/Archives/edgar/data/1181412/000162828026036936/spaceexplorationtechnologi.htm'],
+    ['美国证监会 EDGAR · SpaceX 10-Q 季报（2026-06-30）', '分季度发射次数业务指标：2026 上半年星舰发射 1 次', 'https://www.sec.gov/Archives/edgar/data/1181412/000162828026052535/spcx-20260630.htm'],
+    ['NASA · 载人着陆系统（HLS）项目页', 'NASA 选定星舰作为 Artemis 载人登月着陆器', 'https://www.nasa.gov/humans-in-space/human-landing-system/'],
+    ['Launch Library 2（The Space Devs）发射数据库', '27 条星舰发射记录：日期、状态、任务描述（本页逐次试飞表的直接依据）', 'https://ll.thespacedevs.com/2.2.0/launch/?search=starship'],
+    ['Wikipedia（英文）· SpaceX Starship 条目', '各版本高度与运力、材料与总体设计（条目内逐条带引用；本页按「社群整理」口径使用）', 'https://en.wikipedia.org/wiki/SpaceX_Starship'],
+    ['Wikipedia（英文）· SpaceX Raptor 条目', '三代猛禽推力与比冲数值（同上，社群整理口径）', 'https://en.wikipedia.org/wiki/SpaceX_Raptor'],
+    ['本页自算（脚本随作品保存）', '轨道速度 7.74 km/s、每公斤入轨动能 30 MJ、33 台推力 8,250 吨力、推重比 1.65、烧水对照 72 kg', 'assets/compute.js'],
+    ['图片 · NASA 影像库（第 6 次试飞从国际空间站拍摄的发射尾迹）', '影像编号 iss072e220043，约翰逊航天中心，2024-11-19；本页首屏图，NASA 公有领域', 'https://images.nasa.gov/details/iss072e220043'],
+    ['图片 · NASA 影像库（艾姆斯研究中心风洞试验件）', '影像编号 ACD25-0156-005，NASA 与 SpaceX 联合风洞试验，2025-07-31；本页第 04 节配图', 'https://images.nasa.gov/details/ACD25-0156-005'],
+    ['图片 · NASA 影像库（马歇尔中心真空热试验设备）', '影像编号 _KSH0088，2024-11；本页第 03 节配图', 'https://images.nasa.gov/details/_KSH0088']
+  ];
+  var sEl = document.getElementById('srclist');
+  if (sEl) {
+    SOURCES.forEach(function (s) {
+      var li = document.createElement('li');
+      li.innerHTML = '<b>' + s[0] + '</b>：' + s[1] + '<br><span class="u">' + s[2] + '</span>';
+      sEl.appendChild(li);
+    });
+  }
+
+  /* 断言探针（仅在带 ?probe=1 时输出，用于交付自检） */
+  if (location.search.indexOf('probe=1') > -1) {
+    var report = {
+      guesses: document.querySelectorAll('.guess').length,
+      opts: document.querySelectorAll('.opt').length,
+      terms: document.querySelectorAll('.term').length,
+      termPops: document.querySelectorAll('.term-pop').length,
+      logRows: document.querySelectorAll('.log-row').length,
+      quizRounds: document.querySelectorAll('.quiz').length,
+      quizStmts: document.querySelectorAll('.stmt-btn').length,
+      glossaryRows: document.querySelectorAll('#glossary tr').length,
+      sources: document.querySelectorAll('#srclist li').length,
+      nestedButtons: document.querySelectorAll('button button').length,
+      styleSheets: document.styleSheets.length,
+      extResources: Array.prototype.filter.call(document.querySelectorAll('img,script,link'), function (el) {
+        var u = el.getAttribute('src') || el.getAttribute('href') || '';
+        return /^https?:\/\//.test(u);
+      }).length
+    };
+    console.log('PROBE ' + JSON.stringify(report));
+    window.__PROBE__ = report;
+  }
+})();
+
+</script>
+</body>
+</html>
